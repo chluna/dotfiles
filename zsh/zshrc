@@ -1,0 +1,166 @@
+#
+# .zshrc by chluna
+#
+# for `root` user, ln -s $ZDOTDIR  to /root
+#                        ~/.zshenv
+#
+
+# zsh functions
+autoload -Uz compinit; compinit
+#autoload -Uz promptinit; promptinit
+
+# Powerlevel10k theme
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
+# load theme
+[[ -f $ZDOTDIR/powerlevel10k/powerlevel10k.zsh-theme ]] && source $ZDOTDIR/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f $ZDOTDIR/.p10k.zsh ]] && source $ZDOTDIR/.p10k.zsh
+
+# git completions
+fpath=(/usr/share/git/completions $fpath)
+
+# zsh autosuggestions
+[[ -f $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
+
+# zsh syntax highlighting
+[[ -f $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# key bindings
+# ctrl + arrow to move by words
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+# make home & end work as it should
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
+# alias
+# from .bashrc
+alias ls='ls -a --color=auto'
+alias ll='ls -alh --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias cp='cp -i'                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+# custom aliases
+alias m='micro'
+alias c='vscodium'
+alias C='sudo vscodium'
+alias n='nnn -deE'
+alias N='sudo -E nnn -deEH'
+alias please='sudo $(fc -ln -1)'
+alias dm='sudo dmesg -eHw'
+alias nf='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
+alias r='sudo reflector --verbose --save /etc/pacman.d/mirrorlist --protocol https --sort rate --fastest 50 --latest 40 --score 30 --age 24'
+alias zu='git -C $ZDOTDIR/powerlevel10k pull; git -C $ZDOTDIR/zsh-autosuggestions pull; git -C $ZDOTDIR/zsh-syntax-highlighting pull; exec zsh'
+alias h='htop'
+# rust alternatives
+if [[ -f /usr/bin/exa ]]; then
+	alias ls='exa -a'
+	alias ll='exa -albg --group-directories-first'
+fi
+
+# global custom functions
+p() {
+    case $1 in
+        "install")	shift; paru -S "$@"					;;
+        "remove")	shift; paru -Rsn "$@"				;;
+        "purge")	sudo pacman -Rsn $(pacman -Qtdq)	;;
+        "export")
+        	exp=~/.dotfiles/pacman
+        	if [[ ! -d $exp ]]; then mkdir -p $exp; fi
+            pacman -Qqen | awk '{print $1}' > $exp/loc.txt
+            pacman -Qqem | awk '{print $1}' > $exp/aur.txt
+            ;;
+        "query")	shift; pacman -Qs "$@"						;;
+        "clean")	paru -Sc									;;
+        "diff")		sudo DIFFPROG='delta --color-only' pacdiff	;;
+        "up")
+        	paru
+        	p purge
+        	p diff
+        	;;
+        *)
+        	echo "Usage: p [install|query|remove] pkg1 pkg2 ..."
+        	echo "       p [clean|diff|export|purge|up]"
+        	;;
+    esac
+}
+z() {
+	sha1sum $ZDOTDIR/.zshrc > /tmp/zshrc.sha1
+	m $ZDOTDIR/.zshrc
+	sha1sum -c /tmp/zshrc.sha1 --status
+	if [[ $? -ne 0 ]] then
+		read -q "choice?Reload changes? [y/N] "
+		echo "\n"
+		if [[ ${choice:l} = "y" ]] exec zsh
+	fi
+	rm /tmp/zshrc.sha1
+}
+
+if [[ $UID -ne 0 ]] then
+	# rust
+	rust() {
+		file=$(echo $1 | cut -d'.' -f1)
+		rustc $file.rs && ./$file && rm $file
+	}
+	# custom functions
+	ssh() {
+	    in_list=false
+	    for host in "op1" "omv"
+	    do
+            if [[ $1 = $host ]] then
+                in_list=true
+                break
+            fi
+		done
+		if [[ $in_list = true ]] then
+		    TERM=xterm-256color command ssh $1
+		else
+		    command ssh "$@"
+		fi
+	}
+	sc() {
+		case $1 in
+			"start" | "stop" | "status" | "enable" | "disable" | "restart")
+				sudo systemctl "$@"
+				echo "$@" ;;
+			*) echo "Usage: sc [start|stop|status|enable|disable|restart] service"
+		esac
+	}
+	od() {
+	    case $1 in
+	        "status") journalctl --user-unit onedrive -f ;;
+	        "start")  systemctl --user start onedrive    ;;
+	        "stop")   systemctl --user stop onedrive     ;;
+	        *) echo "Usage: od [status|start|stop]"
+        esac
+	}
+	b() {
+		case $1 in
+			"create")
+				sudo borg create --list -C zstd	/run/media/spike/ssd/borg::spike-{now:%Y%m%d}	\
+				/home/spike
+				b prune
+				;;
+			"prune")
+				sudo borg prune -v --list				\
+								   --keep-within=4d		\
+								   --keep-daily=3		\
+								   --keep-weekly=3		\
+								   --keep-monthly=2 	\
+								   /run/media/spike/ssd/borg
+				;;
+			*) echo "Usage: b [create|prune]"
+		esac
+	}
+fi

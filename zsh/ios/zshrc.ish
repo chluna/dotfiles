@@ -1,0 +1,48 @@
+#
+# .zshrc by chluna
+# for Alpine Linux
+#
+
+# load pure theme
+fpath+=($ZDOTDIR/pure)
+autoload -Uz promptinit; promptinit
+prompt pure
+
+# zsh completion
+autoload -Uz compinit; compinit
+
+# zsh autosuggestions
+[[ -f $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# zsh syntax highlighting
+[[ -f $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# alias
+# from .bashrc
+alias ls='ls -a --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+alias cp='cp -i'                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+# global alias
+alias ll='ls -alh --color=auto'
+alias n='nano'
+alias nf='neofetch --ascii_distro Alpine_small'
+alias up='apk update && apk upgrade'
+
+# functions
+z() {
+	sha1sum $ZDOTDIR/.zshrc > /tmp/zshrc.sha1
+	n $ZDOTDIR/.zshrc
+	sha1sum -c /tmp/zshrc.sha1 -s
+	if [[ $? -ne 0 ]] then
+		read -q "choice?Reload changes? [y/N] "
+		echo "\n"
+		if [[ ${choice:l} = "y" ]] exec zsh
+	fi
+	rm /tmp/zshrc.sha1
+}
