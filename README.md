@@ -5,6 +5,7 @@ My personal dotfiles repository.
 __Linux:__
 
 * [alacritty](https://github.com/alacritty/alacritty) - terminal emulator
+* [git](https://git-scm.com/) - free and open source distributed version control system
 * [keepassxc](https://github.com/keepassxreboot/keepassxc) - password manager based on Keepass
 * [nnn](https://github.com/jarun/nnn) - terminal file manager
 * [onedrive](https://github.com/abraunegg/onedrive) - OneDrive client
@@ -26,10 +27,10 @@ __Setting up dotfiles using [dotbot](https://github.com/anishathalye/dotbot)__ [
 ```shell
 % sudo pacman -S git zsh python # install if not yet installed
 
-# clone from remote and start dotbot
+# clone from remote
 % git clone git@gitlab.com:.chluna/dotfiles.git ~/.config/.dotfiles --recursive
 % cd ~/.config/dotfiles
-% micro install.conf.yaml # edit the paths as needed
+% micro install.conf.yaml # edit config file
 % ./install
 
 # pulling changes from remote
@@ -37,4 +38,4 @@ __Setting up dotfiles using [dotbot](https://github.com/anishathalye/dotbot)__ [
 % git pull
 % ./install
 ```
-[^1]: Here is another [tutorial](https://www.elliotdenolf.com/posts/bootstrap-your-dotfiles-with-dotbot)
+[^1]: This is the [tutorial](https://www.elliotdenolf.com/posts/bootstrap-your-dotfiles-with-dotbot) I used to initially set this up.
