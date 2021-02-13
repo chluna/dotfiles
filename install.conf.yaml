@@ -23,6 +23,8 @@
         path: zsh/ios/*
     # alacritty
     ~/.config/alacritty/alacritty.yml: alacritty.yml
+    # git (global)
+    ~/.gitconfig: gitconfig
     # notable
     ~/.notable.json: notable.json
     # onedrive
