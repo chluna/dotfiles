@@ -1,0 +1,12 @@
+colorpicker-ym1234-git
+imgp
+nnn-icons
+notable-bin
+onedrive-abraunegg
+paru-bin
+qview
+tela-icon-theme
+timeshift
+ttf-apple-emoji
+ttf-meslo-nerd-font-powerlevel10k
+vscodium-bin
