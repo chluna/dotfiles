@@ -52,17 +52,13 @@ alias cp='cp -i'                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 # custom aliases
-alias m='micro'
 alias c='vscodium'
-alias C='sudo vscodium'
-alias n='nnn -deE'
-alias N='sudo -E nnn -deEH'
-alias please='sudo $(fc -ln -1)'
-alias dm='sudo dmesg -eHw'
-alias nf='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
+alias d='sudo dmesg -eHw'
+alias e='micro'
+alias f='nnn -deEH'
+alias s='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
+alias y='sudo $(fc -ln -1)'
 alias r='sudo reflector --verbose --save /etc/pacman.d/mirrorlist --protocol https --sort rate --fastest 50 --latest 40 --score 30 --age 24'
-alias zu='git -C $ZDOTDIR/powerlevel10k pull; git -C $ZDOTDIR/zsh-autosuggestions pull; git -C $ZDOTDIR/zsh-syntax-highlighting pull; exec zsh'
-alias h='htop'
 # rust alternatives
 if [[ -f /usr/bin/exa ]]; then
 	alias ls='exa -a'
@@ -76,7 +72,7 @@ p() {
         "remove")	shift; paru -Rsn "$@"				;;
         "purge")	sudo pacman -Rsn $(pacman -Qtdq)	;;
         "export")
-        	exp=~/.dotfiles/pacman
+        	exp=$DOTFILES/pacman
         	if [[ ! -d $exp ]]; then mkdir -p $exp; fi
             pacman -Qqen | awk '{print $1}' > $exp/loc.txt
             pacman -Qqem | awk '{print $1}' > $exp/aur.txt
@@ -96,15 +92,27 @@ p() {
     esac
 }
 z() {
-	sha1sum $ZDOTDIR/.zshrc > /tmp/zshrc.sha1
-	m $ZDOTDIR/.zshrc
-	sha1sum -c /tmp/zshrc.sha1 --status
-	if [[ $? -ne 0 ]] then
-		read -q "choice?Reload changes? [y/N] "
-		echo "\n"
-		if [[ ${choice:l} = "y" ]] exec zsh
-	fi
-	rm /tmp/zshrc.sha1
+	case $1 in
+		"e")
+			sha1sum $ZDOTDIR/.zshrc > /tmp/zshrc.sha1
+			e $ZDOTDIR/.zshrc
+			sha1sum -c /tmp/zshrc.sha1 --status
+			if [[ $? -ne 0 ]] then
+				read -q "choice?Reload changes? [y/N] "
+				echo "\n"
+				if [[ ${choice:l} = "y" ]] exec zsh
+			fi
+			rm /tmp/zshrc.sha1
+			;;
+		"u")
+			dir=$(pwd)
+			cd $ZDOTDIR
+			find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;
+			cd $pwd
+			;;
+		*)
+			z e
+	esac
 }
 
 if [[ $UID -ne 0 ]] then

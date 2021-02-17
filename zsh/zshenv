@@ -26,3 +26,6 @@ export MICRO_TRUECOLOR=1
 export NNN_BMS="o:~/OneDrive;e:/run/media/spike"
 export NNN_USE_EDITOR=1
 export NNN_COLORS=3421
+
+# dotfiles folder
+export DOTFILES=$XDG_CONFIG_HOME/dotfiles
