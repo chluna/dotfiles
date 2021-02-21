@@ -19,13 +19,14 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_SAVE_NO_DUPS
 
 # micro
-export EDITOR="micro"
+export EDITOR=micro
 export MICRO_TRUECOLOR=1
 
 # nnn
 export NNN_BMS="o:~/OneDrive;e:/run/media/spike"
 export NNN_USE_EDITOR=1
 export NNN_COLORS=3421
+export VISUAL=$EDITOR
 
 # dotfiles folder
 export DOTFILES=$XDG_CONFIG_HOME/dotfiles
