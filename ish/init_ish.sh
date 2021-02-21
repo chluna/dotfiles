@@ -5,10 +5,10 @@ ZDOTDIR=~/.config/zsh
 mkdir -p $ZDOTDIR
 
 # download from gitlab
-wget https://gitlab.com/.chluna/dotfiles/-/raw/master/.ios/zshenv.ish
-mv ~/zshenv.ish ~/.zshenv
-wget https://gitlab.com/.chluna/dotfiles/-/raw/master/.ios/zshrc.ish
-mv ~/zshrc.ish $ZDOTDIR/.zshrc
+wget https://gitlab.com/.chluna/dotfiles/-/raw/master/ish/zshenv_ish
+mv ~/zshenv_ish ~/.zshenv
+wget https://gitlab.com/.chluna/dotfiles/-/raw/master/ish/zshrc_ish
+mv ~/zshrc_ish $ZDOTDIR/.zshrc
 
 # update apk repositories
 [[ $(cat /ish/version) -lt 88 ]] && echo 'file:///ish/apk/community' >> /etc/apk/repositories 
