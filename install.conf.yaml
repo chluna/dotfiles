@@ -17,10 +17,6 @@
     ~/.zshenv: zsh/zshenv
     ~/.config/zsh/.zshrc: zsh/zshrc
     ~/.config/zsh/.p10k.zsh: zsh/p10k.zsh
-    ~/.config/zsh/ios/:
-        glob: true
-        create: true
-        path: zsh/ios/*
     # alacritty
     ~/.config/alacritty/alacritty.yml: alacritty.yml
     # git (global)
