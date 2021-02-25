@@ -53,12 +53,12 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 # custom aliases
 alias c='vscodium'
-alias d='sudo dmesg -eHw'
+alias d='doas dmesg -eHw'
 alias e='micro'
 alias f='nnn -deEH'
 alias s='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
-alias y='sudo $(fc -ln -1)'
-alias r='sudo reflector --verbose --save /etc/pacman.d/mirrorlist --protocol https --sort rate --fastest 50 --latest 40 --score 30 --age 24'
+alias y='doas $(fc -ln -1)'
+alias r='doas reflector --verbose --save /etc/pacman.d/mirrorlist --protocol https --sort rate --fastest 50 --latest 40 --score 30 --age 24'
 # rust alternatives
 if [[ -f /usr/bin/exa ]]; then
 	alias ls='exa -a'
@@ -70,7 +70,7 @@ p() {
     case $1 in
         "install")	shift; paru -S "$@"					;;
         "remove")	shift; paru -Rsn "$@"				;;
-        "purge")	sudo pacman -Rsn $(pacman -Qtdq)	;;
+        "purge")	doas pacman -Rsn $(pacman -Qtdq)	;;
         "export")
         	exp=$DOTFILES/pacman
         	if [[ ! -d $exp ]]; then mkdir -p $exp; fi
@@ -79,7 +79,7 @@ p() {
             ;;
         "query")	shift; pacman -Qs "$@"						;;
         "clean")	paru -Sc									;;
-        "diff")		sudo DIFFPROG='delta --color-only' pacdiff	;;
+        "diff")		DIFFPROG='delta --color-only' doas pacdiff	;;
         "up")
         	paru
         	p purge
@@ -140,7 +140,7 @@ if [[ $UID -ne 0 ]] then
 	sc() {
 		case $1 in
 			"start" | "stop" | "status" | "enable" | "disable" | "restart")
-				sudo systemctl "$@"
+				doas systemctl "$@"
 				echo "$@" ;;
 			*) echo "Usage: sc [start|stop|status|enable|disable|restart] service"
 		esac
@@ -156,12 +156,12 @@ if [[ $UID -ne 0 ]] then
 	b() {
 		case $1 in
 			"create")
-				sudo borg create --list -C zstd	/run/media/spike/ssd/borg::spike-{now:%Y%m%d}	\
+				doas borg create --list -C zstd	/run/media/spike/ssd/borg::spike-{now:%Y%m%d}	\
 				/home/spike
 				b prune
 				;;
 			"prune")
-				sudo borg prune -v --list				\
+				doas borg prune -v --list				\
 								   --keep-within=4d		\
 								   --keep-daily=3		\
 								   --keep-weekly=3		\
