@@ -68,12 +68,12 @@ fi
 # global custom functions
 p() {
     case $1 in
-        "install")	shift; paru -S "$@"					;;
-        "remove")	shift; paru -Rsn "$@"				;;
-        "purge")	doas pacman -Rsn $(pacman -Qtdq)	;;
+        "install")	shift; paru -S "$@"			;;
+        "remove")	shift; paru -Rsn "$@"		;;
+        "purge")	pacman -Qtdq | pacman -Rsn -;;
         "export")
         	exp=$DOTFILES/pacman
-        	if [[ ! -d $exp ]]; then mkdir -p $exp; fi
+        	[[ ! -d $exp ]] && mkdir -p $exp
             pacman -Qqen | awk '{print $1}' > $exp/loc.txt
             pacman -Qqem | awk '{print $1}' > $exp/aur.txt
             ;;
@@ -81,9 +81,8 @@ p() {
         "clean")	paru -Sc									;;
         "diff")		DIFFPROG='delta --color-only' doas pacdiff	;;
         "up")
-        	paru
-        	p purge
-        	p diff
+        	paru | tee >([[ `tail -n1` == " there is nothing to do" ]] || p diff)
+        	pacman -Qtdq || echo "No orphans to remove"
         	;;
         *)
         	echo "Usage: p [install|query|remove] pkg1 pkg2 ..."
