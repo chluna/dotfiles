@@ -1,5 +1,9 @@
 colorpicker-ym1234-git
+git-delta-bin
 imgp
+libxfce4ui-nocsd
+lightdm-mini-greeter
+ncspot
 nnn-icons
 notable-bin
 onedrive-abraunegg
