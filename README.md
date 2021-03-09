@@ -7,6 +7,7 @@ __Linux:__
 * [alacritty](https://github.com/alacritty/alacritty) - terminal emulator
 * [git](https://git-scm.com/) - free and open source distributed version control system
 * [keepassxc](https://github.com/keepassxreboot/keepassxc) - password manager based on Keepass
+* [micro](https://github.com/zyedidia/micro) - modern and intuitive terminal-based text editor
 * [nnn](https://github.com/jarun/nnn) - terminal file manager
 * [onedrive](https://github.com/abraunegg/onedrive) - OneDrive client
 * [paru](https://github.com/Morganamilo/paru) - AUR helper based on yay

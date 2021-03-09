@@ -21,6 +21,9 @@
     ~/.config/alacritty/alacritty.yml: alacritty.yml
     # git (global)
     ~/.gitconfig: gitconfig
+    # micro
+    ~/.config/micro/settings.json: micro/micro.json
+    ~/.config/micro/colorschemes/monokai-dark-tr.micro: micro/monokai-dark-tr.theme
     # notable
     ~/.notable.json: notable.json
     # onedrive
