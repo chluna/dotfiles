@@ -9,6 +9,9 @@
 autoload -Uz compinit; compinit
 #autoload -Uz promptinit; promptinit
 
+# completion for kitty
+kitty + complete setup zsh | source /dev/stdin
+
 # Powerlevel10k theme
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -66,11 +69,11 @@ fi
 
 # global custom functions
 pm() {
-    case $1 in
-        "install")	shift; paru -S "$@"				;;
-        "remove")	shift; paru -Rsn "$@"			;;
-        "purge")	pacman -Qtdq | pacman -Rsn -	;;
-        "mirror")	sudo reflector --verbose 		\
+    case "$1" in
+        i|install)	shift; paru -S "$@"				;;
+        r|remove)	shift; paru -Rsn "$@"			;;
+        p|purge)	pacman -Qtdq | pacman -Rsn -	;;
+        m|mirror)	sudo reflector --verbose 		\
         			--save /etc/pacman.d/mirrorlist \
         			--protocol https 				\
         			--sort rate 					\
@@ -78,28 +81,28 @@ pm() {
         			--latest 40 					\
         			--score 30 						\
         			--age 24						;;
-        "export")
+        e|export)
         	exp=$DOTFILES/pacman
         	[[ ! -d $exp ]] && mkdir -p $exp
             pacman -Qqen | awk '{print $1}' > $exp/loc.txt
             pacman -Qqem | awk '{print $1}' > $exp/aur.txt
             ;;
-        "query")	shift; pacman -Qs "$@"						;;
-        "clean")	paru -Sc									;;
-        "diff")		sudo DIFFPROG='delta --color-only' pacdiff	;;
-        "update")
-        	script -q /dev/null -c paru | tee >([[ $(tail -n1) == " there is nothing to do" ]] || pm diff)
-        	pacman -Qtdq || echo "No orphans to remove"
+        q|query)	shift; pacman -Qs "$@"						;;
+        c|clean)	paru -Sc									;;
+        d|diff)		sudo DIFFPROG='delta --color-only' pacdiff	;;
+        u|upgrade)
+        	script -q /dev/null -c paru | tee >([[ $(grep -E '.+\.pac(new|orig|save)') ]] && pm diff)
+        	pacman -Qtdq && echo "There are orphans to remove"
         	;;
         *)
         	echo "Usage: pm [install|query|remove] <pkg1 pkg2 ...>"
-        	echo "       pm [clean|diff|export|purge|update]"
+        	echo "       pm [clean|diff|export|purge|upgrade]"
         	;;
     esac
 }
 zs() {
-	case $1 in
-		"edit")
+	case "$1" in
+		e|edit)
 			sha1sum $ZDOTDIR/.zshrc > /tmp/zshrc.sha1
 			e $ZDOTDIR/.zshrc
 			sha1sum -c /tmp/zshrc.sha1 --status
@@ -110,7 +113,7 @@ zs() {
 			fi
 			rm /tmp/zshrc.sha1
 			;;
-		"update")
+		u|upgrade)
 			dir=$(pwd)
 			cd $ZDOTDIR
 			find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;
@@ -144,29 +147,32 @@ if [[ $UID -ne 0 ]] then
 		fi
 	}
 	sc() {
-		case $1 in
-			"start" | "stop" | "status" | "enable" | "disable" | "restart")
-				sudo systemctl "$@"
-				echo "$@" ;;
-			*) echo "Usage: sc [start|stop|status|enable|disable|restart] <service name>"
+		case "$1" in
+			r|start)	shift; sudo systemctl start "$@"	;;
+			q|stop)		shift; sudo systemctl stop "$@"		;;
+			i|status)	shift; sudo systemctl status "$@"	;;
+			e|enable)	shift; sudo systemctl enable "$@"	;;
+			d|disable)	shift; sudo systemctl disable "$@"	;;
+			x|restart)	shift; sudo systemctl restart "$@"	;;
+			*)			echo "Usage: sc [start|stop|status|enable|disable|restart] <service name>"
 		esac
 	}
 	od() {
-	    case $1 in
-	        "status") journalctl --user-unit onedrive -f ;;
-	        "start")  systemctl --user start onedrive    ;;
-	        "stop")   systemctl --user stop onedrive     ;;
-	        *) echo "Usage: od [status|start|stop]"
+	    case "$1" in
+	        i|status)	journalctl --user-unit onedrive -f ;;
+	        r|start)	systemctl --user start onedrive    ;;
+	        q|stop)		systemctl --user stop onedrive     ;;
+	        *)			echo "Usage: od [status|start|stop]"
         esac
 	}
 	bk() {
 		case "$1" in
-			"create")
+			c|create)
 				sudo borg create --list -C zstd	/run/media/spike/ssd/borg::spike-{now:%Y%m%d}	\
 				/home/spike
 				bg prune
 				;;
-			"prune")
+			p|prune)
 				sudo borg prune -v --list				\
 								   --keep-within=4d		\
 								   --keep-daily=3		\
@@ -174,7 +180,7 @@ if [[ $UID -ne 0 ]] then
 								   --keep-monthly=2 	\
 								   /run/media/spike/ssd/borg
 				;;
-			*) echo "Usage: bk [create|prune]"
+			*)	echo "Usage: bk [create|prune]"
 		esac
 	}
 fi

@@ -17,10 +17,13 @@
     ~/.zshenv: zsh/zshenv
     ~/.config/zsh/.zshrc: zsh/zshrc
     ~/.config/zsh/.p10k.zsh: zsh/p10k.zsh
-    # alacritty
-    ~/.config/alacritty/alacritty.yml: alacritty.yml
     # git (global)
     ~/.gitconfig: gitconfig
+    # kitty
+    ~/.config/kitty/:
+        glob: true
+        create: true
+        path: kitty/*
     # micro
     ~/.config/micro/settings.json: micro/micro.json
     ~/.config/micro/colorschemes/monokai-dark-tr.micro: micro/monokai-dark-tr.theme
@@ -35,6 +38,7 @@
     # rofi
     ~/.config/rofi/:
         glob: true
+        create: true
         path: rofi/*
     # ssh
     ~/.ssh/config: ssh.config

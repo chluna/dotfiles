@@ -4,13 +4,13 @@ My personal dotfiles repository.
 
 __Linux:__
 
-* [alacritty](https://github.com/alacritty/alacritty) - terminal emulator
-* [git](https://git-scm.com/) - free and open source distributed version control system
+* [git](https://git-scm.com/) - distributed version control system
 * [keepassxc](https://github.com/keepassxreboot/keepassxc) - password manager based on Keepass
-* [micro](https://github.com/zyedidia/micro) - modern and intuitive terminal-based text editor
+* [kitty](https://sw.kovidgoyal.net/kitty/) - GPU-based terminal emulator
+* [micro](https://github.com/zyedidia/micro) - terminal-based text editor
 * [nnn](https://github.com/jarun/nnn) - terminal file manager
 * [onedrive](https://github.com/abraunegg/onedrive) - OneDrive client
-* [paru](https://github.com/Morganamilo/paru) - AUR helper based on yay
+* [paru](https://github.com/Morganamilo/paru) - AUR helper
 * [redshift](http://jonls.dk/redshift) - color temperature adjuster for screens at night
 * [rofi](https://github.com/davatorium/rofi) - window switcher, application launcher and dmenu replacement
 * [vscodium](https://vscodium.com) - Visual Studio Code sans Microsoft branding/licensing/telemetry
