@@ -3,7 +3,7 @@ configuration {
 	width: 20;
 	lines: 10;
 //	columns: 1;
-	font: "MesloLGS NF 10";
+	font: "Inter Medium 10";
 //	bw: 1;
 //	location: 0;
 //	padding: 5;
@@ -11,14 +11,14 @@ configuration {
 //	xoffset: 0;
 //	fixed-num-lines: true;
 //	show-icons: false;
-	terminal: "alacritty";
+	terminal: "kitty";
 //	ssh-client: "ssh";
 //	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
-	ssh-command: "{terminal} -e zsh -c -i '{ssh-client} {host} [-p {port}]'";
+	ssh-command: "{terminal} zsh -c -i '{ssh-client} {host} [-p {port}]'";
 //	run-command: "{cmd}";
 //	run-list-command: "";
 //	run-shell-command: "{terminal} -e {cmd}";
-	run-shell-command: "{terminal} -e zsh -c -i '{cmd}'";
+	run-shell-command: "{terminal} zsh -c -i '{cmd}'";
 //	window-command: "wmctrl -i -R {window}";
 //	window-match-fields: "all";
 	icon-theme: "Tela blue dark";
