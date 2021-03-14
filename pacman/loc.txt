@@ -1,5 +1,4 @@
 adobe-source-han-sans-otc-fonts
-alacritty
 autoconf
 automake
 base
@@ -31,7 +30,9 @@ gvfs-smb
 htop
 intel-media-driver
 intel-ucode
+inter-font
 keepassxc
+kitty
 libva-utils
 light-locker
 linux-firmware
