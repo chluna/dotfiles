@@ -70,9 +70,9 @@ fi
 # global custom functions
 pm() {
     case "$1" in
-        i|install)	shift; paru -S "$@"				;;
-        r|remove)	shift; paru -Rsn "$@"			;;
-        p|purge)	pacman -Qtdq | pacman -Rsn -	;;
+        i|install)	shift; paru -S "$@"					;;
+        r|remove)	shift; paru -Rsn "$@"				;;
+        p|purge)	pacman -Qtdq | sudo pacman -Rsn -	;;
         m|mirror)	sudo reflector --verbose 		\
         			--save /etc/pacman.d/mirrorlist \
         			--protocol https 				\
@@ -80,12 +80,13 @@ pm() {
         			--fastest 50 					\
         			--latest 40 					\
         			--score 30 						\
-        			--age 24						;;
+        			--age 24							;;
         e|export)
         	exp=$DOTFILES/pacman
         	[[ ! -d $exp ]] && mkdir -p $exp
             pacman -Qqen | awk '{print $1}' > $exp/loc.txt
             pacman -Qqem | awk '{print $1}' > $exp/aur.txt
+            echo "Exported in $exp"
             ;;
         q|query)	shift; pacman -Qs "$@"						;;
         c|clean)	paru -Sc									;;
@@ -170,7 +171,7 @@ if [[ $UID -ne 0 ]] then
 			c|create)
 				sudo borg create --list -C zstd	/run/media/spike/ssd/borg::spike-{now:%Y%m%d}	\
 				/home/spike
-				bg prune
+				bk prune
 				;;
 			p|prune)
 				sudo borg prune -v --list				\
