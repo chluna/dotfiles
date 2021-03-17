@@ -67,6 +67,7 @@ rust
 s-tui
 sd
 sudo
+sxiv
 texinfo
 throttled
 thunar

@@ -5,11 +5,10 @@ libxfce4ui-nocsd
 lightdm-mini-greeter
 ncspot
 nerd-fonts-fira-code
-nnn-icons
+nnn-nerd
 notable-bin
 onedrive-abraunegg
 paru-bin
-qview
 tela-icon-theme
 timeshift
 ttf-apple-emoji
