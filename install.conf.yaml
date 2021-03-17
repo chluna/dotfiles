@@ -13,6 +13,8 @@
         recursive: true
 
 - link:
+    # profile
+    ~/.profile: profile
     # zsh
     ~/.zshenv: zsh/zshenv
     ~/.config/zsh/.zshrc: zsh/zshrc
