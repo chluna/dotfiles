@@ -96,6 +96,7 @@ pm() {
         	[[ $(grep -E '.+\.pac(new|orig|save)' $log) ]] && pm diff
         	rm $log
         	pacman -Qtdq > /dev/null && pm purge
+        	xfce4-panel --plugin-event=genmon-19:refresh:bool:true
         	;;
         *)
         	echo "Usage: pm [install|query|remove] <pkg1 pkg2 ...>"

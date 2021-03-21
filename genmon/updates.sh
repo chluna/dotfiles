@@ -1,14 +1,9 @@
 #!/bin/bash
 
-color="white"
-
 tool="<tool></tool>"
 
 txt="<txt>"
-pkg=$(checkupdates | wc -l)
-if [[ $pkg -ge 1 ]]; then 
-	txt+="<span foreground='$color'></span> $pkg"
-fi
+[[ $(checkupdates | wc -l) -gt 0 ]] && txt+="<span foreground='white'></span> <span weight='Bold'>Updates available</span>"
 txt+="</txt>"
 
 echo -e "$txt"
