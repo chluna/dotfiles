@@ -13,7 +13,6 @@ cronie
 dnsmasq
 ebtables
 edk2-ovmf
-exa
 exo
 fakeroot
 fd
@@ -38,6 +37,7 @@ light-locker
 linux-firmware
 linux-lts
 linux-zen
+lsd
 m4
 make
 man-db
