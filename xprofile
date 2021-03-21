@@ -1,0 +1,7 @@
+#
+# ~/.xprofile by chluna
+#
+# for `root` user, ln -s $HOME/.xprofile to /root
+#
+
+[[ -f ~/.zshenv ]] && source ~/.zshenv

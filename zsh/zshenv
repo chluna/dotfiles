@@ -4,6 +4,7 @@
 # for `root` user, ln -s $HOME/.zshenv to /root
 #
 
+export XDG_CONFIG_HOME=$HOME/.config
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 
 # zsh history
@@ -15,3 +16,15 @@ setopt INC_APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_SAVE_NO_DUPS
+
+# micro
+export EDITOR=micro
+export MICRO_TRUECOLOR=1
+
+# nnn
+export NNN_BMS="o:~/OneDrive;e:/run/media/spike"
+export NNN_COLORS=3421
+export NNN_FIFO=/tmp/nnn.fifo
+export NNN_OPTS='deEHR'
+export NNN_PLUG='p:preview-tui'
+export NNN_TRASH=2

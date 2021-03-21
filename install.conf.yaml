@@ -13,8 +13,12 @@
         recursive: true
 
 - link:
-    # profile
-    ~/.profile: profile
+    # xfce
+    ~/.xprofile: xprofile
+    ~/.config/xfce4/genmon/:
+        glob: true
+        create: true
+        path: genmon/*
     # zsh
     ~/.zshenv: zsh/zshenv
     ~/.config/zsh/.zshrc: zsh/zshrc
@@ -46,11 +50,6 @@
     ~/.ssh/config: ssh.config
     # vscodium
     ~/.config/VSCodium/User/settings.json: vscodium.json
-    # xfce genmon scripts
-    ~/.config/xfce4/genmon/:
-        glob: true
-        create: true
-        path: genmon/*
     # miscellaneous scripts
     ~/.sh/:
         glob: true
