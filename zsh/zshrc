@@ -10,7 +10,7 @@ autoload -Uz compinit; compinit
 #autoload -Uz promptinit; promptinit
 
 # completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+[[ -f $(which kitty) ]] && kitty + complete setup zsh | source /dev/stdin
 
 # Powerlevel10k theme
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -44,8 +44,6 @@ bindkey "^[[F" end-of-line
 
 # alias
 # from .bashrc
-alias ls='ls -a --color=auto'
-alias ll='ls -alh --color=auto'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
@@ -56,22 +54,22 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 # custom aliases
 alias c='vscodium'
-alias m='sudo dmesg -eHw'
+alias d='cd $XDG_CONFIG_HOME/dotfiles'
 alias e='micro'
-alias f='nnn -deEH'
+alias f='nnn'
+alias l='journalctl -rb'
 alias s='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
-alias y='sudo $(fc -ln -1)'
 # rust alternatives
-if [[ -f /usr/bin/exa ]]; then
-	alias ls='exa -a'
-	alias ll='exa -albg --group-directories-first'
+if [[ -f $(which lsd) ]]; then
+	alias ls='lsd -AF --group-dirs first'
+	alias ll='lsd -aFl --group-dirs first'
+	alias lt='lsd -A --tree --group-dirs first --depth'
 fi
-
 # global custom functions
 pm() {
     case "$1" in
-        i|install)	shift; paru -S "$@"					;;
-        r|remove)	shift; paru -Rsn "$@"				;;
+        i|install)	shift; paru "$@"					;;
+        r|remove)	shift; paru -Rns "$@"				;;
         p|purge)	pacman -Qtdq | sudo pacman -Rsn -	;;
         m|mirror)	sudo reflector --verbose 		\
         			--save /etc/pacman.d/mirrorlist \
@@ -91,14 +89,18 @@ pm() {
         q|query)	shift; pacman -Qs "$@"						;;
         c|clean)	paru -Sc									;;
         d|diff)		sudo DIFFPROG='delta --color-only' pacdiff	;;
-        u|upgrade)
-        	script -q /dev/null -c paru | tee >([[ $(grep -E '.+\.pac(new|orig|save)') ]] && pm diff)
-        	pacman -Qtdq && echo "There are orphans to remove"
+        u|update)	checkupdates								;;
+        up|upgrade)
+        	log=/tmp/paru.script
+        	script -q $log -c paru
+        	[[ $(grep -E '.+\.pac(new|orig|save)' $log) ]] && pm diff
+        	rm $log
+        	pacman -Qtdq > /dev/null && pm purge
         	;;
         *)
         	echo "Usage: pm [install|query|remove] <pkg1 pkg2 ...>"
         	echo "       pm [clean|diff|export|purge|upgrade]"
-        	;;
+			;;
     esac
 }
 zs() {
@@ -131,22 +133,9 @@ if [[ $UID -ne 0 ]] then
 		file=$(echo $1 | cut -d'.' -f1)
 		rustc $file.rs && ./$file && rm $file
 	}
+	# custom aliases
+	alias y='sudo $(fc -ln -1)'
 	# custom functions
-	ssh() {
-	    in_list=false
-	    for host in "op1" "omv"
-	    do
-            if [[ $1 = $host ]] then
-                in_list=true
-                break
-            fi
-		done
-		if [[ $in_list = true ]] then
-		    TERM=xterm-256color command ssh $1
-		else
-		    command ssh "$@"
-		fi
-	}
 	sc() {
 		case "$1" in
 			r|start)	shift; sudo systemctl start "$@"	;;
