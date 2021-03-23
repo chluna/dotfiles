@@ -6,6 +6,7 @@
 
 export XDG_CONFIG_HOME=$HOME/.config
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export DOTFILES=$XDG_CONFIG_HOME/dotfiles
 
 # zsh history
 export HISTSIZE=10000

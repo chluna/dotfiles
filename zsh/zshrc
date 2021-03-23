@@ -54,7 +54,7 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 # custom aliases
 alias c='vscodium'
-alias d='cd $XDG_CONFIG_HOME/dotfiles'
+alias d='cd $DOTFILES'
 alias e='micro'
 alias f='nnn'
 alias l='journalctl -rb'
