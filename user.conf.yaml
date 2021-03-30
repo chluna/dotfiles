@@ -1,5 +1,6 @@
 - defaults:
     link:
+        create: true
         relink: true
     shell:
         quiet: true
@@ -17,7 +18,6 @@
     ~/.xprofile: xprofile
     ~/.config/xfce4/genmon/:
         glob: true
-        create: true
         path: genmon/*
     # zsh
     ~/.zshenv: zsh/zshenv
@@ -28,7 +28,6 @@
     # kitty
     ~/.config/kitty/:
         glob: true
-        create: true
         path: kitty/*
     # micro
     ~/.config/micro/settings.json: micro/micro.json
@@ -44,27 +43,25 @@
     # rofi
     ~/.config/rofi/:
         glob: true
-        create: true
         path: rofi/*
     # ssh
     ~/.ssh/config: ssh.config
     # vscodium
-    ~/.config/VSCodium/User/settings.json: vscodium.json
+    # ~/.config/VSCodium/User/settings.json: vscodium.json
     # miscellaneous scripts
     ~/.sh/:
         glob: true
-        create: true
         path: scripts/*
-
+    
 - shell:
     - [exec zsh, Reloading zsh config]
     -
-        command: if [ ! -d $ZDOTDIR/powerlevel10k ]; then git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZDOTDIR/powerlevel10k
+        command: if [ ! -d $ZDOTDIR/powerlevel10k ]; then git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZDOTDIR/powerlevel10k; fi
         description: Installing powerlevel10k
     -
-        command: if [ ! -d $ZDOTDIR/zsh-autosuggestions ]; then git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZDOTDIR/zsh-autosuggestions
+        command: if [ ! -d $ZDOTDIR/zsh-autosuggestions ]; then git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZDOTDIR/zsh-autosuggestions; fi
         description: Installing zsh-autosuggestions
     -
-        command: if [ ! -d $ZDOTDIR/zsh-syntax-highlighting ]; then git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZDOTDIR/zsh-syntax-highlighting
+        command: if [ ! -d $ZDOTDIR/zsh-syntax-highlighting ]; then git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZDOTDIR/zsh-syntax-highlighting; fi
         description: Installing zsh-syntax-highlighting
     - [exec zsh, Reloading zsh plugins]
