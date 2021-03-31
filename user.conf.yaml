@@ -49,10 +49,10 @@
     # vscodium
     # ~/.config/VSCodium/User/settings.json: vscodium.json
     # miscellaneous scripts
-    ~/.sh/:
+    ~/.local/bin/:
         glob: true
         path: scripts/*
-    
+
 - shell:
     - [exec zsh, Reloading zsh config]
     -
