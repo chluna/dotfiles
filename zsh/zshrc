@@ -43,22 +43,21 @@ bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 
 # alias
-# from .bashrc
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias cp='cp -i'                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
+alias free='free -m'				# show sizes in MB
+alias cp='cp -i --reflink=always'	# confirm before overwriting something
+alias df='df -h'					# human-readable sizes
 # custom aliases
 alias c='vscodium'
 alias d='cd $DOTFILES'
 alias e='micro'
 alias f='nnn'
 alias l='journalctl -rb'
-alias s='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
+alias n='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
 # rust alternatives
 if [[ -f $(which lsd) ]]; then
 	alias ls='lsd -AF --group-dirs first'
@@ -68,9 +67,10 @@ fi
 # global custom functions
 pm() {
     case "$1" in
-        i|install)	shift; paru "$@"					;;
-        r|remove)	shift; paru -Rns "$@"				;;
-        p|purge)	pacman -Qtdq | sudo pacman -Rsn -	;;
+        i|install)	shift; paru -S "$@";;
+        s|search)	shift; paru "$@";;
+        r|remove)	shift; paru -Rns "$@";;
+        p|purge)	pacman -Qtdq | sudo pacman -Rsn -;;
         m|mirror)	sudo reflector --verbose 		\
         			--save /etc/pacman.d/mirrorlist \
         			--protocol https 				\
@@ -78,51 +78,48 @@ pm() {
         			--fastest 50 					\
         			--latest 40 					\
         			--score 30 						\
-        			--age 24							;;
+        			--age 24;;
         e|export)
         	exp=$DOTFILES/pacman
         	[[ ! -d $exp ]] && mkdir -p $exp
-            pacman -Qqen | awk '{print $1}' > $exp/loc.txt
-            pacman -Qqem | awk '{print $1}' > $exp/aur.txt
-            echo "Exported in $exp"
-            ;;
-        q|query)	shift; pacman -Qs "$@"						;;
-        c|clean)	paru -Sc									;;
-        d|diff)		sudo DIFFPROG='delta --color-only' pacdiff	;;
-        u|update)	checkupdates								;;
+            pacman -Qqen | awk '{print $1}' > $exp/pkgloc.txt
+            pacman -Qqem | awk '{print $1}' > $exp/pkgaur.txt
+            echo "Exported in $exp";;
+        q|query)	shift; pacman -Qs "$@";;
+        c|clean)	paru -Sc;;
+        d|diff)		sudo DIFFPROG='delta --color-only' pacdiff;;
+        u|update)	checkupdates;;
         up|upgrade)
         	log=/tmp/paru.script
         	script -q $log -c paru
         	[[ $(grep -E '.+\.pac(new|orig|save)' $log) ]] && pm diff
         	rm $log
         	pacman -Qtdq > /dev/null && pm purge
-        	xfce4-panel --plugin-event=genmon-19:refresh:bool:true
-        	;;
+        	xfce4-panel --plugin-event=genmon-8:refresh:bool:true;;
         *)
         	echo "Usage: pm [install|query|remove] <pkg1 pkg2 ...>"
         	echo "       pm [clean|diff|export|purge|upgrade]"
-			;;
     esac
 }
 zs() {
 	case "$1" in
 		e|edit)
-			sha1sum $ZDOTDIR/.zshrc > /tmp/zshrc.sha1
+			chksum=/tmp/zshrc.sha1
+			sha1sum $ZDOTDIR/.zshrc > $chksum
 			e $ZDOTDIR/.zshrc
-			sha1sum -c /tmp/zshrc.sha1 --status
+			sha1sum -c $chksum --status
 			if [[ $? -ne 0 ]] then
+				rm $chksum
 				read -q "choice?Reload changes? [y/N] "
 				echo "\n"
 				if [[ ${choice:l} = "y" ]] exec zsh
 			fi
-			rm /tmp/zshrc.sha1
-			;;
+			rm $chksum;;
 		u|upgrade)
 			dir=$(pwd)
 			cd $ZDOTDIR
 			find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;
-			cd $pwd
-			;;
+			cd $pwd;;
 		*)
 			zs edit
 	esac
@@ -135,24 +132,22 @@ if [[ $UID -ne 0 ]] then
 		rustc $file.rs && ./$file && rm $file
 	}
 	# custom aliases
+	alias sudo='sudo '
 	alias y='sudo $(fc -ln -1)'
 	# custom functions
 	sc() {
 		case "$1" in
-			r|start)	shift; sudo systemctl start "$@"	;;
-			q|stop)		shift; sudo systemctl stop "$@"		;;
-			i|status)	shift; sudo systemctl status "$@"	;;
-			e|enable)	shift; sudo systemctl enable "$@"	;;
-			d|disable)	shift; sudo systemctl disable "$@"	;;
-			x|restart)	shift; sudo systemctl restart "$@"	;;
-			*)			echo "Usage: sc [start|stop|status|enable|disable|restart] <service name>"
+		    edit)       sudo -E systemctl edit $2;;
+			-h|--help)	echo "Usage: sc <systemctl command> <service name>";;
+			*)			sudo systemctl $1 $2
 		esac
 	}
 	od() {
 	    case "$1" in
-	        i|status)	journalctl --user-unit onedrive -f ;;
-	        r|start)	systemctl --user start onedrive    ;;
-	        q|stop)		systemctl --user stop onedrive     ;;
+	        i|status)	journalctl --user-unit onedrive -f;;
+	        r|start)	systemctl --user start onedrive;;
+	        q|stop)		systemctl --user stop onedrive;;
+	        x|restart)	systemctl --user restart onedrive;;
 	        *)			echo "Usage: od [status|start|stop]"
         esac
 	}
@@ -161,16 +156,14 @@ if [[ $UID -ne 0 ]] then
 			c|create)
 				sudo borg create --list -C zstd	/run/media/spike/ssd/borg::spike-{now:%Y%m%d}	\
 				/home/spike
-				bk prune
-				;;
+				bk prune;;
 			p|prune)
 				sudo borg prune -v --list				\
 								   --keep-within=4d		\
 								   --keep-daily=3		\
 								   --keep-weekly=3		\
 								   --keep-monthly=2 	\
-								   /run/media/spike/ssd/borg
-				;;
+								   /run/media/spike/ssd/borg;;
 			*)	echo "Usage: bk [create|prune]"
 		esac
 	}
