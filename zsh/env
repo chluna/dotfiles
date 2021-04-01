@@ -23,9 +23,12 @@ export EDITOR=micro
 export MICRO_TRUECOLOR=1
 
 # nnn
-export NNN_BMS="o:~/OneDrive;e:/run/media/spike"
+export NNN_BMS='o:~/onedrive;e:/run/media/spike'
 export NNN_COLORS=3421
 export NNN_FIFO=/tmp/nnn.fifo
-export NNN_OPTS='deEHR'
-export NNN_PLUG='p:preview-tui'
+export NNN_OPTS=deEHR
+export NNN_PLUG=p:preview-tui
 export NNN_TRASH=2
+
+# hledger
+export LEDGER_FILE=$HOME/onedrive/me/finance/ledger/finance.journal

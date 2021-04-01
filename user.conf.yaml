@@ -20,9 +20,9 @@
         glob: true
         path: genmon/*
     # zsh
-    ~/.zshenv: zsh/zshenv
-    ~/.config/zsh/.zshrc: zsh/zshrc
-    ~/.config/zsh/.p10k.zsh: zsh/p10k.zsh
+    ~/.zshenv: zsh/env
+    ~/.config/zsh/.zshrc: zsh/rc
+    ~/.config/zsh/.p10k.zsh: zsh/p10k
     # git (global)
     ~/.gitconfig: gitconfig
     # kitty

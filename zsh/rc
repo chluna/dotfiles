@@ -132,6 +132,7 @@ if [[ $UID -ne 0 ]] then
 		rustc $file.rs && ./$file && rm $file
 	}
 	# custom aliases
+	alias h='hledger'
 	alias sudo='sudo '
 	alias y='sudo $(fc -ln -1)'
 	# custom functions
