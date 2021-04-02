@@ -56,7 +56,7 @@ alias c='vscodium'
 alias d='cd $DOTFILES'
 alias e='micro'
 alias f='nnn'
-alias l='journalctl -rb'
+alias j='journalctl -rb'
 alias n='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
 # rust alternatives
 if [[ -f $(which lsd) ]]; then
@@ -132,7 +132,8 @@ if [[ $UID -ne 0 ]] then
 		rustc $file.rs && ./$file && rm $file
 	}
 	# custom aliases
-	alias h='hledger'
+	alias fin='hledger -f $HOME/onedrive/me/finance/ledger/finance.journal'
+	alias run='hledger -f $HOME/onedrive/me/sports/running.journal'
 	alias sudo='sudo '
 	alias y='sudo $(fc -ln -1)'
 	# custom functions
