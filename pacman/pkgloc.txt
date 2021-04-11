@@ -62,6 +62,7 @@ s-tui
 sed
 sudo
 sxiv
+syncthing
 texinfo
 throttled
 thunar

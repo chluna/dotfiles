@@ -9,7 +9,6 @@ __Linux:__
 * [kitty](https://sw.kovidgoyal.net/kitty/) - GPU-based terminal emulator
 * [micro](https://github.com/zyedidia/micro) - terminal-based text editor
 * [nnn](https://github.com/jarun/nnn) - terminal file manager
-* [onedrive](https://github.com/abraunegg/onedrive) - OneDrive client
 * [paru](https://github.com/Morganamilo/paru) - AUR helper
 * [redshift](http://jonls.dk/redshift) - color temperature adjuster for screens at night
 * [rofi](https://github.com/davatorium/rofi) - window switcher, application launcher and dmenu replacement
@@ -29,9 +28,10 @@ __Setting up dotfiles using [dotbot](https://github.com/anishathalye/dotbot)__ [
 % sudo pacman -S git zsh python # install if not yet installed
 
 # clone from remote
-% git clone git@gitlab.com:.chluna/dotfiles.git ~/.config/.dotfiles --recursive
+% git clone https://gitlab.com/.chluna/dotfiles.git ~/.config/.dotfiles --recursive
 % cd ~/.config/dotfiles
-% micro install.conf.yaml # edit config file
+% micro user.conf.yaml # edit user config file
+% micro root.conf.yaml # edit root config file
 % ./install
 
 # pulling changes from remote

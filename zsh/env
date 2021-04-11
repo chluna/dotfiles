@@ -24,7 +24,7 @@ export EDITOR=micro
 export MICRO_TRUECOLOR=1
 
 # nnn
-export NNN_BMS='e:/run/media/spike/ssd;l:~/onedrive/me/finance/ledger;o:~/onedrive'
+export NNN_BMS='d:~/data;e:/run/media/spike/ssd;f:~/data/finance/ledger'
 export NNN_COLORS=3421
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_OPTS=deEHR

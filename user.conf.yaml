@@ -34,8 +34,6 @@
     ~/.config/micro/colorschemes/monokai-dark-tr.micro: micro/monokai-dark-tr.theme
     # notable
     ~/.notable.json: notable.json
-    # onedrive
-    ~/.config/onedrive/config: onedrive.conf
     # paru
     ~/.config/paru/paru.conf: paru.conf
     # redshift
