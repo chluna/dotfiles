@@ -6,22 +6,22 @@
 
 - link:
     # btrbk
-    /etc/btrbk/btrbk.conf: root/btrbk.conf
+    /etc/btrbk/btrbk.conf: btrbk/btrbk.conf
     # network-manager-dispatcher
-    /etc/NetworkManager/dispatcher.d/99-update-genmon-network.sh: root/update-genmon-network.sh
+    /etc/NetworkManager/dispatcher.d/99-update-genmon-network.sh: update-genmon-network.sh
     # pacman
-    /etc/pacman.conf: root/pacman.conf
+    /etc/pacman.conf: pacman.conf
     # throttled
-    /etc/lenovo_fix.conf: root/throttled.conf
+    /etc/lenovo_fix.conf: throttled.conf
     # zshenv
-    /root/.zshenv: zsh/zshenv
+    /root/.zshenv: zsh/env
 
 - shell:
     -
         command: if [ ! -d /root/.config/zsh/ ]; then ln -s $ZDOTDIR /root/.config/; fi
         description: Creating link /root/zsh/ -> $ZDOTDIR
     -
-        command: cp /home/spike/.config/dotfiles/root/lightdm-mini-greeter.conf /etc/lightdm/
+        command: cp /home/spike/.config/dotfiles/lightdm-mini-greeter.conf /etc/lightdm/
         description: Copying /etc/lightdm/lightdm-mini-greeter.conf -> $DOTFILES/root/lightdm-mini-greeter.conf
     -
         command: chown root:root /etc/NetworkManager/dispatcher.d/99-update-genmon-network.sh; chmod 755 /etc/NetworkManager/dispatcher.d/99-update-genmon-network.sh
