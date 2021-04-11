@@ -97,8 +97,18 @@ pm() {
         	pacman -Qtdq > /dev/null && pm purge
         	xfce4-panel --plugin-event=genmon-8:refresh:bool:true;;
         *)
-        	echo "Usage: pm [install|query|remove] <pkg1 pkg2 ...>"
-        	echo "       pm [clean|diff|export|purge|upgrade]"
+        	echo "Usage: pm [command] <args>"
+        	echo "Commands: i|install <package/s>   install packages"
+        	echo "          q|query <package>       query local package"
+        	echo "          s|search <package>      search for a package using paru"
+        	echo "          r|remove <package/s>    remove packages"
+        	echo "          p|purge                 remove orphaned packages"
+        	echo "          m|mirrorlist            update mirrorlist"
+        	echo "          e|export                export local and AUR package lists"
+        	echo "          c|clean                 clean paru cache"
+        	echo "          d|diff                  find and act on pac[diff|new|save] files"
+        	echo "          u|update                check for package updates"
+        	echo "          up|upgrade              update and upgrade packages"
     esac
 }
 zs() {
@@ -132,41 +142,38 @@ if [[ $UID -ne 0 ]] then
 		rustc $file.rs && ./$file && rm $file
 	}
 	# custom aliases
-	alias fin='hledger -f $HOME/onedrive/me/finance/ledger/finance.journal'
-	alias run='hledger -f $HOME/onedrive/me/sports/running.journal'
+	alias fin='hledger -f $HOME/data/finance/ledger/finance.journal'
+	alias run='hledger -f $HOME/data/fitness/running/running.journal'
 	alias sudo='sudo '
 	alias y='sudo $(fc -ln -1)'
 	# custom functions
 	sc() {
-		case "$1" in
-		    edit)       sudo -E systemctl edit $2;;
-			-h|--help)	echo "Usage: sc <systemctl command> <service name>";;
-			*)			sudo systemctl $1 $2
-		esac
-	}
-	od() {
 	    case "$1" in
-	        i|status)	journalctl --user-unit onedrive -f;;
-	        r|start)	systemctl --user start onedrive;;
-	        q|stop)		systemctl --user stop onedrive;;
-	        x|restart)	systemctl --user restart onedrive;;
-	        *)			echo "Usage: od [status|start|stop]"
-        esac
+	        -h|--help)	echo "Usage: sc <systemctl command> <service name>";;
+	        -u|--user)
+	            shift
+			    systemctl --user $1 $2;;
+            *)
+		        case "$1" in
+		            edit)       sudo -E systemctl edit $2;;
+			        *)			sudo systemctl $1 $2
+                esac
+		esac
 	}
 	bk() {
+	    config=$HOME/.config/dotfiles/btrbk/btrbk-backup.conf
 		case "$1" in
-			c|create)
-				sudo borg create --list -C zstd	/run/media/spike/ssd/borg::spike-{now:%Y%m%d}	\
-				/home/spike
-				bk prune;;
-			p|prune)
-				sudo borg prune -v --list				\
-								   --keep-within=4d		\
-								   --keep-daily=3		\
-								   --keep-weekly=3		\
-								   --keep-monthly=2 	\
-								   /run/media/spike/ssd/borg;;
-			*)	echo "Usage: bk [create|prune]"
-		esac
+            l|li|list)
+                sudo btrbk list backups -c $config -v;;
+            n|dryrun)
+                sudo btrbk dryrun -c $config -v;;
+            r|run)
+                sudo btrbk run -c $config -v;;
+            *)
+                echo "Usage: bk <command>"
+                echo "Commands: l|li|list   list backups"
+                echo "          n|dryrun    perform a dryrun"
+                echo "          r|run       run backup"
+        esac
 	}
 fi
