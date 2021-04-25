@@ -1,0 +1,28 @@
+"
+" nvim configuration
+"
+
+" load vim-plug plugins
+call plug#begin('~/.config/nvim/plug')
+" load sonokai colorscheme
+Plug 'sainnhe/sonokai'
+call plug#end()
+
+" set colorscheme
+if has('termguicolors')
+    set termguicolors
+endif
+let g:sonokai_transparent_background=1
+colorscheme sonokai
+
+" other settings
+syntax enable
+set mouse=a
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set smartindent
+set number
+set cursorline
+

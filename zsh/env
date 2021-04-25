@@ -20,8 +20,8 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_SAVE_NO_DUPS
 
 # micro
-export EDITOR=micro
-export MICRO_TRUECOLOR=1
+export EDITOR=nvim
+export VISUAL=$EDITOR
 
 # nnn
 export NNN_BMS='d:~/data;e:/run/media/spike/ssd;f:~/data/finance/ledger'
@@ -30,3 +30,7 @@ export NNN_FIFO=/tmp/nnn.fifo
 export NNN_OPTS=deEHR
 export NNN_PLUG=p:preview-tui
 export NNN_TRASH=2
+
+# pacdiff
+export DIFFPROG='delta --color-only'
+

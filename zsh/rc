@@ -52,12 +52,16 @@ alias free='free -m'				# show sizes in MB
 alias cp='cp -i --reflink=always'	# confirm before overwriting something
 alias df='df -h'					# human-readable sizes
 # custom aliases
-alias c='vscodium'
 alias d='cd $DOTFILES'
-alias e='micro'
 alias f='nnn'
 alias j='journalctl -rb'
 alias n='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
+# nvim aliases
+alias e='nvim'
+alias vi='nvim'
+alias vim='nvim'
+alias vimdiff='nvim -d'
+alias xxd='nvim -b'
 # rust alternatives
 if [[ -f $(which lsd) ]]; then
 	alias ls='lsd -AF --group-dirs first'
@@ -87,8 +91,8 @@ pm() {
             echo "Exported in $exp";;
         q|query)	shift; pacman -Qs "$@";;
         c|clean)	paru -Sc;;
-        d|diff)		sudo DIFFPROG='delta --color-only' pacdiff;;
-        u|update)	checkupdates;;
+        d|diff)     sudo -E pacdiff;;
+        u|update)   checkupdates;;
         up|upgrade)
         	log=/tmp/paru.script
         	script -q $log -c paru
@@ -97,11 +101,11 @@ pm() {
         	pacman -Qtdq > /dev/null && pm purge
         	xfce4-panel --plugin-event=genmon-8:refresh:bool:true;;
         *)
-        	echo "Usage: pm [command] <args>"
-        	echo "Commands: i|install <package/s>   install packages"
-        	echo "          q|query <package>       query local package"
-        	echo "          s|search <package>      search for a package using paru"
-        	echo "          r|remove <package/s>    remove packages"
+        	echo "Usage: pm [command] [args]"
+        	echo "Commands: i|install [package/s]   install packages"
+        	echo "          q|query [package]       query local package"
+        	echo "          s|search [package]      search for a package using paru"
+        	echo "          r|remove [package/s]    remove packages"
         	echo "          p|purge                 remove orphaned packages"
         	echo "          m|mirrorlist            update mirrorlist"
         	echo "          e|export                export local and AUR package lists"
@@ -120,7 +124,7 @@ zs() {
 			sha1sum -c $chksum --status
 			if [[ $? -ne 0 ]] then
 				rm $chksum
-				read -q "choice?Reload changes? [y/N] "
+				read -q "choice?Reload changes? [y/n] "
 				echo "\n"
 				if [[ ${choice:l} = "y" ]] exec zsh
 			fi
@@ -149,8 +153,8 @@ if [[ $UID -ne 0 ]] then
 	# custom functions
 	sc() {
 	    case "$1" in
-	        -h|--help)	echo "Usage: sc <systemctl command> <service name>";;
-	        -u|--user)
+	        h|help)	echo "Usage: sc <u|user> [command] [service]";;
+	        u|user)
 	            shift
 			    systemctl --user $1 $2;;
             *)
@@ -170,7 +174,7 @@ if [[ $UID -ne 0 ]] then
             r|run)
                 sudo btrbk run -c $config -v;;
             *)
-                echo "Usage: bk <command>"
+                echo "Usage: bk [command]"
                 echo "Commands: l|li|list   list backups"
                 echo "          n|dryrun    perform a dryrun"
                 echo "          r|run       run backup"
