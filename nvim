@@ -8,12 +8,14 @@ call plug#begin('~/.config/nvim/plug')
 Plug 'sainnhe/sonokai'
 call plug#end()
 
-" set colorscheme
+" set colorscheme and transparency
 if has('termguicolors')
     set termguicolors
 endif
 let g:sonokai_transparent_background=1
 colorscheme sonokai
+" remove tildes at the end of buffer
+let &fcs='eob: '
 
 " other settings
 syntax enable
