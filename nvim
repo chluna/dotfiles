@@ -6,14 +6,16 @@
 call plug#begin('~/.config/nvim/plug')
 " load sonokai colorscheme
 Plug 'sainnhe/sonokai'
+Plug 'itchyny/lightline.vim'
 call plug#end()
 
-" set colorscheme and transparency
+" set graphical UI
 if has('termguicolors')
     set termguicolors
 endif
 let g:sonokai_transparent_background=1
 colorscheme sonokai
+let g:lightline = {'colorscheme' : 'sonokai'}
 " remove tildes at the end of buffer
 let &fcs='eob: '
 
