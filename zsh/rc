@@ -167,7 +167,7 @@ if [[ $UID -ne 0 ]] then
 	bk() {
 	    config=$HOME/.config/dotfiles/btrbk/btrbk-backup.conf
 		case "$1" in
-            l|li|list)
+            l|list)
                 sudo btrbk list backups -c $config -v;;
             n|dryrun)
                 sudo btrbk dryrun -c $config -v;;
@@ -175,7 +175,7 @@ if [[ $UID -ne 0 ]] then
                 sudo btrbk run -c $config -v;;
             *)
                 echo "Usage: bk [command]"
-                echo "Commands: l|li|list   list backups"
+                echo "Commands: l|list      list backups"
                 echo "          n|dryrun    perform a dryrun"
                 echo "          r|run       run backup"
         esac
