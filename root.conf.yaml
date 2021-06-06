@@ -19,7 +19,10 @@
 - shell:
     -
         command: if [ ! -d /root/.config/zsh/ ]; then ln -s $ZDOTDIR /root/.config/; fi
-        description: Creating link /root/zsh/ -> $ZDOTDIR
+        description: Creating link /root/.config/zsh/ -> $ZDOTDIR
+    -
+        command: if [ ! -d /root/.config/nvim ]; then ln -s /home/spike/.config/nvim /root/.config/; fi
+        description: Creating link /root/.config/nvim -> $XDG_CONFIG_HOME/nvim
     -
         command: cp /home/spike/.config/dotfiles/lightdm-mini-greeter.conf /etc/lightdm/
         description: Copying /etc/lightdm/lightdm-mini-greeter.conf -> $DOTFILES/root/lightdm-mini-greeter.conf
