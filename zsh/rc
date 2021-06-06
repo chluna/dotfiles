@@ -78,11 +78,10 @@ pm() {
         m|mirror)	sudo reflector --verbose 		\
         			--save /etc/pacman.d/mirrorlist \
         			--protocol https 				\
+                    --country "Australia,Hong Kong,Indonesia,Japan,New Zealand,Philippines,Singapore,South Korea, Taiwan,Thailand,Vietnam" \
         			--sort rate 					\
-        			--fastest 50 					\
-        			--latest 40 					\
-        			--score 30 						\
-        			--age 24;;
+                    --age 24                        \
+                    --score 20;;
         e|export)
         	exp=$DOTFILES/pacman
         	[[ ! -d $exp ]] && mkdir -p $exp
