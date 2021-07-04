@@ -11,8 +11,9 @@ ncurses5-compat-libs
 nnn-nerd
 notable-bin
 otf-nerd-fonts-fira-code
+pandoc-bin
 paru-bin
+tealdeer-bin
 tela-icon-theme
 ttf-apple-emoji
-xxd-standalone
 ytfzf

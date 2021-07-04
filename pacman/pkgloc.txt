@@ -8,6 +8,7 @@ bluez
 bluez-utils
 booster
 btrfs-progs
+calibre
 exo
 fakeroot
 file
@@ -41,9 +42,9 @@ m4
 make
 man-db
 man-pages
-micro
 mpv
 neofetch
+neovim
 network-manager-applet
 networkmanager
 pacman
@@ -53,6 +54,7 @@ pavucontrol
 pipewire
 pipewire-pulse
 pkgconf
+poppler
 qalculate-gtk
 redshift
 reflector
@@ -63,7 +65,6 @@ sed
 sudo
 sxiv
 syncthing
-texinfo
 throttled
 thunar
 thunar-media-tags-plugin
@@ -77,6 +78,7 @@ xfce4-panel
 xfce4-power-manager
 xfce4-pulseaudio-plugin
 xfce4-screenshooter
+xfce4-sensors-plugin
 xfce4-session
 xfce4-settings
 xfconf
