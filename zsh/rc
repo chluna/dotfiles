@@ -151,16 +151,18 @@ if [[ $UID -ne 0 ]] then
 	alias y='sudo $(fc -ln -1)'
 	# custom functions
 	sc() {
+        sc=""
+        jc=""
+        if [[ $1 == "u" || $1 == "user" ]] then
+            sc="--user"
+            jc="--user-unit"
+            shift
+        fi
 	    case "$1" in
-	        h|help)	echo "Usage: sc <u|user> [command] [service]";;
-	        u|user)
-	            shift
-			    systemctl --user $1 $2;;
-            *)
-		        case "$1" in
-		            edit)       sudo -E systemctl edit $2;;
-			        *)			sudo systemctl $1 $2
-                esac
+            j|journal)  journalctl $jc $2 -f;;
+		    e|edit)     sudo -E systemctl edit $2;;
+	        h|help)	    echo "Usage: sc <u> <j|e|h> [command] [service]";;
+			*)          systemctl $sc $1 $2
 		esac
 	}
 	bk() {
