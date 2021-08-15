@@ -54,7 +54,7 @@ pavucontrol
 pipewire
 pipewire-pulse
 pkgconf
-poppler
+powertop
 qalculate-gtk
 redshift
 reflector
