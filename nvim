@@ -21,6 +21,7 @@ let &fcs='eob: '
 
 " other settings
 syntax enable
+set clipboard+=unnamedplus
 set mouse=a
 set tabstop=4
 set shiftwidth=4
