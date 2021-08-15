@@ -139,17 +139,27 @@ zs() {
 }
 
 if [[ $UID -ne 0 ]] then
-	# rust
+	# custom aliases
+	alias run='hledger -f $HOME/data/fitness/running/running.journal'
+	alias sudo='sudo '
+	alias y='sudo $(fc -ln -1)'
+    # rust
 	rust() {
 		file=$(echo $1 | cut -d'.' -f1)
 		rustc $file.rs && ./$file && rm $file
 	}
-	# custom aliases
-	alias fin='hledger -f $HOME/data/finance/ledger/finance.journal'
-	alias run='hledger -f $HOME/data/fitness/running/running.journal'
-	alias sudo='sudo '
-	alias y='sudo $(fc -ln -1)'
-	# custom functions
+    # hledger finance
+    fin() {
+        case "$1" in
+            e|t|edit|trans)
+                e $HOME/data/finance/ledger/transactions-2021.journal;;
+            h|m|head|main)
+                e $HOME/data/finance/ledger/finance.journal;;
+            *)
+                hledger -f $HOME/data/finance/ledger/finance.journal "$@"
+        esac
+    }
+	# systemctl
 	sc() {
         sc=""
         jc=""
