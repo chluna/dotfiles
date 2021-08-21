@@ -19,7 +19,7 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_SAVE_NO_DUPS
 
-# micro
+# text editor
 export EDITOR=nvim
 export VISUAL=$EDITOR
 

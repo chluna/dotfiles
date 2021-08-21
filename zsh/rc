@@ -34,6 +34,10 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
 # zsh syntax highlighting
 [[ -f $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# force zsh to emacs mode after setting $EDITOR to *vi*
+# https://unix.stackexchange.com/questions/197839/why-does-exporting-vim-as-editor-in-zsh-disable-keyboard-shortcuts
+set -o emacs
+
 # key bindings
 # ctrl + arrow to move by words
 bindkey "^[[1;5C" forward-word
