@@ -42,7 +42,7 @@
         glob: true
         path: rofi/*
     # ssh
-    ~/.ssh/config: ssh.config
+    ~/.ssh/config: config_ssh
     # vscodium
     # ~/.config/VSCodium/User/settings.json: vscodium.json
     # miscellaneous scripts
