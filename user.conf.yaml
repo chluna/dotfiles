@@ -15,7 +15,9 @@
 
 - link:
     # xfce
-    ~/.xprofile: xprofile
+    ~/.xprofile: xfce/xprofile
+    ~/.Xresources: xfce/Xresources
+    ~/.config/autostart/Xresources.desktop: xfce/Xresources.desktop
     ~/.config/xfce4/genmon/:
         glob: true
         path: genmon/*
