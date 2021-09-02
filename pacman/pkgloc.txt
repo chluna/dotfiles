@@ -7,6 +7,7 @@ blueman
 bluez
 bluez-utils
 booster
+bpytop
 btrfs-progs
 calibre
 exo
@@ -21,11 +22,11 @@ gawk
 gcc
 gettext
 git
+git-delta
 grep
 groff
 gvfs
 gzip
-htop
 intel-media-driver
 intel-ucode
 inter-font
@@ -42,6 +43,7 @@ m4
 make
 man-db
 man-pages
+mousepad
 mpv
 neofetch
 neovim
@@ -64,7 +66,7 @@ s-tui
 sed
 sudo
 sxiv
-syncthing
+tealdeer
 throttled
 thunar
 thunar-media-tags-plugin

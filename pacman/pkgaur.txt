@@ -1,7 +1,6 @@
 btrbk
 colorpicker-ym1234-git
 file-roller-tmp
-git-delta-bin
 hledger-bin
 imgp
 libxfce4ui-nocsd
@@ -10,10 +9,9 @@ ncspot
 ncurses5-compat-libs
 nnn-nerd
 notable-bin
+onedrive-abraunegg
 otf-nerd-fonts-fira-code
-pandoc-bin
 paru-bin
-tealdeer-bin
 tela-icon-theme
 ttf-apple-emoji
 ytfzf
