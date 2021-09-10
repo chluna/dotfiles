@@ -66,6 +66,7 @@ alias free='free -m'				# show sizes in MB
 alias cp='cp -i --reflink=always'	# confirm before overwriting something
 alias df='df -h'					# human-readable sizes
 # custom aliases
+alias b='bpytop'
 alias d='cd $DOTFILES'
 alias f='nnn'
 alias j='journalctl -rb'
