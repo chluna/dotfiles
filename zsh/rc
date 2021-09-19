@@ -66,11 +66,11 @@ alias free='free -m'				# show sizes in MB
 alias cp='cp -i --reflink=always'	# confirm before overwriting something
 alias df='df -h'					# human-readable sizes
 # custom aliases
-alias b='bpytop'
 alias d='cd $DOTFILES'
 alias f='nnn'
 alias j='journalctl -rb'
 alias n='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
+alias s='bpytop'
 # nvim aliases
 alias e='nvim'
 alias vi='nvim'
@@ -129,7 +129,7 @@ pm() {
         	echo "          up|upgrade              update and upgrade packages"
     esac
 }
-zs() {
+z() {
 	case "$1" in
 		e|edit)
 			chksum=/tmp/zshrc.sha1
@@ -137,7 +137,7 @@ zs() {
 			e $ZDOTDIR/.zshrc
 			sha1sum -c $chksum --status
 			if [[ $? -ne 0 ]] then
-				rm $chksum
+			    rm $chksum
 				read -q "choice?Reload changes? [y/n] "
 				echo "\n"
 				if [[ ${choice:l} = "y" ]] exec zsh
@@ -149,10 +149,19 @@ zs() {
 			find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;
 			cd $pwd;;
 		*)
-			zs edit
+			z edit
 	esac
 }
+mod() {
+    case "$1" in
+        e|emacs)    set -o emacs;;
+        v|vi)       set -o vi;;
+        *)          echo "mod [v|vi]"
+                    echo "mod [e|emacs]"
+    esac
+}
 
+# user custom functions
 if [[ $UID -ne 0 ]] then
 	# custom aliases
 	alias run='hledger -f $HOME/data/fitness/running/running.journal'
@@ -166,12 +175,12 @@ if [[ $UID -ne 0 ]] then
     # hledger finance
     fin() {
         case "$1" in
-            e|t|edit|trans)
-                e $HOME/data/finance/ledger/transactions-2021.journal;;
-            h|m|head|main)
-                e $HOME/data/finance/ledger/finance.journal;;
+            e|edit)
+                e $HOME/data/finance/ledger/2021.journal;;
+            m|main)
+                e $HOME/data/finance/ledger/main.journal;;
             *)
-                hledger -f $HOME/data/finance/ledger/finance.journal "$@"
+                hledger -f $HOME/data/finance/ledger/main.journal "$@"
         esac
     }
 	# systemctl
@@ -193,12 +202,9 @@ if [[ $UID -ne 0 ]] then
 	bk() {
 	    config=$HOME/.config/dotfiles/btrbk/btrbk-backup.conf
 		case "$1" in
-            l|list)
-                sudo btrbk list backups -c $config -v;;
-            n|dryrun)
-                sudo btrbk dryrun -c $config -v;;
-            r|run)
-                sudo btrbk run -c $config -v;;
+            l|list)     sudo btrbk list backups -c $config -v;;
+            n|dryrun)   sudo btrbk dryrun -c $config -v;;
+            r|run)      sudo btrbk run -c $config -v;;
             *)
                 echo "Usage: bk [command]"
                 echo "Commands: l|list      list backups"
@@ -206,4 +212,18 @@ if [[ $UID -ne 0 ]] then
                 echo "          r|run       run backup"
         esac
 	}
+    bt() {
+        if [[ "$3" -gt 0 ]] then; $pct=$3; fi
+        case "$2" in
+            l|loc)  tgt="/";;
+            e|ext)  tgt="/run/media/spike/ssd";;
+            *)
+        esac
+        case "$1" in
+            f|fi)   sudo btrfs fi us $tgt;;
+            b|ba)   sudo btrfs ba start -v -musage=$pct $tgt;;
+            s|sc)   sudo btrfs sc start -Bd $tgt;;
+            *)
+        esac
+    }
 fi
