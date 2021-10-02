@@ -25,8 +25,8 @@
     ~/.zshenv: zsh/env
     ~/.config/zsh/.zshrc: zsh/rc
     ~/.config/zsh/.p10k.zsh: zsh/p10k
-    # bpytop
-    ~/.config/bpytop/bpytop.conf: bpytop.conf
+    # btop
+    ~/.config/btop/btop.conf: btop.conf
     # git (global)
     ~/.gitconfig: gitconfig
     # kitty

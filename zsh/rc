@@ -70,7 +70,7 @@ alias d='cd $DOTFILES'
 alias f='nnn'
 alias j='journalctl -rb'
 alias n='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
-alias s='bpytop'
+alias s='btop'
 # nvim aliases
 alias e='nvim'
 alias vi='nvim'
@@ -175,8 +175,10 @@ if [[ $UID -ne 0 ]] then
     # hledger finance
     fin() {
         case "$1" in
-            e|edit)
+            j|journal)
                 e $HOME/data/finance/ledger/2021.journal;;
+            p|price)
+                e $HOME/data/finance/ledger/2021.prices;;
             m|main)
                 e $HOME/data/finance/ledger/main.journal;;
             *)
@@ -213,7 +215,6 @@ if [[ $UID -ne 0 ]] then
         esac
 	}
     bt() {
-        if [[ "$3" -gt 0 ]] then; $pct=$3; fi
         case "$2" in
             l|loc)  tgt="/";;
             e|ext)  tgt="/run/media/spike/ssd";;
@@ -221,7 +222,7 @@ if [[ $UID -ne 0 ]] then
         esac
         case "$1" in
             f|fi)   sudo btrfs fi us $tgt;;
-            b|ba)   sudo btrfs ba start -v -musage=$pct $tgt;;
+            b|ba)   sudo btrfs ba start -v $3 $4 $tgt;;
             s|sc)   sudo btrfs sc start -Bd $tgt;;
             *)
         esac
