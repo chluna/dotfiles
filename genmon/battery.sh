@@ -8,10 +8,10 @@ fi
 
 bat0=$(cat /sys/class/power_supply/BAT0/capacity)
 bat1=$(cat /sys/class/power_supply/BAT1/capacity)
-bat=$(echo "($bat0 + $bat1)/2" | bc | awk '{printf("%.0f"), $1}')
+bat=$(echo "($bat0 + $bat1)/2" | qalc -t -f - | awk '{printf("%.0f"), $1}')
 if [[ $bat -ge 98 ]]; then
 	color="green"
-elif [[ $bat -ge 10 ]] && [[ $bat -lt 20 ]]; then 
+elif [[ $bat -ge 10 ]] && [[ $bat -lt 20 ]]; then
     color="yellow"
 elif [[ $bat -lt 10 ]]; then
     color="red"

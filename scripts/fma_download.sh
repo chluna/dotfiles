@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/bash
 
 genre=$1
 pages=$2

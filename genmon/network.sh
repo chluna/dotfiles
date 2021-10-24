@@ -20,7 +20,8 @@ else
     txt+="泌"
 fi
 
-public="$(curl icanhazip.com)"
+public="$(curl ipinfo.io | jq '.ip' | tr -d '"')"
+# public="$(curl icanhazip.com)"
 
 if [[ ! -z "$public" ]]; then
     tool+="\npub: $public"

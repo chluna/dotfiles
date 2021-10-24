@@ -5,7 +5,8 @@ txt+="  "
 txt+="</txt>"
 
 tool="<tool>"
-#tool+="$(whoami)@$(uname -n)\n"
+tool+="$(whoami)@$(uname -n)\n"
+tool+="$(uname -r)\n"
 tool+="uptime: $(uptime -p | cut -d ' ' -f 2-)"
 tool+="</tool>"
 

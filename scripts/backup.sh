@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Backup script by chluna 20200409
 # Needs to be run as 'sudo <dir>/backup.sh'

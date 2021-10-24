@@ -2,32 +2,32 @@
 
 # rofi settings
 # case-insensitive, normal window, dmenu mode
-dmenu="rofi -i -normal-window -dmenu"
+DMENU="rofi -i -normal-window -dmenu"
 # keepassxc settings
 # modify these two variables as needed
-database="/home/spike/onedrive/me/tech/kp/pd.kdbx"
-timeout=20
+DATABASE="/home/spike/data/tech/kp/pd.kdbx"
+TIMEOUT=10
 
-password=$($dmenu -p "password? " -password -l 0)
-echo "$password" | keepassxc-cli ls -q "$database" > /dev/null
+password=$($DMENU -p "password? " -password -l 0)
+echo "$password" | keepassxc-cli ls -q "$DATABASE" > /dev/null
 if [[ $? -eq 0 ]]; then
     while true; do
-        entry=$(echo "$password" | keepassxc-cli ls -fRq "$database" | egrep -v "\/$|^Recycle" | cat <(echo "exit") - | $dmenu -p "entry  -> ")
+        entry=$(echo "$password" | keepassxc-cli ls -fRq "$DATABASE" | egrep -v "\/$|^Recycle" | cat <(echo "exit") - | $DMENU -p "entry  -> ")
         case "$entry" in
             exit)
                 exit 0;;
             *)
                 while [[ ! -z $entry ]]; do
-                    action=$(echo -e "copy password\ncopy username\ncopy URL\nshow entry\nanother entry\nexit" | $dmenu -p "action ->" -l 6)
+                    action=$(echo -e "copy password\ncopy username\ncopy URL\nshow entry\nanother entry\nexit" | $DMENU -p "action ->" -l 6)
                     case "$action" in
                         "copy password")
-                            echo "$password" | keepassxc-cli clip -q -a password "$database" "$entry" $timeout;;
+                            echo "$password" | keepassxc-cli clip -q -a password "$DATABASE" "$entry" $TIMEOUT;;
                         "copy username")
-                            echo "$password" | keepassxc-cli clip -q -a username "$database" "$entry" $timeout;;
+                            echo "$password" | keepassxc-cli clip -q -a username "$DATABASE" "$entry" $TIMEOUT;;
                         "copy URL")
-                            echo "$password" | keepassxc-cli clip -q -a URL "$database" "$entry" $timeout;;
+                            echo "$password" | keepassxc-cli clip -q -a URL "$DATABASE" "$entry" $TIMEOUT;;
                         "show entry")
-                            echo "$password" | keepassxc-cli show -q "$database" "$entry" | egrep "Title|UserName|URL" | $dmenu -p "show   -> " -l 3 > /dev/null;;
+                            echo "$password" | keepassxc-cli show -q "$DATABASE" "$entry" | egrep "Title|UserName|URL" | $DMENU -p "show   -> " -l 3 > /dev/null;;
                         "another entry")
                             break;;
                         exit)

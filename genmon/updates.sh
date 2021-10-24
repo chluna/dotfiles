@@ -1,10 +1,14 @@
 #!/bin/bash
 
-tool="<tool></tool>"
+updates=$(checkupdates | wc -l)
 
 txt="<txt>"
-[[ $(checkupdates | wc -l) -gt 0 ]] && txt+="<span foreground='white'></span> <span weight='Bold'>Updates available</span>"
+[[ $updates -gt 0 ]] && txt+=" Updates available"
 txt+="</txt>"
+
+tool="<tool>"
+[[ $updates -gt 0 ]] && tool+="$(checkupdates | cut -d' ' -f1)"
+tool+="</tool>"
 
 echo -e "$txt"
 echo -e "$tool"
