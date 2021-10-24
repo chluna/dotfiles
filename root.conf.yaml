@@ -18,6 +18,9 @@
 
 - shell:
     -
+        command: localectl set-x11-keymap "" "" "" caps:none
+        description: Disabling CapsLock globally using localectl
+    -
         command: if [ ! -d /root/.config/zsh/ ]; then ln -s $ZDOTDIR /root/.config/; fi
         description: Creating link /root/.config/zsh/ -> $ZDOTDIR
     -
