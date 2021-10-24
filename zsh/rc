@@ -132,7 +132,7 @@ pm() {
 z() {
 	case "$1" in
 		e|edit)
-			chksum=/tmp/zshrc.sha1
+            chksum=$(mktemp)
 			sha1sum $ZDOTDIR/.zshrc > $chksum
 			e $ZDOTDIR/.zshrc
 			sha1sum -c $chksum --status
@@ -175,7 +175,7 @@ if [[ $UID -ne 0 ]] then
     # hledger finance
     fin() {
         case "$1" in
-            j|journal)
+            e|j|edit|journal)
                 e $HOME/data/finance/ledger/2021.journal;;
             p|price)
                 e $HOME/data/finance/ledger/2021.prices;;
