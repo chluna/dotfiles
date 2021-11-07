@@ -8,7 +8,6 @@ lightdm-mini-greeter
 ncspot
 ncurses5-compat-libs
 nnn-nerd
-notable-bin
 onedrive-abraunegg
 otf-nerd-fonts-fira-code
 paru-bin

@@ -31,8 +31,6 @@
     ~/.config/btop/btop.conf: btop.conf
     # git (global)
     ~/.gitconfig: gitconfig
-    # notable
-    ~/.notable.json: notable.json
     # nvim
     ~/.config/nvim/init.vim: nvim
     # paru
