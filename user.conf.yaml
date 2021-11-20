@@ -31,6 +31,10 @@
     ~/.config/btop/btop.conf: btop.conf
     # git (global)
     ~/.gitconfig: gitconfig
+    # kitty
+    ~/.config/kitty/:
+        glob: true
+        path: kitty/*
     # nvim
     ~/.config/nvim/init.vim: nvim
     # paru
@@ -46,7 +50,7 @@
     # vscodium
     # ~/.config/VSCodium/User/settings.json: vscodium.json
     # wezterm
-    ~/.config/wezterm/wezterm.lua: wezterm.lua
+    # ~/.config/wezterm/wezterm.lua: wezterm.lua
     # miscellaneous scripts
     ~/.local/bin/:
         glob: true
