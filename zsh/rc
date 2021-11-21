@@ -85,6 +85,7 @@ alias vi='nvim'
 alias vim='nvim'
 alias vimdiff='nvim -d'
 alias xxd='nvim -b'
+alias se='sudoedit'
 # rust alternatives
 if [[ -f $(which lsd) ]]; then
 	alias ls='lsd -AF --group-dirs first'
@@ -175,10 +176,17 @@ if [[ $UID -ne 0 ]] then
 	alias run='hledger -f $HOME/data/fitness/running/running.journal'
 	alias sudo='sudo '
 	alias y='sudo $(fc -ln -1)'
-    # rust
-	rust() {
-		file=$(echo $1 | cut -d'.' -f1)
-		rustc $file.rs && ./$file && rm $file
+    # build and execute code
+	build() {
+        code=$1
+        file=(${(s/./)code})
+        case "$file[2]" in
+            c)  gcc $code -o $file[1];;
+            rs) rustc $code;;
+            *)  echo "Invalid file extension"
+        esac
+        ./$file[1]
+        rm $file[1]
 	}
     # hledger finance
     fin() {
