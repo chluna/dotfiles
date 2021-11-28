@@ -93,9 +93,10 @@ if [[ -f $(which lsd) ]]; then
 	alias lt='lsd -A --tree --group-dirs first --depth'
 fi
 # global custom functions
+# pacman
 pm() {
     case "$1" in
-        i|install)	shift; paru -S "$@";;
+        i|install)	shift; paru -Syu "$@";;
         s|search)	shift; paru "$@";;
         r|remove)	shift; paru -Rns "$@";;
         p|purge)	pacman -Qtdq | sudo pacman -Rsn -;;
@@ -138,6 +139,7 @@ pm() {
         	echo "          up|upgrade              update and upgrade packages"
     esac
 }
+# zshrc edit and reload
 z() {
 	case "$1" in
 		e|edit)
@@ -161,7 +163,8 @@ z() {
 			z edit
 	esac
 }
-mod() {
+# zsh emacs and vi mode
+zm() {
     case "$1" in
         e|emacs)    set -o emacs;;
         v|vi)       set -o vi;;
@@ -188,7 +191,7 @@ if [[ $UID -ne 0 ]] then
         ./$file[1]
         rm $file[1]
 	}
-    # hledger finance
+    # hledger
     fin() {
         case "$1" in
             e|j|edit|journal)
@@ -217,6 +220,7 @@ if [[ $UID -ne 0 ]] then
 			*)          systemctl $sc $1 $2
 		esac
 	}
+    # btrbk
 	bk() {
 	    config=$HOME/.config/dotfiles/btrbk/btrbk-backup.conf
 		case "$1" in
@@ -230,6 +234,7 @@ if [[ $UID -ne 0 ]] then
                 echo "          r|run       run backup"
         esac
 	}
+    # btrfs progs
     bt() {
         case "$2" in
             l|loc)  tgt="/";;
