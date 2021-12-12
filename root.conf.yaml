@@ -10,7 +10,7 @@
     # network-manager-dispatcher
     /etc/NetworkManager/dispatcher.d/99-update-genmon-network.sh: update-genmon-network.sh
     # pacman
-    /etc/pacman.conf: pacman.conf
+    /etc/pacman.conf: pacman/pacman.conf
     # throttled
     /etc/lenovo_fix.conf: throttled.conf
     # zshenv
