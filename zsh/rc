@@ -81,11 +81,11 @@ alias nf='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
 alias top='btop'
 # nvim aliases
 alias e='nvim'
+alias E='sudoedit'
 alias vi='nvim'
 alias vim='nvim'
 alias vimdiff='nvim -d'
 alias xxd='nvim -b'
-alias se='sudoedit'
 # rust alternatives
 if [[ -f $(which lsd) ]]; then
 	alias ls='lsd -AF --group-dirs first'
