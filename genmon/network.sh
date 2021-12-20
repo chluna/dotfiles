@@ -1,7 +1,8 @@
 #!/bin/bash
 
-tool="<tool>"
 txt="<txt>"
+tool="<tool>"
+txtclick="<txtclick>"
 
 wlan="$(nmcli -p device show wlp3s0 | grep IP4.ADDRESS | tr -s ' ' | cut -d ' ' -f 2 | cut -d '/' -f 1)"
 ssid="$(nmcli -p device show wlp3s0 | grep GENERAL.CONNECTION | tr -s ' ' | cut -d ' ' -f 2)"
@@ -20,17 +21,20 @@ else
     txt+="泌"
 fi
 
-public="$(curl ipinfo.io | jq '.ip' | tr -d '"')"
-# public="$(curl icanhazip.com)"
+public="$(curl ipinfo.io | jq -r '.ip')"
 
 if [[ ! -z "$public" ]]; then
-    tool+="\npub: $public"
+    tool+="\npublic: $public"
 else
     txt+=" (offline)"
 fi
 
+txtclick+="bash -c '~/.config/xfce4/genmon/network_reset.sh "$ssid"'"
+
 txt+="</txt>"
 tool+="</tool>"
+txtclick+="</txtclick>"
 
 echo -e "$txt"
 echo -e "$tool"
+echo -e "$txtclick"

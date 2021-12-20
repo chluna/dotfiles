@@ -1,7 +1,5 @@
 #!/bin/bash
 
-tool="<tool></tool>"
-
 temp=$(cat /sys/class/thermal/thermal_zone0/temp | awk '{printf("%.0f", $1 / 1000.0)}')
 if [[ $temp -gt 50 ]] && [[ $temp -lt 65 ]]; then
     color="yellow"

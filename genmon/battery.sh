@@ -27,5 +27,10 @@ tool="<tool>"
 tool+="internal: $bat0%\nexternal: $bat1%"
 tool+="</tool>"
 
+txtclick="<txtclick>"
+txtclick+="xfce4-power-manager-settings"
+txtclick+="</txtclick>"
+
 echo -e "$txt"
 echo -e "$tool"
+echo -e "$txtclick"

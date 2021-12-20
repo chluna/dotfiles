@@ -1,7 +1,5 @@
 #!/bin/bash
 
-tool="<tool></tool>"
-
 mem=$(free | grep Mem | awk '{printf ("%.0f"), $3 / $2 * 100.0}')
 if [[ $mem -gt 60 ]] && [[ $proc -lt 80 ]]; then
 	color="yellow"
