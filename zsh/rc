@@ -195,9 +195,9 @@ if [[ $UID -ne 0 ]] then
     fin() {
         case "$1" in
             e|j|edit|journal)
-                e $HOME/data/finance/ledger/2021.journal;;
+                e $HOME/data/finance/ledger/$2.journal;;
             p|price)
-                e $HOME/data/finance/ledger/2021.prices;;
+                e $HOME/data/finance/ledger/$2.prices;;
             m|main)
                 e $HOME/data/finance/ledger/main.journal;;
             *)
