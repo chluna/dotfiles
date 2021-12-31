@@ -14,21 +14,12 @@
         recursive: true
 
 - link:
-    # xdg directories
-    ~/.config/user-dirs.dirs: user-dirs.dirs
-    # xfce
-    ~/.xprofile: xfce/xprofile
-    ~/.Xresources: xfce/Xresources
-    ~/.config/autostart/Xresources.desktop: xfce/Xresources.desktop
-    ~/.config/xfce4/genmon/:
-        glob: true
-        path: genmon/*
-    # zsh
-    ~/.zshenv: zsh/env
-    ~/.config/zsh/.zshrc: zsh/rc
-    ~/.config/zsh/.p10k.zsh: zsh/p10k
     # btop
     ~/.config/btop/btop.conf: btop.conf
+    # fontconfig
+    ~/.config/fontconfig/conf.d/:
+        glob: true
+        path: fontconfig/*
     # git (global)
     ~/.gitconfig: gitconfig
     # kitty
@@ -51,6 +42,19 @@
     # ~/.config/VSCodium/User/settings.json: vscodium.json
     # wezterm
     # ~/.config/wezterm/wezterm.lua: wezterm.lua
+    # # xdg directories
+    ~/.config/user-dirs.dirs: user-dirs.dirs
+    # xfce
+    ~/.xprofile: xfce/xprofile
+    ~/.Xresources: xfce/Xresources
+    ~/.config/autostart/Xresources.desktop: xfce/Xresources.desktop
+    ~/.config/xfce4/genmon/:
+        glob: true
+        path: genmon/*
+    # zsh
+    ~/.zshenv: zsh/env
+    ~/.config/zsh/.zshrc: zsh/rc
+    ~/.config/zsh/.p10k.zsh: zsh/p10k
     # miscellaneous scripts
     ~/.local/bin/:
         glob: true
@@ -68,3 +72,5 @@
         command: if [ ! -d $ZDOTDIR/zsh-syntax-highlighting ]; then git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZDOTDIR/zsh-syntax-highlighting; fi
         description: Installing zsh-syntax-highlighting
     - [exec zsh, Reloading zsh plugins]
+    - [fc-cache -f -v, Reload font cache]
+
