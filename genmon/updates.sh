@@ -3,12 +3,19 @@
 updates=$(checkupdates | wc -l)
 
 txt="<txt>"
-[[ $updates -gt 0 ]] && txt+=" Updates available"
-txt+="</txt>"
-
 tool="<tool>"
-[[ $updates -gt 0 ]] && tool+="$(checkupdates | cut -d' ' -f1)"
+txtclick+="<txtclick>"
+
+if [[ $updates -gt 0 ]]; then
+    txt+=" Updates available"
+    tool+="$(checkupdates | cut -d' ' -f1)"
+    txtclick+="kitty --hold zsh -c 'source ~/.config/zsh/.zshrc; pm up'"
+fi
+
+txt+="</txt>"
 tool+="</tool>"
+txtclick+="</txtclick>"
 
 echo -e "$txt"
 echo -e "$tool"
+echo -e "$txtclick"
