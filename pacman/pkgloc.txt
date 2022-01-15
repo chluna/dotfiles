@@ -16,6 +16,7 @@ findutils
 firefox
 flex
 fwupd
+fzf
 garcon
 gawk
 gcc
@@ -29,7 +30,9 @@ gzip
 intel-media-driver
 intel-ucode
 inter-font
+jq
 keepassxc
+kitty
 libtool
 light-locker
 lightdm
@@ -72,7 +75,6 @@ thunar-media-tags-plugin
 thunar-volman
 tlp
 tumbler
-wezterm
 which
 xclip
 xfce4-genmon-plugin

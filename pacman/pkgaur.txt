@@ -1,3 +1,4 @@
+auto-cpufreq
 btrbk
 colorpicker-ym1234-git
 file-roller-tmp
@@ -13,4 +14,3 @@ otf-nerd-fonts-fira-code
 paru-bin
 tela-icon-theme
 ttf-apple-emoji
-ytfzf
