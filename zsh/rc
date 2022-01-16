@@ -101,15 +101,19 @@ fi
 # pacman/paru
 pm() {
     if [[ -f $(which paru) ]]; then
-        exec=paru
+        pkg=paru
+        sudo_pkg=$pkg
+        up_pkg=$pkg
     else
-        exec=pacman
+        pkg=pacman
+        sudo_pkg='sudo '$pkg
+        up_pkg=$sudo_pkg' -Syu'
     fi
     case "$1" in
-        i|install)	$exec -Slq | fzf --multi --preview "$exec -Si {1}" | xargs -ro sudo $exec -S;;
-        r|remove)	$exec -Qq | fzf --multi --preview "$exec -Qi {1}" | xargs -ro sudo $exec -Rns;;
-        q|query)	$exec -Slq | fzf --preview "$exec -Si {1}";;
-        p|purge)	$exec -Qtdq | sudo $exec -Rsn -;;
+        i|install)	$pkg -Slq | fzf --multi --preview "$pkg -Si {1}" | xargs -ro $sudo_pkg -S;;
+        r|remove)	$pkg -Qq | fzf --multi --preview "$pkg -Qi {1}" | xargs -ro $sudo_pkg -Rsn;;
+        q|query)	$pkg -Slq | fzf --preview "$pkg -Si {1}";;
+        p|purge)	$pkg -Qtdq | $sudo_pkg -Rsn -;;
         m|mirror)	sudo reflector --verbose 		\
         			--save /etc/pacman.d/mirrorlist \
         			--protocol https 				\
@@ -120,18 +124,18 @@ pm() {
         e|export)
         	exp=$DOTFILES/pacman
         	[[ ! -d $exp ]] && mkdir -p $exp
-            $exec -Qqen | awk '{print $1}' > $exp/pkgloc.txt
-            $exec -Qqem | awk '{print $1}' > $exp/pkgaur.txt
+            $pkg -Qqen | awk '{print $1}' > $exp/pkgloc.txt
+            $pkg -Qqem | awk '{print $1}' > $exp/pkgaur.txt
             echo "Exported in $exp";;
-        c|clean)	$exec -Sc;;
+        c|clean)	$sudo_pkg -Sc;;
         d|diff)     sudo -E pacdiff;;
         u|update)   checkupdates;;
         up|upgrade)
             log=$(mktemp)
-        	script -q $log -c $exec
+        	script -q $log -c $up_pkg
         	[[ $(grep -E '.+\.pac(new|orig|save)' $log) ]] && pm diff
         	rm $log
-        	$exec -Qtdq > /dev/null && pm purge
+        	$pkg -Qtdq > /dev/null && $sudo_pkg -Rsn -
         	xfce4-panel --plugin-event=genmon-8:refresh:bool:true;;
         *)
         	echo "Usage: pm [command]"
