@@ -27,6 +27,7 @@ grep
 groff
 gvfs
 gzip
+intel-gpu-tools
 intel-media-driver
 intel-ucode
 inter-font

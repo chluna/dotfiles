@@ -84,6 +84,7 @@ alias j='journalctl -rb'
 alias theme='kitty +kitten themes'
 alias nf='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
 alias top='btop'
+alias gtop='sudo intel_gpu_top'
 # nvim aliases
 alias e='nvim'
 alias E='sudoedit'
