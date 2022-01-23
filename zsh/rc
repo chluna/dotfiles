@@ -136,7 +136,7 @@ pm() {
         	script -q $log -c $up_pkg
         	[[ $(grep -E '.+\.pac(new|orig|save)' $log) ]] && pm diff
         	rm $log
-        	$pkg -Qtdq > /dev/null && $sudo_pkg -Rsn -
+        	$pkg -Qtdq > /dev/null | $sudo_pkg -Rsn -
         	xfce4-panel --plugin-event=genmon-8:refresh:bool:true;;
         *)
         	echo "Usage: pm [command]"
