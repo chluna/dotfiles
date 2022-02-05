@@ -51,6 +51,7 @@ neofetch
 neovim
 network-manager-applet
 networkmanager
+nvme-cli
 pacman
 pacman-contrib
 patch
@@ -67,6 +68,7 @@ rofi
 rofi-calc
 s-tui
 sed
+smartmontools
 sudo
 sxiv
 tealdeer
@@ -77,6 +79,7 @@ thunar-volman
 tlp
 tumbler
 which
+wireplumber
 xclip
 xfce4-genmon-plugin
 xfce4-panel
