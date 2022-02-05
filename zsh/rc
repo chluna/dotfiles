@@ -77,8 +77,7 @@ alias free='free -m'				# show sizes in MB
 alias cp='cp -i --reflink=always'	# confirm before overwriting something
 alias df='df -h'					# human-readable sizes
 # custom aliases
-alias c='clear'
-alias dot='cd $DOTFILES'
+alias clr='clear'
 alias f='nnn'
 alias j='journalctl -rb'
 alias theme='kitty +kitten themes'
@@ -189,9 +188,10 @@ zm() {
 # user custom functions
 if [[ $UID -ne 0 ]] then
 	# custom aliases
+    alias dot='cd $DOTFILES'
+	alias fck='sudo $(fc -ln -1)'
 	alias run='hledger -f $HOME/data/fitness/running/running.journal'
 	alias sudo='sudo '
-	alias y='sudo $(fc -ln -1)'
     # build and execute code
 	build() {
         code=$1
