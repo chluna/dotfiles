@@ -11,6 +11,7 @@ btop
 btrfs-progs
 exo
 fakeroot
+fd
 file
 findutils
 firefox
@@ -23,6 +24,7 @@ gcc
 gettext
 git
 git-delta
+glow
 grep
 groff
 gvfs
@@ -64,6 +66,7 @@ profile-sync-daemon
 qalculate-gtk
 redshift
 reflector
+ripgrep
 rofi
 rofi-calc
 s-tui
