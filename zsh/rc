@@ -70,37 +70,47 @@ bindkey "^[[F" end-of-line
 # alias
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
 alias free='free -m'				# show sizes in MB
 alias cp='cp -i --reflink=always'	# confirm before overwriting something
 alias df='df -h'					# human-readable sizes
-# custom aliases
+# custom alias
 alias clr='clear'
-alias f='nnn'
 alias j='journalctl -rb'
-alias theme='kitty +kitten themes'
-alias nf='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
-alias top='btop'
-alias gtop='sudo intel_gpu_top'
-# nvim aliases
-alias e='nvim'
-alias E='sudoedit'
-alias vi='nvim'
-alias vim='nvim'
-alias vimdiff='nvim -d'
-alias xxd='nvim -b'
+[[ -f $(which nnn) ]] && alias f='nnn'
+[[ -f $(which kitty) ]] && alias theme='kitty +kitten themes'
+[[ -f $(which neofetch) ]] && alias nf='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
+[[ -f $(which btop) ]] && alias top='btop'
+[[ -f $(which intel_gpu_top) ]] && alias gtop='sudo intel_gpu_top'
+if [[ -f $(which nvim) ]] then
+    alias e='nvim'
+    alias E='sudoedit'
+    alias vi='nvim'
+    alias vim='nvim'
+    alias vimdiff='nvim -d'
+    alias xxd='nvim -b'
+fi
 # rust alternatives
-if [[ -f $(which lsd) ]]; then
+if [[ -f $(which lsd) ]] then
 	alias ls='lsd -AF --group-dirs first'
 	alias ll='lsd -aFl --group-dirs first'
-	alias lt='lsd -A --tree --group-dirs first --depth'
 fi
+if [[ -f $(which fd) ]] then
+    alias find='fd'
+fi
+if [[ -f $(which rg) ]] then
+    alias grep='rg'
+    alias egrep='rg'
+    alias fgrep='rg'
+else
+    alias grep='grep --color=auto'
+    alias egrep='egrep --color=auto'
+    alias fgrep='fgrep --color=auto'
+fi
+
 # global custom functions
 # pacman/paru
 pm() {
-    if [[ -f $(which paru) ]]; then
+    if [[ -f $(which paru) ]] then
         pkg=paru
         sudo_pkg=$pkg
         up_pkg=$pkg
@@ -124,8 +134,8 @@ pm() {
         e|export)
         	exp=$DOTFILES/pacman
         	[[ ! -d $exp ]] && mkdir -p $exp
-            $pkg -Qqen | awk '{print $1}' > $exp/pkgloc.txt
-            $pkg -Qqem | awk '{print $1}' > $exp/pkgaur.txt
+            $pkg -Qqen > $exp/pkgloc.txt
+            $pkg -Qqem > $exp/pkgaur.txt
             echo "Exported in $exp";;
         c|clean)	$sudo_pkg -Sc;;
         d|diff)     sudo -E pacdiff;;
@@ -133,7 +143,7 @@ pm() {
         up|upgrade)
             log=$(mktemp)
         	script -q $log -c $up_pkg
-        	[[ $(grep -E '.+\.pac(new|orig|save)' $log) ]] && pm diff
+        	[[ $(grep '.+\.pac(new|orig|save)' $log) ]] && pm diff
         	rm $log
         	$pkg -Qtdq > /dev/null | $sudo_pkg -Rsn -
         	xfce4-panel --plugin-event=genmon-8:refresh:bool:true;;
@@ -166,13 +176,13 @@ z() {
 				if [[ ${choice:l} = "y" ]] exec zsh
 			fi
 			rm $chksum;;
-		u|upgrade)
+		up|upgrade)
 			dir=$(pwd)
 			cd $ZDOTDIR
 			find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;
 			cd $pwd;;
 		*)
-			z edit
+			exec zsh
 	esac
 }
 # zsh emacs and vi mode
@@ -189,7 +199,7 @@ zm() {
 if [[ $UID -ne 0 ]] then
 	# custom aliases
     alias dot='cd $DOTFILES'
-	alias fck='sudo $(fc -ln -1)'
+    alias fck='sudo $(fc -ln -1)'
 	alias run='hledger -f $HOME/data/fitness/running/running.journal'
 	alias sudo='sudo '
     # build and execute code
@@ -221,7 +231,7 @@ if [[ $UID -ne 0 ]] then
 	sc() {
         sc=""
         jc=""
-        if [[ $1 == "u" || $1 == "user" ]] then
+        if [[ $1 == "-u" || $1 == "--user" ]] then
             sc="--user"
             jc="--user-unit"
             shift
@@ -229,7 +239,7 @@ if [[ $UID -ne 0 ]] then
 	    case "$1" in
             j|journal)  journalctl $jc $2 -f;;
 		    e|edit)     sudo -E systemctl edit $2;;
-	        h|help)	    echo "Usage: sc <u> <j|e|h> [command] [service]";;
+	        h|help)	    echo "Usage: sc <-u|--user> <j|e|h> [command] [service]";;
 			*)          systemctl $sc $1 $2
 		esac
 	}
@@ -237,27 +247,27 @@ if [[ $UID -ne 0 ]] then
 	bk() {
 	    config=$HOME/.config/dotfiles/btrbk/btrbk-backup.conf
 		case "$1" in
-            l|list)     sudo btrbk list backups -c $config -v;;
-            n|dryrun)   sudo btrbk dryrun -c $config -v;;
-            r|run)      sudo btrbk run -c $config -v;;
+            -l|--list)     sudo btrbk list backups -c $config -v;;
+            -d|--dryrun)   sudo btrbk dryrun -c $config -v;;
+            -r|--run)      sudo btrbk run -c $config -v;;
             *)
                 echo "Usage: bk [command]"
                 echo "Commands: l|list      list backups"
-                echo "          n|dryrun    perform a dryrun"
+                echo "          d|dryrun    perform a dryrun"
                 echo "          r|run       run backup"
         esac
 	}
     # btrfs progs
     bt() {
         case "$2" in
-            l|loc)  tgt="/";;
-            e|ext)  tgt="/run/media/spike/ssd";;
+            loc)  tgt="/";;
+            ext)  tgt="/run/media/spike/ssd";;
             *)
         esac
         case "$1" in
-            f|fi)   sudo btrfs fi us $tgt;;
-            b|ba)   sudo btrfs ba start -v $3 $4 $tgt;;
-            s|sc)   sudo btrfs sc start -Bd $tgt;;
+            -f|--filesystem)   sudo btrfs fi us $tgt;;
+            -b|--balance)   sudo btrfs ba start -v $3 $4 $tgt;;
+            -s|--scrub)   sudo btrfs sc start -Bd $tgt;;
             *)
         esac
     }
