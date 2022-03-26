@@ -78,7 +78,7 @@ alias clr='clear'
 alias j='journalctl -rb'
 [[ -f $(which nnn) ]] && alias f='nnn'
 [[ -f $(which kitty) ]] && alias theme='kitty +kitten themes'
-[[ -f $(which neofetch) ]] && alias nf='neofetch --colors 4 7 4 4 7 6 --ascii_colors 4 4'
+[[ -f $(which fastfetch) ]] && alias fetch='fastfetch'
 [[ -f $(which btop) ]] && alias top='btop'
 [[ -f $(which intel_gpu_top) ]] && alias gtop='sudo intel_gpu_top'
 if [[ -f $(which nvim) ]] then

@@ -1,6 +1,7 @@
 auto-cpufreq
 btrbk
 colorpicker-ym1234-git
+fastfetch
 file-roller-tmp
 hledger-bin
 imgp

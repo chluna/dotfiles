@@ -49,7 +49,6 @@ man-db
 man-pages
 mousepad
 mpv
-neofetch
 neovim
 network-manager-applet
 networkmanager
