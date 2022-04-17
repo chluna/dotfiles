@@ -27,7 +27,10 @@
         glob: true
         path: kitty/*
     # nvim
-    ~/.config/nvim/init.vim: nvim
+    ~/.config/nvim/init.lua: nvim/init.lua
+    ~/.config/nvim/lua/:
+        glob: true
+        path: nvim/lua/*
     # paru
     ~/.config/paru/paru.conf: paru.conf
     # redshift

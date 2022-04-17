@@ -27,6 +27,9 @@
         command: if [ ! -d /root/.config/nvim ]; then ln -s /home/spike/.config/nvim /root/.config/; fi
         description: Creating link /root/.config/nvim -> $XDG_CONFIG_HOME/nvim
     -
+        command: if [ ! -d /root/.local/share/nvim/site ]; then ln -s /home/spike/.local/share/nvim/site /root/.local/share/nvim/; fi
+        description: Creating link /root/.local/share/nvim/site -> $XDG_CONFIG_HOME/.local/share/nvim/site
+    -
         command: cp /home/spike/.config/dotfiles/lightdm-mini-greeter.conf /etc/lightdm/
         description: Copying /etc/lightdm/lightdm-mini-greeter.conf -> $DOTFILES/root/lightdm-mini-greeter.conf
     -
@@ -35,3 +38,4 @@
     -
         command: systemctl enable --now NetworkManager-dispatcher.service
         description: Enabling and starting `NetworkManager-dispatcher` service
+
