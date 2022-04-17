@@ -31,6 +31,8 @@
     ~/.config/nvim/lua/:
         glob: true
         path: nvim/lua/*
+    # onedrive
+    ~/.config/onedrive/config: onedrive.config
     # paru
     ~/.config/paru/paru.conf: paru.conf
     # redshift
