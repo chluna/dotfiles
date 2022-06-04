@@ -28,6 +28,7 @@ glow
 grep
 groff
 gvfs
+gvfs-smb
 gzip
 intel-gpu-tools
 intel-media-driver
