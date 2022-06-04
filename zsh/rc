@@ -200,7 +200,7 @@ if [[ $UID -ne 0 ]] then
 	# custom aliases
     alias dot='cd $DOTFILES'
     alias fck='sudo $(fc -ln -1)'
-	alias run='hledger -f $HOME/data/fitness/running/running.journal'
+	alias run='hledger -f $HOME/data/health/running/running.journal'
 	alias sudo='sudo '
     # build and execute code
 	build() {
@@ -247,14 +247,16 @@ if [[ $UID -ne 0 ]] then
 	bk() {
 	    config=$HOME/.config/dotfiles/btrbk/btrbk-backup.conf
 		case "$1" in
-            -l|--list)     sudo btrbk list backups -c $config -v;;
             -d|--dryrun)   sudo btrbk dryrun -c $config -v;;
+            -l|--list)     sudo btrbk list backups -c $config -v;;
+            -s|--snapshot) sudo btrbk snapshot -v;;
             -r|--run)      sudo btrbk run -c $config -v;;
             *)
                 echo "Usage: bk [command]"
-                echo "Commands: l|list      list backups"
-                echo "          d|dryrun    perform a dryrun"
-                echo "          r|run       run backup"
+                echo "Commands: -d|--dryrun    perform a dryrun"
+                echo "          -l|--list      list backups"
+                echo "          -s|--snapshot  snapshot only"
+                echo "          -r|--run       snapshot and backup"
         esac
 	}
     # btrfs progs
