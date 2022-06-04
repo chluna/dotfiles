@@ -17,3 +17,8 @@ Host gitlab
     User git
     HostName gitlab.com
     IdentityFile ~/.ssh/gitlab_ed25519
+
+Host lunapi
+    User dietpi 
+    HostName 192.168.7.201
+
