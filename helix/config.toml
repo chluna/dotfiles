@@ -1,0 +1,15 @@
+theme = "dracula"
+
+[editor]
+line-number = "relative"
+shell = ["zsh", "-c"]
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.file-picker]
+hidden = false
+
+[editor.whitespace]
+render = "all"
+

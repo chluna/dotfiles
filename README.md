@@ -5,6 +5,7 @@ My personal dotfiles repository.
 __Linux:__
 
 * [git](https://git-scm.com/) - distributed version control system
+* [helix](https://helix-editor.com/) - a post-modern text editor
 * [keepassxc](https://github.com/keepassxreboot/keepassxc) - password manager based on Keepass
 * [kitty](https://sw.kovidgoyal.net/kitty/) - GPU-based terminal emulator
 * [neovim](https://neovim.io/) - Vim-based text editor

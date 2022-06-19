@@ -74,6 +74,7 @@ alias free='free -m'				# show sizes in MB
 alias cp='cp -i --reflink=always'	# confirm before overwriting something
 alias df='df -h'					# human-readable sizes
 # custom alias
+alias E='sudoedit'
 alias clr='clear'
 alias j='journalctl -rb'
 [[ -f $(which nnn) ]] && alias f='nnn'
@@ -83,11 +84,13 @@ alias j='journalctl -rb'
 [[ -f $(which intel_gpu_top) ]] && alias gtop='sudo intel_gpu_top'
 if [[ -f $(which nvim) ]] then
     alias e='nvim'
-    alias E='sudoedit'
     alias vi='nvim'
     alias vim='nvim'
     alias vimdiff='nvim -d'
     alias xxd='nvim -b'
+fi
+if [[ -f $(which helix) ]] then
+    alias e='helix'
 fi
 # rust alternatives
 if [[ -f $(which lsd) ]] then

@@ -22,6 +22,10 @@
         path: fontconfig/*
     # git (global)
     ~/.gitconfig: gitconfig
+    # helix
+    ~/.config/helix/:
+        glob: true
+        path: helix/*
     # kitty
     ~/.config/kitty/:
         glob: true
