@@ -112,24 +112,24 @@ fi
 pm() {
     if [[ -f $(which paru) ]] then
         pkg=paru
-        sudo_pkg=$pkg
-        up_pkg=$pkg
+        sudo_pkg=paru
+        up_pkg='paru -Su'
     else
         pkg=pacman
-        sudo_pkg='sudo '$pkg
-        up_pkg=$sudo_pkg' -Syu'
+        sudo_pkg='sudo pacman'
+        up_pkg='sudo pacman -Su'
     fi
     case "$1" in
-        i|install)    $pkg -Slq | fzf --multi --preview "$pkg -Si {1}" | xargs -ro $sudo_pkg -S;;
-        r|remove)    $pkg -Qq | fzf --multi --preview "$pkg -Qi {1}" | xargs -ro $sudo_pkg -Rsn;;
+        i|install)  $pkg -Slq | fzf --multi --preview "$pkg -Si {1}" | xargs -ro $sudo_pkg -S;;
+        r|remove)   $pkg -Qq | fzf --multi --preview "$pkg -Qi {1}" | xargs -ro $sudo_pkg -Rsn;;
         q|query)	$pkg -Slq | fzf --preview "$pkg -Si {1}";;
         p|purge)	$pkg -Qtdq | $sudo_pkg -Rsn -;;
-        m|mirror)	sudo reflector --verbose 		\
-            --save /etc/pacman.d/mirrorlist \
-            --protocol https 				\
-            --country "Australia,Hong Kong,Indonesia,Japan,New Zealand,Philippines,Singapore,South Korea, Taiwan,Thailand,Vietnam" \
-            --sort rate 					\
-                    --age 24                        \
+        m|mirror)	sudo reflector --verbose        \
+                    --save /etc/pacman.d/mirrorlist \
+                    --protocol https                \
+                    --country "Australia,Hong Kong,Indonesia,Japan,New Zealand,Philippines,Singapore,South Korea, Taiwan,Thailand,Vietnam" \
+                    --sort rate \
+                    --age 24    \
                     --score 20;;
         e|export)
             exp=$DOTFILES/pacman
@@ -142,7 +142,7 @@ pm() {
         u|update)   checkupdates;;
         up|upgrade)
             log=$(mktemp)
-            $sudo_pkg -Sy archlinux-keyring
+            $sudo_pkg -Sy --needed --noconfirm archlinux-keyring
             script -q $log -c $up_pkg
             [[ $(grep '.+\.pac(new|orig|save)' $log) ]] && pm diff
             rm $log
