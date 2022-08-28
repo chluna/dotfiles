@@ -30,6 +30,7 @@ groff
 gvfs
 gvfs-smb
 gzip
+helix
 intel-gpu-tools
 intel-media-driver
 intel-ucode
@@ -50,7 +51,6 @@ man-db
 man-pages
 mousepad
 mpv
-neovim
 network-manager-applet
 networkmanager
 nvme-cli
@@ -69,6 +69,8 @@ reflector
 ripgrep
 rofi
 rofi-calc
+rust-analyzer
+rustup
 s-tui
 sed
 smartmontools
