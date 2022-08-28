@@ -15,7 +15,7 @@ export SAVEHIST=$HISTSIZE
 export HISTFILE=$ZDOTDIR/.zhistory
 
 # text editor
-export EDITOR=nvim
+export EDITOR=helix
 export VISUAL=$EDITOR
 
 # nnn

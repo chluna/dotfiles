@@ -90,13 +90,12 @@ if [[ -f $(which nvim) ]] then
     alias xxd='nvim -b'
 fi
 # rust alternatives
+[[ -f $(which helix) ]] && alias e='helix'
 if [[ -f $(which lsd) ]] then
 	alias ls='lsd -AF --group-dirs first'
 	alias ll='lsd -aFl --group-dirs first'
 fi
-if [[ -f $(which fd) ]] then
-    alias find='fd'
-fi
+[[ -f $(which fd) ]] && alias find='fd'
 if [[ -f $(which rg) ]] then
     alias grep='rg'
     alias egrep='rg'
@@ -138,7 +137,7 @@ pm() {
             $pkg -Qqem > $exp/pkgaur.txt
             echo "Exported in $exp";;
         c|clean)	$sudo_pkg -Sc;;
-        d|diff)     sudo -E pacdiff;;
+        d|diff)     DIFFPROG=delta sudo -E pacdiff;;
         u|update)   checkupdates;;
         up|upgrade)
             log=$(mktemp)

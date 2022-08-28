@@ -23,18 +23,18 @@
     # git (global)
     ~/.gitconfig: gitconfig
     # helix
-    # ~/.config/helix/:
-    #     glob: true
-    #     path: helix/*
+    ~/.config/helix/:
+        glob: true
+        path: helix/*
     # kitty
     ~/.config/kitty/:
         glob: true
         path: kitty/*
     # nvim
-    ~/.config/nvim/init.lua: nvim/init.lua
-    ~/.config/nvim/lua/:
-        glob: true
-        path: nvim/lua/*
+    #~/.config/nvim/init.lua: nvim/init.lua
+    #~/.config/nvim/lua/:
+    #    glob: true
+    #    path: nvim/lua/*
     # onedrive
     ~/.config/onedrive/config: onedrive.config
     # paru
@@ -48,10 +48,10 @@
     # ssh
     ~/.ssh/config: config_ssh
     # vscodium
-    # ~/.config/VSCodium/User/settings.json: vscodium.json
+    #~/.config/VSCodium/User/settings.json: vscodium.json
     # wezterm
-    # ~/.config/wezterm/wezterm.lua: wezterm.lua
-    # # xdg directories
+    #~/.config/wezterm/wezterm.lua: wezterm.lua
+    # xdg directories
     ~/.config/user-dirs.dirs: user-dirs.dirs
     # xfce
     ~/.xprofile: xfce/xprofile
@@ -59,7 +59,7 @@
     ~/.config/autostart/Xresources.desktop: xfce/Xresources.desktop
     ~/.config/xfce4/genmon/:
         glob: true
-        path: genmon/*
+        path: xfce/genmon/*
     # zsh
     ~/.zshenv: zsh/env
     ~/.config/zsh/.zshrc: zsh/rc
