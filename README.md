@@ -6,6 +6,7 @@ __Linux:__
 
 * [btop](https://github.com/aristocratos/btop) - resource monitor
 * [btrbk](https://digint.ch/btrbk/) - backup tool for btrfs subvolumes
+* [fastfetch](https://github.com/LinusDierheimer/fastfetch) - like neofetch, but much faster
 * [git](https://git-scm.com/) - distributed version control system
 * [helix](https://helix-editor.com/) - a post-modern text editor
 * [keepassxc](https://github.com/keepassxreboot/keepassxc) - password manager based on Keepass

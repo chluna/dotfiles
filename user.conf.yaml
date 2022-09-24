@@ -16,6 +16,8 @@
 - link:
     # btop
     ~/.config/btop/btop.conf: btop.conf
+    # fastfetch
+    ~/.config/fastfetch/config.conf : fastfetch.conf
     # fontconfig
     ~/.config/fontconfig/conf.d/:
         glob: true
