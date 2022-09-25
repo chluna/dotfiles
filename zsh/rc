@@ -17,7 +17,7 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_SAVE_NO_DUPS
 
 # completion for kitty
-[[ -f $(which kitty) ]] && kitty + complete setup zsh | source /dev/stdin
+command -v kitty &> /dev/null && kitty + complete setup zsh | source /dev/stdin
 
 # Powerlevel10k theme
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -41,9 +41,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
 # zsh syntax highlighting
 [[ -f $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# initialize shell in emacs mode
-set -o emacs
-
 # change cursor when switching vi command and insert modes
 # https://stackoverflow.com/questions/61776558/zsh-in-vi-mode-how-to-change-color-scheme
 function zle-keymap-select() {
@@ -55,9 +52,9 @@ function zle-keymap-select() {
 }
 zle -N zle-keymap-select
 
-# fzf key bindings
-[[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
-[[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+# skim key bindings
+[[ -f /usr/share/skim/key-bindings.zsh ]] && source /usr/share/skim/key-bindings.zsh
+[[ -f /usr/share/skim/completion.zsh ]] && source /usr/share/skim/completion.zsh
 
 # key bindings
 # ctrl + arrow to move by words
@@ -70,33 +67,35 @@ bindkey "^[[F" end-of-line
 # alias
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
-alias free='free -m'				# show sizes in MB
-alias cp='cp -i --reflink=always'	# confirm before overwriting something
-alias df='df -h'					# human-readable sizes
+alias free='free -m'                # show sizes in MB
+alias cp='cp -i --reflink=always'   # confirm before overwriting something
+alias df='df -h'                    # human-readable sizes
 # custom alias
 alias E='sudoedit'
-alias clr='clear'
+alias c='clear'
 alias j='journalctl -rb'
-[[ -f $(which nnn) ]] && alias f='nnn'
-[[ -f $(which kitty) ]] && alias theme='kitty +kitten themes'
-[[ -f $(which fastfetch) ]] && alias fetch='fastfetch'
-[[ -f $(which btop) ]] && alias top='btop'
-[[ -f $(which intel_gpu_top) ]] && alias gtop='sudo intel_gpu_top'
-if [[ -f $(which nvim) ]] then
+command -v nnn &> /dev/null && alias f='nnn'
+command -v kitty &> /dev/null&& alias theme='kitty +kitten themes'
+command -v fastfetch &> /dev/null&& alias s='fastfetch'
+command -v btop &> /dev/null&& alias m='btop'
+command -v intel_gpu_top &> /dev/null && alias mg='sudo intel_gpu_top'
+if command -v nvim &> /dev/null; then
     alias e='nvim'
     alias vi='nvim'
     alias vim='nvim'
     alias vimdiff='nvim -d'
     alias xxd='nvim -b'
+    # initialize shell in emacs mode
+    set -o emacs
 fi
 # rust alternatives
-[[ -f $(which helix) ]] && alias e='helix'
-if [[ -f $(which lsd) ]] then
+command -v helix &> /dev/null && alias e='helix'
+if command -v lsd &> /dev/null; then
 	alias ls='lsd -AF --group-dirs first'
 	alias ll='lsd -aFl --group-dirs first'
 fi
-[[ -f $(which fd) ]] && alias find='fd'
-if [[ -f $(which rg) ]] then
+command -v fd &> /dev/null && alias find='fd'
+if command -v rg &> /dev/null; then
     alias grep='rg'
     alias egrep='rg'
     alias fgrep='rg'
@@ -109,49 +108,51 @@ fi
 # global custom functions
 # pacman/paru
 pm() {
-    if [[ -f $(which paru) ]] then
+    if command -v paru &> /dev/null; then
         pkg=paru
         sudo_pkg=paru
-        up_pkg='paru -Su'
     else
         pkg=pacman
         sudo_pkg='sudo pacman'
-        up_pkg='sudo pacman -Su'
     fi
     case "$1" in
-        i|install)  $pkg -Slq | fzf --multi --preview "$pkg -Si {1}" | xargs -ro $sudo_pkg -S;;
-        r|remove)   $pkg -Qq | fzf --multi --preview "$pkg -Qi {1}" | xargs -ro $sudo_pkg -Rsn;;
-        q|query)	$pkg -Slq | fzf --preview "$pkg -Si {1}";;
-        p|purge)	$pkg -Qtdq | $sudo_pkg -Rsn -;;
-        m|mirror)	sudo reflector --verbose        \
-                    --save /etc/pacman.d/mirrorlist \
-                    --protocol https                \
-                    --country "Australia,Hong Kong,Indonesia,Japan,New Zealand,Philippines,Singapore,South Korea, Taiwan,Thailand,Vietnam" \
-                    --sort rate \
-                    --age 24    \
-                    --score 20;;
+        i|install)  $pkg -Slq | sk --multi --preview "$pkg -Si {}" | xargs -ro $sudo_pkg -S;;
+        r|remove)   $pkg -Qq | sk --multi --preview "$pkg -Qi {}" | xargs -ro $sudo_pkg -Rsn;;
+        q|query)    $pkg -Slq | sk --preview "$pkg -Si {}";;
+        p|purge)
+            orphans=$($pkg -Qtdq)
+            [[ $? -eq 0 ]] && echo $orphans | $sudo_pkg -Rsn -;;
+        m|mirror)
+            sudo reflector --verbose        \
+            --save /etc/pacman.d/mirrorlist \
+            --protocol https                \
+            --country "Australia,Hong Kong,Indonesia,Japan,New Zealand,Philippines,Singapore,South Korea,Taiwan,Thailand,Vietnam" \
+            --sort rate \
+            --age 24    \
+            --score 20;;
         e|export)
             exp=$DOTFILES/pacman
             [[ ! -d $exp ]] && mkdir -p $exp
             $pkg -Qqen > $exp/pkgloc.txt
             $pkg -Qqem > $exp/pkgaur.txt
             echo "Exported in $exp";;
-        c|clean)	$sudo_pkg -Sc;;
+        c|clean)    $sudo_pkg -Sc;;
         d|diff)     DIFFPROG=delta sudo -E pacdiff;;
         u|update)   checkupdates;;
         up|upgrade)
             log=$(mktemp)
-            $sudo_pkg -Sy --needed --noconfirm archlinux-keyring
-            script -q $log -c $up_pkg
-            [[ $(grep '.+\.pac(new|orig|save)' $log) ]] && pm diff
+            $sudo_pkg -Sy
+            pm u | grep -q 'archlinux-keyring' && $sudo_pkg -S --needed --noconfirm archlinux-keyring
+            script -q $log -c "$sudo_pkg -Su"
+            grep -q '.+\.pac(new|orig|save)' $log && pm diff
             rm $log
-            $pkg -Qtdq > /dev/null | $sudo_pkg -Rsn -
+            pm p
             xfce4-panel --plugin-event=genmon-8:refresh:bool:true;;
         *)
             echo "Usage: pm [command]"
-            echo "Commands: i|install       install packages using fzf"
-            echo "          r|remove        remove packages using fzf"
-            echo "          q|query         query local package using fzf"
+            echo "Commands: i|install       install packages using skim"
+            echo "          r|remove        remove packages using skim"
+            echo "          q|query         query local package using skim"
             echo "          p|purge         remove orphaned packages"
             echo "          m|mirror        update mirrorlist"
             echo "          e|export        export local and AUR package lists"
@@ -164,26 +165,32 @@ pm() {
 # zshrc edit and reload
 z() {
     case "$1" in
-        e|edit)
+        e|env)
+            e ~/.zshenv
+            source ~/.zshenv;;
+        r|rc)
             chksum=$(mktemp)
-			sha1sum $ZDOTDIR/.zshrc > $chksum
-			e $ZDOTDIR/.zshrc
-			sha1sum -c $chksum --status
-			if [[ $? -ne 0 ]] then
-			    rm $chksum
-				read -q "choice?Reload changes? [y/n] "
-				echo "\n"
-				if [[ ${choice:l} = "y" ]] exec zsh
-			fi
-			rm $chksum;;
-		up|upgrade)
-			dir=$(pwd)
-			cd $ZDOTDIR
-			find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;
-			cd $pwd;;
-		*)
-			exec zsh
-	esac
+            sha1sum $ZDOTDIR/.zshrc > $chksum
+            e $ZDOTDIR/.zshrc
+            sha1sum -c $chksum --status
+            if [[ $? -ne 0 ]] then
+                read -q "choice?Reload changes? [y/n] "
+                echo "\n"
+                if [[ ${choice:l} = "y" ]] exec zsh
+            fi
+            rm $chksum;;
+        up|upgrade)
+            dir=$(pwd)
+            cd $ZDOTDIR
+            if [[ $(which fd) ]] then
+                fd . --min-depth 1 --max-depth 1 --type d --print0 --exec git -C {} pull
+            else 
+                find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;
+            fi
+            cd $pwd;;
+        *)
+            exec zsh
+    esac
 }
 # zsh emacs and vi mode
 zm() {
@@ -197,13 +204,13 @@ zm() {
 
 # user custom functions
 if [[ $UID -ne 0 ]] then
-	# custom aliases
+    # custom aliases
     alias dot='cd $DOTFILES'
     alias fck='sudo $(fc -ln -1)'
-	alias run='hledger -f $HOME/data/health/running/running.journal'
-	alias sudo='sudo '
-    # build and execute code
-	build() {
+    alias run='hledger -f $HOME/data/health/running/running.journal'
+    alias sudo='sudo '
+    # compile and test code
+    test() {
         code=$1
         file=(${(s/./)code})
         case "$file[2]" in
@@ -213,7 +220,7 @@ if [[ $UID -ne 0 ]] then
         esac
         ./$file[1]
         rm $file[1]
-	}
+    }
     # hledger
     fin() {
         case "$1" in
@@ -227,8 +234,8 @@ if [[ $UID -ne 0 ]] then
                 hledger -f $HOME/data/finance/ledger/main.journal "$@"
         esac
     }
-	# systemctl
-	sc() {
+    # systemctl
+    sc() {
         sc=""
         jc=""
         if [[ $1 == "-u" || $1 == "--user" ]] then
@@ -236,17 +243,17 @@ if [[ $UID -ne 0 ]] then
             jc="--user-unit"
             shift
         fi
-	    case "$1" in
+        case "$1" in
             j|journal)  journalctl $jc $2 -f;;
-		    e|edit)     sudo -E systemctl edit $2;;
-	        h|help)	    echo "Usage: sc <-u|--user> <j|e|h> [command] [service]";;
-			*)          systemctl $sc $1 $2
-		esac
-	}
+            e|edit)     sudo -E systemctl edit $2;;
+            h|help)	    echo "Usage: sc <-u|--user> <j|e|h> [command] [service]";;
+            *)          systemctl $sc $1 $2
+        esac
+    }
     # btrbk
-	bk() {
-	    config=$HOME/.config/dotfiles/btrbk/btrbk-backup.conf
-		case "$1" in
+    bk() {
+        config=$HOME/.config/dotfiles/btrbk/btrbk-backup.conf
+        case "$1" in
             -d|--dryrun)   sudo btrbk dryrun -c $config -v;;
             -l|--list)     sudo btrbk list backups -c $config -v;;
             -s|--snapshot) sudo btrbk snapshot -v;;
@@ -258,7 +265,7 @@ if [[ $UID -ne 0 ]] then
                 echo "          -s|--snapshot  snapshot only"
                 echo "          -r|--run       snapshot and backup"
         esac
-	}
+    }
     # btrfs progs
     bt() {
         case "$2" in
@@ -274,4 +281,3 @@ if [[ $UID -ne 0 ]] then
         esac
     }
 fi
-

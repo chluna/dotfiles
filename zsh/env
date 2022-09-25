@@ -19,7 +19,7 @@ export EDITOR=helix
 export VISUAL=$EDITOR
 
 # nnn
-export NNN_BMS='d:~/data;e:/run/media/spike/ssd;f:~/data/finance/ledger'
+export NNN_BMS='d:~/data;e:/run/media/spike/ssd;f:~/data/finance/ledger;h:~/'
 export NNN_COLORS=3421
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_OPTS=deEHR
@@ -28,4 +28,3 @@ export NNN_TRASH=2
 
 # pacdiff
 export DIFFPROG='delta --color-only'
-
