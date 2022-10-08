@@ -1,0 +1,12 @@
+edit:
+    apply: true
+    watch: true
+
+diff:
+    command: "delta"
+    args: ["--color-only", "{{ .Destination }}", "{{ .Target }}"]
+    exclude: ["scripts"]
+
+merge:
+    command: "delta"
+    args: ["--color-only", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}"]

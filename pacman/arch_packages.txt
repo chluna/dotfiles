@@ -9,6 +9,7 @@ bluez-utils
 booster
 btop
 btrfs-progs
+chezmoi
 exo
 fakeroot
 fd
@@ -17,7 +18,6 @@ findutils
 firefox
 flex
 fwupd
-fzf
 garcon
 gawk
 gcc
@@ -73,6 +73,7 @@ rust-analyzer
 rustup
 s-tui
 sed
+skim
 smartmontools
 sudo
 sxiv

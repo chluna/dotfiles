@@ -1,8 +1,7 @@
 #
 # .zshrc by chluna
 #
-# for `root` user, ln -s $ZDOTDIR  to /root
-#                        ~/.zshenv
+# from local user, ln -s $ZDOTDIR /root/.config/zsh/
 #
 
 # zsh functions
@@ -75,10 +74,11 @@ alias E='sudoedit'
 alias c='clear'
 alias j='journalctl -rb'
 command -v nnn &> /dev/null && alias f='nnn'
-command -v kitty &> /dev/null&& alias theme='kitty +kitten themes'
-command -v fastfetch &> /dev/null&& alias s='fastfetch'
-command -v btop &> /dev/null&& alias m='btop'
+command -v kitty &> /dev/null && alias theme='kitty +kitten themes'
+command -v fastfetch &> /dev/null && alias s='fastfetch'
+command -v btop &> /dev/null && alias m='btop'
 command -v intel_gpu_top &> /dev/null && alias mg='sudo intel_gpu_top'
+command -v chezmoi &> /dev/null && alias cz='chezmoi'
 if command -v nvim &> /dev/null; then
     alias e='nvim'
     alias vi='nvim'
@@ -131,10 +131,10 @@ pm() {
             --age 24    \
             --score 20;;
         e|export)
-            exp=$DOTFILES/pacman
+            exp=$(cz source-path)/pacman
             [[ ! -d $exp ]] && mkdir -p $exp
-            $pkg -Qqen > $exp/pkgloc.txt
-            $pkg -Qqem > $exp/pkgaur.txt
+            $pkg -Qqen > $exp/arch_packages.txt
+            $pkg -Qqem > $exp/aur_packages.txt
             echo "Exported in $exp";;
         c|clean)    $sudo_pkg -Sc;;
         d|diff)     DIFFPROG=delta sudo -E pacdiff;;
