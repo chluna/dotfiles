@@ -9,9 +9,9 @@ libxfce4ui-nocsd
 lightdm-mini-greeter
 ncspot
 ncurses5-compat-libs
+nerd-fonts-fira-code
 nnn-nerd
 onedrive-abraunegg
-otf-nerd-fonts-fira-code
 paru-bin
 tela-icon-theme
 ttf-apple-emoji
