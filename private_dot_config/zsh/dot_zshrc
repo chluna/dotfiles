@@ -252,7 +252,7 @@ if [[ $UID -ne 0 ]] then
     }
     # btrbk
     bk() {
-        config=$HOME/.config/dotfiles/btrbk/btrbk-backup.conf
+        config=/etc/btrbk/btrbk-backup.conf
         case "$1" in
             -d|--dryrun)   sudo btrbk dryrun -c $config -v;;
             -l|--list)     sudo btrbk list backups -c $config -v;;
