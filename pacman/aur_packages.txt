@@ -12,6 +12,6 @@ ncurses5-compat-libs
 nerd-fonts-fira-code
 nnn-nerd
 onedrive-abraunegg
-paru-bin
+paru
 tela-icon-theme
 ttf-apple-emoji
