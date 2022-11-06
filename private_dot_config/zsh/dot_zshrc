@@ -122,14 +122,7 @@ pm() {
         p|purge)
             orphans=$($pkg -Qtdq)
             [[ $? -eq 0 ]] && echo $orphans | $sudo_pkg -Rsn -;;
-        m|mirror)
-            sudo reflector --verbose        \
-            --save /etc/pacman.d/mirrorlist \
-            --protocol https                \
-            --country "Australia,Hong Kong,Indonesia,Japan,New Zealand,Philippines,Singapore,South Korea,Taiwan,Thailand,Vietnam" \
-            --sort rate \
-            --age 24    \
-            --score 20;;
+        m|mirror)   sudo systemctl start reflector;;
         e|export)
             exp=$(cz source-path)/pacman
             [[ ! -d $exp ]] && mkdir -p $exp
