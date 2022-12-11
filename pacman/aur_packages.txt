@@ -9,7 +9,6 @@ libxfce4ui-nocsd
 lightdm-mini-greeter
 ncspot
 ncurses5-compat-libs
-nerd-fonts-fira-code
 nnn-nerd
 onedrive-abraunegg
 paru

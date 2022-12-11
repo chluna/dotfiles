@@ -31,7 +31,6 @@ gvfs
 gvfs-smb
 gzip
 helix
-intel-gpu-tools
 intel-media-driver
 intel-ucode
 inter-font
@@ -54,6 +53,7 @@ mpv
 network-manager-applet
 networkmanager
 nvme-cli
+nvtop
 pacman
 pacman-contrib
 patch
@@ -83,6 +83,7 @@ thunar
 thunar-media-tags-plugin
 thunar-volman
 tlp
+ttf-firacode-nerd
 tumbler
 which
 wireplumber
