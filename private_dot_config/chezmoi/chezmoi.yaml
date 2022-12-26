@@ -4,9 +4,5 @@ edit:
 
 diff:
     command: "delta"
-    args: ["--color-only", "{{ .Destination }}", "{{ .Target }}"]
+    args: ["--color-only", "{{ .Target }}", "{{ .Destination }}"]
     exclude: ["scripts"]
-
-merge:
-    command: "delta"
-    args: ["--color-only", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}"]
