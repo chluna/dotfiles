@@ -5,7 +5,6 @@ fastfetch
 file-roller-tmp
 hledger-bin
 imgp
-libxfce4ui-nocsd
 lightdm-mini-greeter
 ncspot
 ncurses5-compat-libs

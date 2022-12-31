@@ -13,6 +13,7 @@ chezmoi
 exo
 fakeroot
 fd
+feh
 file
 findutils
 firefox
@@ -28,6 +29,8 @@ glow
 grep
 groff
 gvfs
+gvfs-afc
+gvfs-gphoto2
 gvfs-smb
 gzip
 helix
@@ -76,7 +79,6 @@ sed
 skim
 smartmontools
 sudo
-sxiv
 tealdeer
 throttled
 thunar
