@@ -91,8 +91,8 @@ fi
 # rust alternatives
 command -v helix &> /dev/null && alias e='helix'
 if command -v lsd &> /dev/null; then
-	alias ls='lsd -AF --group-dirs first'
-	alias ll='lsd -aFl --group-dirs first'
+    alias ls='lsd -AF --group-dirs first'
+    alias ll='lsd -aFl --group-dirs first'
 fi
 command -v fd &> /dev/null && alias find='fd'
 if command -v rg &> /dev/null; then
