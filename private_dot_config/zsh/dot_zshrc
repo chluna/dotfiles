@@ -140,7 +140,7 @@ pm() {
             grep -q '.+\.pac(new|orig|save)' $log && pm diff
             rm $log
             pm p
-            xfce4-panel --plugin-event=genmon-8:refresh:bool:true;;
+            xfce4-panel --plugin-event=genmon-7:refresh:bool:true;;
         *)
             echo "Usage: pm [command]"
             echo "Commands: i|install       install packages using skim"
