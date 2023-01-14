@@ -20,9 +20,10 @@ localectl set-x11-keymap "" "" "" caps:none
 # Set source directory of root configuration files
 root="$(chezmoi source-path)/root"
 
-# Symlink user zsh config to root and source the config
+# Symlink user configurations to root
 sudo ln -sf /home/spike/.zshenv /root/.zshenv
 sudo ln -sf $ZDOTDIR /root/.config
+sudo ln -sf /home/spike/.config/helix/ /root/.config
 
 # Copy configuration files to corresponding directories in /etc
 sudo cp "$root"/etc/btrbk/btrbk.conf /etc/
