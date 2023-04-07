@@ -1,0 +1,13 @@
+{
+    "workbench.colorTheme": "Nord",
+    "editor.fontFamily": "FiraCode Nerd Font, monospace",
+    "editor.renderWhitespace": "all",
+    "editor.fontSize": 12,
+    "editor.cursorBlinking": "smooth",
+    "editor.fontLigatures": "'ss06', 'ss07'",
+    "editor.formatOnPaste": true,
+    "diffEditor.codeLens": true,
+    "workbench.iconTheme": "vscode-icons",
+    "terminal.explorerKind": "external",
+    "terminal.external.linuxExec": "kitty"
+}
