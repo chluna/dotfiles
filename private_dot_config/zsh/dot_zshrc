@@ -78,6 +78,7 @@ command -v kitty &> /dev/null && alias theme='kitty +kitten themes'
 command -v fastfetch &> /dev/null && alias s='fastfetch'
 command -v btop &> /dev/null && alias t='btop'
 command -v nvtop &> /dev/null && alias gt='nvtop'
+command -v powertop &> /dev/null && alias pt='sudo powertop'
 command -v chezmoi &> /dev/null && alias cz='chezmoi'
 if command -v nvim &> /dev/null; then
     alias e='nvim'
