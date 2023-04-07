@@ -8,7 +8,7 @@ lightdm-theme-neon-bin
 ncurses5-compat-libs
 nnn-nerd
 onedrive-abraunegg
-paru
+paru-bin
 tela-icon-theme
 ttf-apple-emoji
 web-greeter
