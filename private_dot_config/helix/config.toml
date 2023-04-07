@@ -13,3 +13,6 @@ hidden = false
 
 [editor.whitespace]
 render = "all"
+
+[editor.soft-wrap]
+enable = true
