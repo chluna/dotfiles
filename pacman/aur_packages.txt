@@ -11,4 +11,5 @@ onedrive-abraunegg
 paru-bin
 tela-icon-theme
 ttf-apple-emoji
+vscodium-bin
 web-greeter
