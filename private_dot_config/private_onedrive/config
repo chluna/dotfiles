@@ -8,7 +8,7 @@
 sync_dir = "~/data"
 # skip_file = "~*|.~*|*.tmp"
 # monitor_interval = ""
-skip_dir = ""
+skip_dir = "career/college"
 # log_dir = "/var/log/onedrive/"
 # drive_id = ""
 # upload_only = "false"
