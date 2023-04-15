@@ -7,6 +7,7 @@ __Arch Linux__
 * [btop](https://github.com/aristocratos/btop) - resource monitor
 * [btrbk](https://digint.ch/btrbk/) - backup tool for btrfs subvolumes
 * [fastfetch](https://github.com/LinusDierheimer/fastfetch) - like neofetch, but much faster
+* [feh](https://feh.finalrewind.org/) - a fast and light image viewer
 * [git](https://git-scm.com/) - distributed version control system
 * [helix](https://helix-editor.com/) - a post-modern text editor
 * [kitty](https://sw.kovidgoyal.net/kitty/) - GPU-based terminal emulator
