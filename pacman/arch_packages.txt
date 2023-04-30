@@ -56,7 +56,6 @@ reflector
 ripgrep
 rofi
 rofi-calc
-rust-analyzer
 rustup
 s-tui
 skim
