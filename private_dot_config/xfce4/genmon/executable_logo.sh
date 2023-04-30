@@ -1,7 +1,7 @@
 #!/bin/bash
 
 txt="<txt>"
-txt+="  "
+txt+=""
 txt+="</txt>"
 
 tool="<tool>"
