@@ -9,16 +9,16 @@ ssid="$(nmcli -p device show wlp3s0 | grep GENERAL.CONNECTION | tr -s ' ' | cut 
 eth="$(nmcli -p device show enp0s31f6 | grep IP4.ADDRESS | tr -s ' ' | cut -d ' ' -f 2 | cut -d '/' -f 1)"
 
 if [[ ! -z "$wlan" && ! -z "$eth" ]]; then
-    txt+="直 $ssid   eth"
+    txt+="\UF05A9  $ssid  \UF0200  eth"
     tool+="wlan: $wlan\nlan: $eth"
 elif [[ ! -z "$wlan" && -z "$eth" ]]; then
-    txt+="直 $ssid"
+    txt+="\UF05A9  $ssid"
     tool+="wlan: $wlan"
 elif [[ -z "$wlan" && ! -z "$eth" ]]; then
-    txt+=" eth"
+    txt+="\UF0200  eth"
     tool+="lan: $eth" 
 else
-    txt+="泌"
+    txt+="\UF0C5F "
 fi
 
 public="$(curl ipinfo.io | jq -r '.ip')"

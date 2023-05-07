@@ -10,7 +10,7 @@ else
 fi
 
 txt="<txt>"
-txt+="<span foreground='$color'></span> $mem%"
+txt+="<span foreground='$color'>\UF035B</span>  $mem%"
 txt+="</txt>"
 
 echo -e "$txt"

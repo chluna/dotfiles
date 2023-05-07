@@ -1,7 +1,7 @@
 #!/bin/bash
 
 txt="<txt>"
-txt+=""
+txt+="\UF303 "
 txt+="</txt>"
 
 tool="<tool>"

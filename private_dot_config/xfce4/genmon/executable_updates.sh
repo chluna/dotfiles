@@ -7,7 +7,7 @@ tool="<tool>"
 txtclick+="<txtclick>"
 
 if [[ $updates -gt 0 ]]; then
-    txt+=" Updates available"
+    txt+="\UF487  Updates available"
     tool+="$(checkupdates | cut -d' ' -f1)"
     txtclick+="kitty --hold zsh -c 'source ~/.config/zsh/.zshrc; pm up'"
 fi

@@ -10,7 +10,7 @@ else
 fi
 
 txt="<txt>"
-txt+="<span foreground='$color'></span> $proc%"
+txt+="<span foreground='$color'>\UF061A</span>  $proc%"
 txt+="</txt>"
 
 echo -e "$txt"
