@@ -174,10 +174,10 @@ z() {
                 if [[ ${choice:l} = "y" ]] exec zsh
             fi
             rm $chksum;;
-        up|upgrade)
+        u|up)
             dir=$(pwd)
             cd $ZDOTDIR
-            if [[ $(which fd) ]] then
+            if command -v fd &> /dev/null; then
                 fd . --min-depth 1 --max-depth 1 --type d --print0 --exec git -C {} pull
             else 
                 find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;
@@ -276,3 +276,7 @@ if [[ $UID -ne 0 ]] then
         esac
     }
 fi
+
+# interactive shell start
+#if [[ -o interactive ]]; then
+#fi
