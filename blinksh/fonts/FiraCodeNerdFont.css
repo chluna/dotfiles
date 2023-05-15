@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "Fira Code Nerd Font";
+    font-style: normal;
+    font-weight: 200;
+    src: url('https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Light/FiraCodeNerdFont-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: "Fira Code Nerd Font";
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/FiraCodeNerdFont-Retina.ttf') format('truetype');
+}
+@font-face {
+    font-family: "Fira Code Nerd Font";
+    font-weight: 600;
+    src: url('https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Medium/FiraCodeNerdFont-Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: "Fira Code Nerd Font";
+    font-weight: 800;
+    src: url('https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Bold/FiraCodeNerdFont-Bold.ttf') format('truetype');
+}
