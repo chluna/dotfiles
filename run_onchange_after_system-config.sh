@@ -13,6 +13,9 @@ fc-cache -f -v
 # Disable CapsLock globally using localectl
 localectl set-x11-keymap "" "" "" caps:none
 
+# Symlink .xprofile to .profile
+ln -s /home/spike/.xprofile /home/spike/.profile
+
 # ----------
 #    ROOT
 # ----------
