@@ -4,7 +4,6 @@ fastfetch
 file-roller-tmp
 hledger-bin
 imgp
-lightdm-theme-neon-bin
 ncurses5-compat-libs
 nnn-nerd
 onedrive-abraunegg
@@ -12,4 +11,3 @@ paru-bin
 tela-icon-theme
 ttf-apple-emoji
 vscodium-bin
-web-greeter

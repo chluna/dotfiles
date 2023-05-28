@@ -17,6 +17,7 @@ __Arch Linux__
 * [paru](https://github.com/Morganamilo/paru) - AUR helper
 * [redshift](http://jonls.dk/redshift) - color temperature adjuster for screens at night
 * [rofi](https://github.com/davatorium/rofi) - window switcher, application launcher and dmenu replacement
+* [tuigreet](https://github.com/apognu/tuigreet) - graphical console greeter for greetd
 * [VSCodium](https://vscodium.com/) - FOSS binaries of Visual Studio Code
 * [Xfce](https://xfce.org/) related configurations including scripts for [xfce4-genmon-plugin](https://docs.xfce.org/panel-plugins/xfce4-genmon-plugin)
 * [z shell](https://www.zsh.org/) with [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)

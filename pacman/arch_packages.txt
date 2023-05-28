@@ -18,6 +18,7 @@ garcon
 git
 git-delta
 glow
+greetd-tuigreet
 gvfs
 gvfs-afc
 gvfs-gphoto2
@@ -29,8 +30,6 @@ inter-font
 jq
 keepassxc
 kitty
-light-locker
-lightdm
 linux-firmware
 linux-lts
 linux-zen
