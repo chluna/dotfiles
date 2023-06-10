@@ -8,6 +8,7 @@ ncurses5-compat-libs
 nnn-nerd
 onedrive-abraunegg
 paru-bin
+sxlock-git
 tela-icon-theme
 ttf-apple-emoji
 vscodium-bin
