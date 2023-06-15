@@ -1,30 +1,50 @@
-/*Dracula theme based on the Purple official rofi theme*/
-
 * {
-    foreground: #f8f8f2;
-    background-color: #282a36;
-    active-background: #6272a4;
-    urgent-background: #ff5555;
+    /* Dracula theme colour palette */
+    drac-bgd: #282a36;
+    drac-cur: #44475a;
+    drac-fgd: #f8f8f2;
+    drac-cmt: #6272a4;
+    drac-cya: #8be9fd;
+    drac-grn: #50fa7b;
+    drac-ora: #ffb86c;
+    drac-pnk: #ff79c6;
+    drac-pur: #bd93f9;
+    drac-red: #ff5555;
+    drac-yel: #f1fa8c;
+
+    foreground: @drac-fgd;
+    background-color: @drac-bgd;
+    active-background: @drac-cur;
+    urgent-background: @drac-red;
+    urgent-foreground: @drac-bgd;
+    
     selected-background: @active-background;
     selected-urgent-background: @urgent-background;
     selected-active-background: @active-background;
     separatorcolor: @active-background;
-    bordercolor: @active-background;
+    bordercolor: #6272a4;
+}
+
+configuration {
+    show-icons:      true;
+    display-drun:    "";
+    disable-history: false;
 }
 
 #window {
-    background-color: @background;
-    border:           1;
-    border-radius: 6;
-    border-color: @bordercolor;
-    padding:          5;
+    background-color: @background-color;
+    border:           3;
+    border-radius:    6;
+    border-color:     @bordercolor;
+    padding:          15;
+    width:            33%;
 }
 #mainbox {
     border:  0;
     padding: 0;
 }
 #message {
-    border:       1px dash 0px 0px ;
+    border:       0px;
     border-color: @separatorcolor;
     padding:      1px ;
 }
@@ -33,7 +53,7 @@
 }
 #listview {
     fixed-height: 0;
-    border:       2px dash 0px 0px ;
+    border:       0px;
     border-color: @bordercolor;
     spacing:      2px ;
     scrollbar:    false;
@@ -41,10 +61,10 @@
 }
 #element {
     border:  0;
-    padding: 1px ;
+    padding: 3px ;
 }
 #element.normal.normal {
-    background-color: @background;
+    background-color: @background-color;
     text-color:       @foreground;
 }
 #element.normal.urgent {
@@ -53,7 +73,7 @@
 }
 #element.normal.active {
     background-color: @active-background;
-    text-color:       @foreground;
+    text-color:       @background-color;
 }
 #element.selected.normal {
     background-color: @selected-background;
@@ -65,10 +85,10 @@
 }
 #element.selected.active {
     background-color: @selected-active-background;
-    text-color:       @foreground;
+    text-color:       @background-color;
 }
 #element.alternate.normal {
-    background-color: @background;
+    background-color: @background-color;
     text-color:       @foreground;
 }
 #element.alternate.urgent {
@@ -103,24 +123,24 @@
     text-color: @foreground;
 }
 #entry {
-    spacing:    0;
-    text-color: @foreground;
+    spacing:        0;
+    text-color:     @drac-pur;
+    placeholder:    "type here";
 }
 #prompt {
     spacing:    0;
-    text-color: @foreground;
+    text-color: @drac-pnk;
 }
 #inputbar {
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
 }
 #textbox-prompt-colon {
     expand:     false;
-    str:        "";
+    str:        " --> ";
     margin:     0px 0.3em 0em 0em ;
-    text-color: @foreground;
+    text-color: @drac-fgd;
 }
 element-text, element-icon {
-    background-color:   inherit;
-    text-color:         inherit;
+    background-color: inherit;
+    text-color: inherit;
 }
-
