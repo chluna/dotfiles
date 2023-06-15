@@ -53,15 +53,15 @@ configuration {
 /*	steal-focus: false;*/
 /*	application-fallback-icon: ;*/
 /*	pid: "/run/user/1000/rofi.pid";*/
-	display-window: "window  >>";
+	display-window: "window";
 /*	display-windowcd: ;*/
-	display-run: "binary  ->";
-	display-ssh: "remote  ->";
-	display-drun: "desktop ->";
-	display-combi: "action  ->";
+	display-run: "binary";
+	display-ssh: "remote";
+	display-drun: "desktop";
+	display-combi: "action";
 /*	display-keys: ;*/
 /*	display-filebrowser: ;*/
-	display-calc: "solve   ->";
+	display-calc: "solve";
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/
 /*	kb-secondary-paste: "Control+v,Insert";*/
 /*	kb-clear-line: "Control+w";*/
@@ -145,4 +145,4 @@ configuration {
         sorting-method:    "name";
     }
 }
-@theme "squared-nord"
+@theme "dracula"
