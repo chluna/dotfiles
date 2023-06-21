@@ -1,18 +1,6 @@
 Host *
     IdentityFile ~/.ssh/terminal
 
-Host op1
-    User root
-    HostName 192.168.7.101
-
-Host omv
-    User root
-    HostName 192.168.7.201
-
-Host wg
-    User wg
-    HostName 192.168.7.202
-
 Host gitlab
     User git
     HostName gitlab.com
