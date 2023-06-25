@@ -5,8 +5,8 @@ txt+="\UF303 "
 txt+="</txt>"
 
 tool="<tool>"
-tool+="$(whoami)@$(uname -n)\n"
-tool+="$(uname -r)\n"
+tool+="<span weight='Bold'>$(whoami)@$(uname -n)\n"
+tool+="$(uname -r)</span>\n"
 tool+="uptime: $(uptime -p | cut -d ' ' -f 2-)"
 tool+="</tool>"
 

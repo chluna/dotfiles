@@ -10,13 +10,13 @@ eth="$(nmcli -p device show enp0s31f6 | grep IP4.ADDRESS | tr -s ' ' | cut -d ' 
 
 if [[ ! -z "$wlan" && ! -z "$eth" ]]; then
     txt+="\UF05A9  $ssid  \UF0200  eth"
-    tool+="wlan: $wlan\nlan: $eth"
+    tool+="wlan:\t$wlan\nlan:\t$eth"
 elif [[ ! -z "$wlan" && -z "$eth" ]]; then
     txt+="\UF05A9  $ssid"
-    tool+="wlan: $wlan"
+    tool+="wlan:\t$wlan"
 elif [[ -z "$wlan" && ! -z "$eth" ]]; then
     txt+="\UF0200  eth"
-    tool+="lan: $eth" 
+    tool+="lan:\t$eth" 
 else
     txt+="\UF0C5F "
 fi
@@ -24,7 +24,7 @@ fi
 public="$(curl ipinfo.io | jq -r '.ip')"
 
 if [[ ! -z "$public" ]]; then
-    tool+="\npublic: $public"
+    tool+="\npublic:\t$public"
 else
     txt+=" offline"
 fi

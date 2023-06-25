@@ -69,7 +69,7 @@ txt+="<span foreground='$color'>$icon</span> $bat%"
 txt+="</txt>"
 
 tool="<tool>"
-tool+="internal: $bat0%\nexternal: $bat1%"
+tool+="internal:\t$bat0%\nexternal:\t$bat1%"
 tool+="</tool>"
 
 txtclick="<txtclick>"
