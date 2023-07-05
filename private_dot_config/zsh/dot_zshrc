@@ -92,12 +92,12 @@ alias free='free -m'                # show sizes in MB
 alias cp='cp -i --reflink=always'   # confirm before overwriting something
 alias df='df -h'                    # human-readable sizes
 # custom alias
-alias E='sudoedit'
-alias clr='clear'
-alias j='journalctl -rb'
-command -v nnn &> /dev/null && alias f='nnn'
-command -v kitty &> /dev/null && alias theme='kitty +kitten themes'
-command -v fastfetch &> /dev/null && alias s='fastfetch'
+alias se='sudoedit'
+alias cl='clear'
+alias jc='journalctl -rb'
+command -v nnn &> /dev/null && alias fm='nnn'
+command -v kitty &> /dev/null && alias kt='kitty +kitten themes'
+command -v fastfetch &> /dev/null && alias ff='fastfetch'
 command -v btop &> /dev/null && alias t='btop'
 command -v nvtop &> /dev/null && alias gt='nvtop'
 command -v powertop &> /dev/null && alias pt='sudo powertop'
@@ -223,7 +223,7 @@ zm() {
 if [[ $UID -ne 0 ]] then
     # custom aliases
     alias dot='cd $DOTFILES'
-    alias fck='sudo $(fc -ln -1)'
+    alias fuck='sudo $(fc -ln -1)'
     alias run='hledger -f $HOME/data/health/running/running.journal'
     alias sudo='sudo '
     # compile and test code
