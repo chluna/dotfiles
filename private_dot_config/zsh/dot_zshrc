@@ -300,5 +300,6 @@ if [[ $UID -ne 0 ]] then
 fi
 
 # interactive shell start
-#if [[ -o interactive ]]; then
-#fi
+if [[ -o interactive ]]; then
+    ff
+fi

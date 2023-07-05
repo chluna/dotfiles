@@ -1,6 +1,6 @@
 auto-cpufreq
 colorpicker-ym1234-git
-fastfetch
+fastfetch-bin
 file-roller-tmp
 hledger-bin
 imgp
