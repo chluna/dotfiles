@@ -1,8 +1,12 @@
 #!/bin/bash
 
 bat0=$(cat /sys/class/power_supply/BAT0/capacity)
+bat0max=$(cat /sys/class/power_supply/BAT0/charge_control_end_threshold)
+bat0rel=$(echo "100*$bat0/$bat0max" | qalc -t -f - | awk '{printf("%.0f"), $1}')
 bat1=$(cat /sys/class/power_supply/BAT1/capacity)
-bat=$(echo "($bat0 + $bat1)/2" | qalc -t -f - | awk '{printf("%.0f"), $1}')
+bat1max=$(cat /sys/class/power_supply/BAT1/charge_control_end_threshold)
+bat1rel=$(echo "100*$bat1/$bat1max" | qalc -t -f - | awk '{printf("%.0f"), $1}')
+bat=$(echo "($bat0rel + $bat1rel)/2" | qalc -t -f - | awk '{printf("%.0f"), $1}')
 
 if [[ $(cat /sys/class/power_supply/AC/online) -eq 1 ]]; then
     if [[ $bat -ge 99 ]]; then
@@ -69,7 +73,7 @@ txt+="<span foreground='$color'>$icon</span> $bat%"
 txt+="</txt>"
 
 tool="<tool>"
-tool+="internal:\t$bat0%\nexternal:\t$bat1%"
+tool+="internal:\t$bat0rel%\nexternal:\t$bat1rel%"
 tool+="</tool>"
 
 txtclick="<txtclick>"
