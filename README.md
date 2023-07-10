@@ -30,12 +30,12 @@ __Setting up dotfiles using [chezmoi](https://www.chezmoi.io/)__
 % sudo pacman -S chezmoi
 
 # Clone from remote and check which changes chezmoi will make before installing
-% chezmoi init https://gitlab.com/.chluna/dotfiles.git
+% chezmoi init https://github.com/chluna/dotfiles.git
 % chezmoi diff
 % chezmoi apply -v
 
 # Alternatively, clone and install in a single command
-% chezmoi init --apply https://gitlab.com/.chluna/dotfiles.git
+% chezmoi init --apply https://github.com/chluna/dotfiles.git
 
 # Pull latest changes from remote
 % chezmoi update -v
