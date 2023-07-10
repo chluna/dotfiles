@@ -1,0 +1,15 @@
+[Unit]
+Description=Set the battery charge stop threshold to %i%
+After=multi-user.target
+StartLimitBurst=0
+
+[Service]
+Type=oneshot
+Restart=on-failure
+ExecStart=/bin/sh -c 'echo %i > /sys/class/power_supply/BAT0/charge_stop_threshold'
+ExecStart=/bin/sh -c 'echo %i > /sys/class/power_supply/BAT1/charge_stop_threshold'
+ExecStart=/bin/sh -c 'echo %i > /sys/class/power_supply/BAT0/charge_control_end_threshold'
+ExecStart=/bin/sh -c 'echo %i > /sys/class/power_supply/BAT1/charge_control_end_threshold'
+
+[Install]
+WantedBy=multi-user.target
