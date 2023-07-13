@@ -9,11 +9,9 @@
     diffFilter = delta --color-only
 
 [delta]
-    features = side-by-side line-numbers decorations
+    features = line-numbers
     whitespace-error-style = 22 reverse
+    syntax-theme = Dracula
 
-[delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
-
+[merge]
+    conflictstyle = diff3
