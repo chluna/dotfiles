@@ -1,11 +1,12 @@
 [Unit]
-Description=Lock X session using sxlock
+Description=Lock X session on suspend using sxlock
 Before=sleep.target
 
 [Service]
 User=spike
 Environment=DISPLAY=:0
-ExecStart=/usr/bin/sxlock
+ExecStart=/usr/bin/sxlock -l
+ExecStartPost=/usr/bin/sleep 1
 
 [Install]
 WantedBy=sleep.target
