@@ -36,11 +36,14 @@ sudo cp "$root"/etc/systemd/system/* /etc/systemd/system/
 sudo cp "$root"/etc/pacman.conf /etc/
 sudo cp "$root"/etc/throttled.conf /etc/
 
-# Enable and start services
+# Enable and start systemd services
 sudo systemctl enable greetd.service
 sudo systemctl enable sxlock.service
 sudo systemctl enable --now battery-charge-start-threshold@75
 sudo systemctl enable --now battery-charge-stop-threshold@80
+
+# Enable and start systemd timers
+sudo systemctl enable --now archlinux-keyring-wkd-sync.timer
 
 # Configure NetworkManager-dispatcher genmon script
 sudo chown root:root /etc/NetworkManager/dispatcher.d/99-update-genmon-network.sh

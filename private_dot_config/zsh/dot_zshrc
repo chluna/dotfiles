@@ -158,9 +158,7 @@ pm() {
         u|update)   checkupdates;;
         up|upgrade)
             log=$(mktemp)
-            $sudo_pkg -Sy
-            pm u | grep -q 'archlinux-keyring' && $sudo_pkg -S --needed --noconfirm archlinux-keyring
-            script -q $log -c "$sudo_pkg -Su"
+            script -q $log -c "$sudo_pkg -Syu"
             grep -q '.+\.pac(new|orig|save)' $log && pm diff
             rm $log
             pm p
