@@ -1,30 +1,15 @@
 #
-# ~/.zshenv by chluna
-#
-# from local user, ln -s $HOME/.zshenv /root/.zshenv
+# ~/.env by chluna
 #
 
 export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin
 export XDG_CONFIG_HOME=$HOME/.config
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-export DOTFILES=$(chezmoi source-path)
-
-# zsh history
-export HISTSIZE=10000
-export SAVEHIST=$HISTSIZE
-export HISTFILE=$ZDOTDIR/.zhistory
-
-# text editor
 export EDITOR=helix
 export VISUAL=$EDITOR
-
-# nnn
 export NNN_BMS='d:~/data;e:/run/media/spike/ssd;f:~/data/finance/ledger;h:~/'
 export NNN_COLORS=3421
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_OPTS=deEHioU
 export NNN_PLUG=p:preview-tui
 export NNN_TRASH=2
-
-# pacdiff
 export DIFFPROG='delta --color-only'

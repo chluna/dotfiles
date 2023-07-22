@@ -4,8 +4,8 @@
 #    USER
 # ----------
 
-# Reload zsh config
-exec zsh
+# Reload fish config
+exec fish
 
 # Reload font cache
 fc-cache -f -v
@@ -13,8 +13,8 @@ fc-cache -f -v
 # Disable CapsLock globally using localectl
 localectl set-x11-keymap "" "" "" caps:none
 
-# Symlink .xprofile to .profile
-ln -s /home/spike/.xprofile /home/spike/.profile
+# Symlink .profile to .xprofile
+ln -s /home/spike/.profile /home/spike/.xprofile
 
 # ----------
 #    ROOT
@@ -24,8 +24,7 @@ ln -s /home/spike/.xprofile /home/spike/.profile
 root="$(chezmoi source-path)/root"
 
 # Symlink user configurations to root
-sudo ln -sf /home/spike/.zshenv /root/.zshenv
-sudo ln -sf $ZDOTDIR /root/.config/
+sudo ln -sf /home/spike/.config/fish /root/.config/
 sudo ln -sf /home/spike/.config/helix/ /root/.config/
 
 # Copy configuration files to corresponding directories in /etc

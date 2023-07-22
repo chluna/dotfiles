@@ -1,0 +1,7 @@
+#
+# ~/.profile by chluna
+#
+# for `root` user, ln -s $HOME/.profile to /root
+#
+
+[[ -f ~/.env ]] && source ~/.env

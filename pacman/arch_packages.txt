@@ -13,6 +13,8 @@ fd
 feh
 fio
 firefox
+fish
+fisher
 fwupd
 garcon
 git
@@ -80,4 +82,3 @@ xfconf
 xfdesktop
 xfwm4
 xorg-server
-zsh

@@ -8,6 +8,7 @@ __Arch Linux__
 * [btrbk](https://digint.ch/btrbk/) - backup tool for btrfs subvolumes
 * [fastfetch](https://github.com/LinusDierheimer/fastfetch) - like neofetch, but much faster
 * [feh](https://feh.finalrewind.org/) - a fast and light image viewer
+* [fish](https://fishshell.com/) with [tide theme](https://github.com/IlanCosman/tide)
 * [git](https://git-scm.com/) - distributed version control system
 * [helix](https://helix-editor.com/) - a post-modern text editor
 * [kitty](https://sw.kovidgoyal.net/kitty/) - GPU-based terminal emulator
@@ -20,7 +21,7 @@ __Arch Linux__
 * [tuigreet](https://github.com/apognu/tuigreet) - graphical console greeter for greetd
 * [VSCodium](https://vscodium.com/) - FOSS binaries of Visual Studio Code
 * [Xfce](https://xfce.org/) related configurations including scripts for [xfce4-genmon-plugin](https://docs.xfce.org/panel-plugins/xfce4-genmon-plugin)
-* [z shell](https://www.zsh.org/) with [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)
+* [zsh](https://www.zsh.org/) with [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)
 
 ---
 
