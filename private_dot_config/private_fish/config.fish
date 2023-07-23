@@ -241,7 +241,7 @@ if status is-interactive
             ;and set -q _flag_du; and set -q _flag_mu
             sudo btrfs balance start -v -dusage=$_flag_du -musage=$_flag_mu $tgt
         else if set -q _flag_s; and set -q _flag_t
-            sudo btrfs scrub start -Bd $_flag_t
+            sudo btrfs scrub start -Bd $tgt
         # btrbk
         else if set -q _flag_n
             sudo btrbk dryrun -c $conf -v
@@ -256,8 +256,8 @@ if status is-interactive
             echo "Operation: -u, --usage        show btrfs filesystem usage"
             echo "               -t, --target   set target subvolume"
             echo "           -b, --balance      perform a btrfs balance"
-            echo "               -du=<value>    data usage"
-            echo "               -mu=<value>    metadata usage"
+            echo "               -du=<value>    set data usage"
+            echo "               -mu=<value>    set metadata usage"
             echo "               -t, --target   set target subvolume"
             echo "           -s, --scrub        perform a btrfs scrub"
             echo "               -t, --target   set target subvolume"
