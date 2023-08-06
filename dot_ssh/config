@@ -12,4 +12,4 @@ Host lunapi
 
 Host wrt
     User root
-    HostName 192.168.7.1
+    HostName 10.42.69.1
