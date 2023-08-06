@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+
+# run sxhkd
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+# config
+bspc monitor -d I II
+
+bspc config border_width           2
+bspc config focused_border_color   "#BD93F9"
+bspc config active_border_color    "#6272A4"
+bspc config normal_border_color    "#282A36"
+bspc config presel_feedback_color  "#F8F8F2"
+
+bspc config window_gap             10
+bspc config top_padding            20
+
+bspc config split_ratio            0.52
+bspc config borderless_monocle     true
+bspc config gapless_monocle        true
+
+# rules
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+# reset cursor theme
+xsetroot -cursor_name left_ptr
+
+# run xfce4 components
+xfsettingsd --disable-wm-check --daemon &
+xfce4-panel --disable-wm-check &
+xfdesktop --disable-wm-check &

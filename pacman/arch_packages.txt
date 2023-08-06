@@ -4,6 +4,7 @@ blueman
 bluez
 bluez-utils
 booster
+bspwm
 btop
 btrbk
 btrfs-progs
@@ -47,6 +48,7 @@ nvme-cli
 nvtop
 pacman-contrib
 pavucontrol
+picom
 pipewire
 pipewire-pulse
 powertop
@@ -61,6 +63,7 @@ rustup
 s-tui
 skim
 smartmontools
+sxhkd
 tealdeer
 throttled
 thunar
@@ -80,5 +83,5 @@ xfce4-session
 xfce4-settings
 xfconf
 xfdesktop
-xfwm4
 xorg-server
+xorg-xsetroot

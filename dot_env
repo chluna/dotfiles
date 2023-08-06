@@ -6,6 +6,7 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin
 export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR=helix
 export VISUAL=$EDITOR
+export SXHKD_SHELL=/bin/sh
 export NNN_BMS='d:~/data;e:/run/media/spike/ssd;f:~/data/finance/ledger;h:~/'
 export NNN_COLORS=3421
 export NNN_FIFO=/tmp/nnn.fifo

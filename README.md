@@ -2,8 +2,9 @@
 
 My personal dotfiles repository.
 
-__Arch Linux__
+__Arch Linux on Lenovo ThinkPad T480__
 
+* [bspwm](https://github.com/baskerville/bspwm) - tiling window manager based on binary space partitioning 
 * [btop](https://github.com/aristocratos/btop) - resource monitor
 * [btrbk](https://digint.ch/btrbk/) - backup tool for btrfs subvolumes
 * [fastfetch](https://github.com/LinusDierheimer/fastfetch) - like neofetch, but much faster
@@ -16,11 +17,13 @@ __Arch Linux__
 * [nnn](https://github.com/jarun/nnn) - terminal file manager
 * [onedrive](https://abraunegg.github.io/) - a free Microsoft OneDrive client for Linux
 * [paru](https://github.com/Morganamilo/paru) - AUR helper
+* [picom](https://github.com/yshui/picom) - a lightweight compositor for X11
 * [redshift](http://jonls.dk/redshift) - color temperature adjuster for screens at night
 * [rofi](https://github.com/davatorium/rofi) - window switcher, application launcher and dmenu replacement
+* [sxhkd](https://github.com/baskerville/sxhkd) - Simple X hotkey daemon
 * [tuigreet](https://github.com/apognu/tuigreet) - graphical console greeter for greetd
 * [VSCodium](https://vscodium.com/) - FOSS binaries of Visual Studio Code
-* [Xfce](https://xfce.org/) related configurations including scripts for [xfce4-genmon-plugin](https://docs.xfce.org/panel-plugins/xfce4-genmon-plugin)
+* [Xfce](https://xfce.org/) including scripts for [xfce4-genmon-plugin](https://docs.xfce.org/panel-plugins/xfce4-genmon-plugin)
 * [zsh](https://www.zsh.org/) with [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)
 
 ---
