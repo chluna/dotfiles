@@ -58,7 +58,6 @@ redshift
 reflector
 ripgrep
 rofi
-rofi-calc
 rustup
 s-tui
 skim
