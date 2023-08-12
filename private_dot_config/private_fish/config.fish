@@ -7,6 +7,7 @@ set -gx PATH $PATH $HOME/.local/bin $HOME/.cargo/bin
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx EDITOR helix
 set -gx VISUAL $EDITOR
+set -gx SXHKD_SHELL /bin/sh
 set -gx NNN_BMS "d:~/data;e:/run/media/spike/ssd;f:~/data/finance/ledger;h:~/"
 set -gx NNN_COLORS 3421
 set -gx NNN_FIFO /tmp/nnn.fifo
