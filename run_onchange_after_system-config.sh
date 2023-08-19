@@ -26,6 +26,7 @@ root="$(chezmoi source-path)/root"
 # Symlink user configurations to root
 sudo ln -sf /home/spike/.config/fish /root/.config/
 sudo ln -sf /home/spike/.config/helix/ /root/.config/
+sudo ln -sf /home/spike/.config/fastfetch/ /root/.config/
 
 # Copy configuration files to corresponding directories in /etc
 sudo cp "$root"/etc/btrbk/btrbk.conf /etc/btrbk/
