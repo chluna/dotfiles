@@ -18,10 +18,6 @@ set -gx DIFFPROG "delta --color-only"
 
 if status is-interactive
 
-    # configure tide theme
-    set -U tide_os_color BD93F9
-    set -U tide_context_color_root FF5555
-    
     # set tty theme to dracula
     if test $TERM = linux
         printf %b '\e[40m' '\e[8]' # set default background to color 0 'dracula-bg'
