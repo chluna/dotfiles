@@ -46,6 +46,7 @@ network-manager-applet
 networkmanager
 nvme-cli
 nvtop
+p7zip
 pacman-contrib
 pavucontrol
 picom
