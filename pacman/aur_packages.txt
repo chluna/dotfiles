@@ -11,4 +11,5 @@ paru-bin
 sxlock-git
 tela-icon-theme
 ttf-apple-emoji
+vial-appimage
 vscodium-bin
