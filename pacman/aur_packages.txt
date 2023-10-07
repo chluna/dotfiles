@@ -1,6 +1,7 @@
 colorpicker-ym1234-git
 fastfetch-bin
 file-roller-tmp
+hledger-bin
 hledger-ui-bin
 imgp
 ncurses5-compat-libs
