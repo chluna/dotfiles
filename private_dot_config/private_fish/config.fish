@@ -187,7 +187,7 @@ if status is-interactive
         else if set -q _flag_m
             e $HOME/data/finance/ledger/main.journal
         else if set -q _flag_g
-            hledger-ui -f $HOME/data/finance/ledger/main.journal
+            hledger-ui -w -f $HOME/data/finance/ledger/main.journal --theme=terminal --pretty=yes
         else
             hledger -f $HOME/data/finance/ledger/main.journal $argv
         end
