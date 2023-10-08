@@ -9,7 +9,6 @@ btop
 btrbk
 btrfs-progs
 chezmoi
-dmidecode
 exo
 fd
 feh
@@ -22,7 +21,6 @@ garcon
 git
 git-delta
 glow
-gobject-introspection
 greetd-tuigreet
 gvfs
 gvfs-afc
@@ -56,7 +54,6 @@ pipewire
 pipewire-pulse
 powertop
 profile-sync-daemon
-python-setuptools
 qalculate-gtk
 qmk
 redshift

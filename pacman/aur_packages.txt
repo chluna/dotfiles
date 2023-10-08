@@ -1,3 +1,4 @@
+auto-cpufreq
 colorpicker-ym1234-git
 fastfetch-bin
 file-roller-tmp
