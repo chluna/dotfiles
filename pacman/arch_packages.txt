@@ -72,7 +72,9 @@ thunar-media-tags-plugin
 thunar-volman
 ttf-firacode-nerd
 tumbler
+unzip
 wireplumber
+xarchiver
 xclip
 xfce4-genmon-plugin
 xfce4-panel
@@ -86,3 +88,4 @@ xfconf
 xfdesktop
 xorg-server
 xorg-xsetroot
+zip
