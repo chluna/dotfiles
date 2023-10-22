@@ -10,8 +10,8 @@ super + Return
 super + @space
     rofi -show combi
 
-# commonly used programs
-super + z ; {f,g,p,w}
+# commonly used applications
+super + a ; {f,g,p,w}
     { kitty nnn -P p, \
       thunar, \
       keepassxc, \
@@ -29,8 +29,8 @@ alt + Print
 shift + Print
     xfce4-screenshooter -f -c -s desktop
 
-# power options
-super + x ; {h,r,s,l}
+# user session options
+super + s ; {h,r,s,l}
     xfce4-session-logout -{h,r,s,l}
 
 # lock screen
