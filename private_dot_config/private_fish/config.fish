@@ -60,7 +60,10 @@ if status is-interactive
     alias cl "clear"
     alias jc "journalctl -rb"
     command -q nnn; and alias fm nnn
-    command -q kitty; and alias kt "kitty +kitten themes"
+    command -q kitty; and alias kt "kitten themes"
+    if test $TERM = "xterm-kitty"
+        alias ssh "kitten ssh"
+    end
     command -q fastfetch; and alias ff fastfetch
     command -q btop; and alias t btop
     command -q nvtop; and alias gt nvtop
