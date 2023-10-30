@@ -79,9 +79,9 @@ if status is-interactive
         alias vimdiff "nvim -d"
         alias xxd "nvim -b"
     end
-    if command -q lsd
-        alias ls "lsd -AF --group-dirs first"
-        alias ll "lsd -alF --group-dirs first"
+    if command -q eza
+        alias ls "eza -a --color=always --icons=always --group-directories-first"
+        alias ll "eza -albg --color=always --icons=always --group-directories-first --time-style long-iso"
     end
     if command -q rg
         alias grep rg

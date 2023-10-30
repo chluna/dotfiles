@@ -10,6 +10,7 @@ btrbk
 btrfs-progs
 chezmoi
 exo
+eza
 fd
 feh
 fio
@@ -36,7 +37,6 @@ kitty
 linux
 linux-firmware
 linux-lts
-lsd
 man-db
 man-pages
 mousepad
