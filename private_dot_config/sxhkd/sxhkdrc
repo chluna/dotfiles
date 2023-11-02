@@ -1,4 +1,21 @@
 #
+# sxhkd and bspwm hotkeys
+#
+
+# reload sxhkd
+super + alt + Escape
+    pkill -x sxhkd && sxhkd; \
+    notify-send 'sxhkd' 'Reloaded config'
+
+# show sxhkd hotkeys
+super + slash
+    sxhkd-help.sh
+
+# quit/restart bspwm
+super + alt + {q,r}
+    bspc {quit,wm -r}
+
+#
 # wm independent hotkeys
 #
 
@@ -7,15 +24,13 @@ super + Return
     kitty
 
 # program launcher
-super + @space
+super + space
     rofi -show combi
 
 # commonly used applications
-super + a ; {f,g,p,w}
+super + a ; {f,g}
     { kitty nnn -P p, \
-      thunar, \
-      keepassxc, \
-      firefox }
+      thunar }
 
 # screenshot of a selected region
 Print ; @Print
@@ -38,25 +53,8 @@ super + l
     sxlock -l
 
 #
-# sxhkd hotkeys
-#
-
-# reload sxhkd configuration
-super + alt + Escape
-    pkill -x sxhkd && sxhkd; \
-    notify-send 'sxhkd' 'Reloaded config'
-
-# show sxhkd hotkeys
-super + slash
-    sxhkd-help.sh
-
-#
 # bspwm hotkeys
 #
-
-# quit/restart bspwm
-super + alt + {q,r}
-    bspc {quit,wm -r}
 
 # close and kill
 super + {_,shift + }w
