@@ -1,6 +1,5 @@
 auto-cpufreq
 colorpicker-ym1234-git
-fastfetch-bin
 hledger-bin
 hledger-ui-bin
 imgp
