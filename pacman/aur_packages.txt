@@ -2,7 +2,6 @@ auto-cpufreq
 colorpicker-ym1234-git
 hledger-bin
 hledger-ui-bin
-imgp
 ncurses5-compat-libs
 nnn-nerd
 onedrive-abraunegg

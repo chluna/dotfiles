@@ -29,6 +29,7 @@ gvfs-afc
 gvfs-gphoto2
 gvfs-smb
 helix
+imagemagick
 intel-media-driver
 intel-ucode
 inter-font
