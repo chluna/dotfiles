@@ -9,6 +9,7 @@ btop
 btrbk
 btrfs-progs
 chezmoi
+chromium
 exo
 eza
 fastfetch
