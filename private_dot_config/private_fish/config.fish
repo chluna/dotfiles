@@ -117,7 +117,7 @@ if status is-interactive
             $pkg -Slq | sk --preview "$pkg -Si {}"
         else if set -q _flag_p
             set -f orphans ($pkg -Qtdq)
-            and echo $orphans | $supkg -Rsn -
+            and string join \n $orphans | $supkg -Rsn -
         else if set -q _flag_m
             sudo systemctl start reflector
         else if set -q _flag_e
