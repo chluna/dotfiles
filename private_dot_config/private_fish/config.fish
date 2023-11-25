@@ -50,51 +50,54 @@ if status is-interactive
 
     # aliases
     if not fish_is_root_user
-        alias se "sudoedit"
+        abbr se "sudoedit"
         alias sudo "sudo "
     end
 
     alias free "free -m"                # show sizes in MB
     alias cp "cp -i --reflink=always"   # confirm before overwriting something
     alias df "df -h"                    # human-readable sizes
-    alias cl "clear"
-    alias jc "journalctl -rb"
-    command -q nnn; and alias fm nnn
-    command -q kitty; and alias kt "kitten themes"
+    abbr c "clear"
+    abbr jc "journalctl -rb"
+    command -q nnn; and abbr fm nnn
+    command -q kitty; and abbr kt "kitten themes"
     if test $TERM = "xterm-kitty"
         alias ssh "kitten ssh"
     end
-    command -q fastfetch; and alias ff fastfetch
-    command -q btop; and alias t btop
-    command -q nvtop; and alias gt nvtop
-    command -q powertop; and alias pt "sudo powertop"
-    command -q codium; and alias c codium
-    command -q helix; and alias e helix
-    command -q fd; and alias find fd
+    command -q btop; and abbr t btop
+    command -q nvtop; and abbr gt nvtop
+    command -q powertop; and abbr pt "sudo powertop"
+    command -q codium; and abbr code codium
+    command -q fd; and abbr find fd
     command -q hledger; and alias run "hledger -f $HOME/data/health/running/running.journal"
-    if command -q nvim
-        alias e nvim
-        alias vi nvim
-        alias vim nvim
-        alias vimdiff "nvim -d"
-        alias xxd "nvim -b"
+    if command -q fastfetch
+        set -g _s fastfetch
+        abbr s fastfetch
     end
+    if command -q nvim
+        set -g _e nvim
+        abbr vi nvim
+        abbr vim nvim
+        abbr vimdiff "nvim -d"
+        abbr xxd "nvim -b"
+    else if command -q helix
+        set -g _e helix
+    end
+    abbr e $_e
     if command -q eza
         alias ls "eza -a --color=always --icons=always --group-directories-first"
         alias ll "eza -albg --color=always --icons=always --group-directories-first --time-style long-iso"
     end
     if command -q rg
-        alias grep rg
-        alias egrep rg
-        alias fgrep rg
+        set -g _grep rg
+        abbr grep $_grep
     else
-        alias grep "grep --color=auto"
-        alias egrep "egrep --color=auto"
-        alias fgrep "fgrep --color=auto"
+        set -g _grep "grep --color=auto"
+        alias grep $_grep
     end
     if command -q chezmoi
-        alias cz chezmoi
-        alias dot "chezmoi cd"
+        abbr cz chezmoi
+        abbr dot "chezmoi cd"
     end
 
     # functions
@@ -136,7 +139,7 @@ if status is-interactive
         else if set -q _flag_U
             set -f log (mktemp)
             script -q $log -c "$supkg -Syu"
-            grep -q '.+\.pac(new|orig|save)' $log
+            $_grep -q '.+\.pac(new|orig|save)' $log
             if test $status -eq 0
                 pm --diff
             end
@@ -165,7 +168,7 @@ if status is-interactive
             set -f conf $XDG_CONFIG_HOME/fish/config.fish
             set -f csum (mktemp)
             sha1sum $conf > $csum
-            e $conf
+            $_e $conf
             sha1sum -c $csum --status
             if test $status -ne 0
                 read -f -n 1 -P "Reload changes? [y/n]: " choice
@@ -174,9 +177,10 @@ if status is-interactive
                 end
             end
             rm $csum
-            cl
+            clear
         else if set -q _flag_r
             exec fish
+            clear
         end
     end
     
@@ -184,11 +188,11 @@ if status is-interactive
         argparse -i "j/journal=" "p/price=" "m/main" "g/gui" -- $argv
         or return
         if set -q _flag_j
-            e $HOME/data/finance/ledger/$_flag_j.journal
+            $_e $HOME/data/finance/ledger/$_flag_j.journal
         else if set -q _flag_p
-            e $HOME/data/finance/ledger/$_flag_p.prices
+            $_e $HOME/data/finance/ledger/$_flag_p.prices
         else if set -q _flag_m
-            e $HOME/data/finance/ledger/main.journal
+            $_e $HOME/data/finance/ledger/main.journal
         else if set -q _flag_g
             hledger-ui -w -f $HOME/data/finance/ledger/main.journal --theme=terminal --pretty=yes
         else
@@ -275,6 +279,6 @@ if status is-interactive
     end
     
     # run on start of interactive shell
-    ff
+    $_s
 
 end
