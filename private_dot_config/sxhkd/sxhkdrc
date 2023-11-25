@@ -45,7 +45,7 @@ shift + Print
     xfce4-screenshooter -f -c -s desktop
 
 # user session options
-super + s ; {h,r,s,l}
+super + x ; {h,r,s,l}
     xfce4-session-logout -{h,r,s,l}
 
 # lock screen
