@@ -2,13 +2,16 @@
 # ~/.config/fish/config.fish by chluna
 #
 
+set -g _git ~/git
+set -g _sync ~/sync
+
 # environment variables
 set -gx PATH $PATH $HOME/.local/bin $HOME/.cargo/bin
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx EDITOR helix
 set -gx VISUAL $EDITOR
 set -gx SXHKD_SHELL /bin/sh
-set -gx NNN_BMS "d:~/data;e:/run/media/spike/ssd;f:~/data/finance/ledger;h:~/"
+set -gx NNN_BMS "d:$_sync;e:/run/media/spike/ssd;f:$_git/ledger;h:~/"
 set -gx NNN_COLORS 3421
 set -gx NNN_FIFO /tmp/nnn.fifo
 set -gx NNN_OPTS deEHioU
@@ -69,7 +72,7 @@ if status is-interactive
     command -q powertop; and abbr pt "sudo powertop"
     command -q codium; and abbr code codium
     command -q fd; and abbr find fd
-    command -q hledger; and alias run "hledger -f $HOME/data/health/running/running.journal"
+    command -q hledger; and alias run "hledger -f $_sync/health/running/running.journal"
     if command -q fastfetch
         set -g _s fastfetch
         abbr s fastfetch
@@ -124,7 +127,7 @@ if status is-interactive
         else if set -q _flag_m
             sudo systemctl start reflector
         else if set -q _flag_e
-            set -f exp (cz source-path)/pacman
+            set -f exp (chezmoi source-path)/pacman
             if not test -d $exp
                 mkdir -p $exp
             end
@@ -188,15 +191,15 @@ if status is-interactive
         argparse -i "j/journal=" "p/price=" "m/main" "g/gui" -- $argv
         or return
         if set -q _flag_j
-            $_e $HOME/data/finance/ledger/$_flag_j.journal
+            $_e $_git/ledger/$_flag_j.journal
         else if set -q _flag_p
-            $_e $HOME/data/finance/ledger/$_flag_p.prices
+            $_e $_git/ledger/$_flag_p.prices
         else if set -q _flag_m
-            $_e $HOME/data/finance/ledger/main.journal
+            $_e $_git/ledger/main.journal
         else if set -q _flag_g
-            hledger-ui -w -f $HOME/data/finance/ledger/main.journal --theme=terminal --pretty=yes
+            hledger-ui -w -f $_git/ledger/main.journal --theme=terminal --pretty=yes
         else
-            hledger -f $HOME/data/finance/ledger/main.journal $argv
+            hledger -f $_git/ledger/main.journal $argv
         end
     end
     
