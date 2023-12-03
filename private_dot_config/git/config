@@ -15,3 +15,6 @@
 
 [merge]
     conflictstyle = diff3
+
+[alias]
+    unstage = restore --staged
