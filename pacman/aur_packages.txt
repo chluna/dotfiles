@@ -1,7 +1,7 @@
 auto-cpufreq
 colorpicker-ym1234-git
 hledger-bin
-hledger-ui-bin
+hledger-web-bin
 ncurses5-compat-libs
 nnn-nerd
 onedrive-abraunegg
@@ -9,5 +9,6 @@ paru-bin
 sxlock-git
 tela-icon-theme
 ttf-apple-emoji
+ungoogled-chromium-bin
 vial-appimage
 vscodium-bin
