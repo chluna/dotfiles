@@ -9,5 +9,6 @@
     "diffEditor.codeLens": true,
     "workbench.iconTheme": "vscode-icons",
     "terminal.explorerKind": "external",
-    "terminal.external.linuxExec": "kitty"
+    "terminal.external.linuxExec": "kitty",
+    "diffEditor.hideUnchangedRegions.enabled": true
 }
