@@ -188,12 +188,10 @@ if status is-interactive
     end
     
     function fin --d "finance wrapper for hledger"
-        argparse -i "j/journal=" "p/price=" "m/main" "g/gui" -- $argv
+        argparse -i "j/journal=" "m/main" "g/gui" -- $argv
         or return
         if set -q _flag_j
             $_e $_git/ledger/$_flag_j.journal
-        else if set -q _flag_p
-            $_e $_git/ledger/$_flag_p.prices
         else if set -q _flag_m
             $_e $_git/ledger/main.journal
         else if set -q _flag_g
