@@ -1,4 +1,3 @@
-auto-cpufreq
 colorpicker-ym1234-git
 hledger-bin
 hledger-web-bin
