@@ -35,6 +35,7 @@ sudo cp "$root"/etc/NetworkManager/dispatcher.d/99-update-genmon-network.sh /etc
 sudo cp "$root"/etc/systemd/system/* /etc/systemd/system/
 sudo cp "$root"/etc/pacman.conf /etc/
 sudo cp "$root"/etc/throttled.conf /etc/
+sudo cp "$root"/etc/tlp.conf /etc/
 
 # Enable and start systemd services
 sudo systemctl enable greetd.service
