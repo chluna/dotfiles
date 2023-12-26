@@ -2,7 +2,7 @@ theme = "dracula"
 
 [editor]
 line-number = "relative"
-shell = ["zsh", "-c"]
+shell = ["fish", "-c"]
 cursorline = true
 
 [editor.cursor-shape]
