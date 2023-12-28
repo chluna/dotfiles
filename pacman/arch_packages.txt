@@ -9,6 +9,7 @@ btop
 btrbk
 btrfs-progs
 chezmoi
+clang
 exo
 eza
 fastfetch
@@ -49,6 +50,7 @@ network-manager-applet
 networkmanager
 nvme-cli
 nvtop
+obsidian
 p7zip
 pacman-contrib
 pavucontrol
