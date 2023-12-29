@@ -4,6 +4,7 @@ My personal dotfiles repository.
 
 __Arch Linux on Lenovo ThinkPad T480__
 
+* [bat](https://github.com/sharkdp/bat) - a cat(1) clone with wings
 * [bspwm](https://github.com/baskerville/bspwm) - tiling window manager based on binary space partitioning 
 * [btop](https://github.com/aristocratos/btop) - resource monitor
 * [btrbk](https://digint.ch/btrbk/) - backup tool for btrfs subvolumes
