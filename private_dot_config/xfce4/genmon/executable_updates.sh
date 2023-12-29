@@ -1,20 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env fish
 
-updates=$(checkupdates | wc -l)
+set updates "$(checkupdates | cut -d ' ' -f 1)"
 
-txt="<txt>"
-tool="<tool>"
-txtclick+="<txtclick>"
+set txt "<txt>"
+set tool "<tool>"
+set txtclick "<txtclick>"
 
-if [[ $updates -gt 0 ]]; then
-    txt+="\UF487  Updates available"
-    tool+="$(checkupdates | cut -d' ' -f1)"
-    txtclick+="kitty --hold zsh -c 'source ~/.config/zsh/.zshrc; pm up'"
-fi
+if test $updates != ""
+    set txt $txt"$(echo \UF487)  update"
+    set tool $tool$updates
+    set txtclick $txtclick"kitty fish -i -c 'pm -U'"
+end
 
-txt+="</txt>"
-tool+="</tool>"
-txtclick+="</txtclick>"
+set txt $txt"</txt>"
+set tool $tool"</tool>"
+set txtclick $txtclick"</txtclick>"
 
 echo -e "$txt"
 echo -e "$tool"
