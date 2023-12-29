@@ -13,9 +13,9 @@ set -gx VISUAL $EDITOR
 set -gx SXHKD_SHELL /bin/sh
 set -gx NNN_BMS "d:$_sync;e:/run/media/spike/ssd;f:$_git/ledger;h:~/"
 set -gx NNN_COLORS 3421
-set -gx NNN_FIFO /tmp/nnn.fifo
-set -gx NNN_OPTS deEHioU
-set -gx NNN_PLUG p:preview-tui
+set -gx NNN_FCOLORS 'e4e48d5400007500cbe4d48d'
+set -gx NNN_OPTS adeEHiouU
+set -gx NNN_PLUG 'p:preview-tui;s:suedit'
 set -gx NNN_TRASH 2
 set -gx DIFFPROG "delta --color-only"
 
@@ -62,7 +62,7 @@ if status is-interactive
     alias df "df -h"                    # human-readable sizes
     abbr c "clear"
     abbr jc "journalctl -rb"
-    command -q nnn; and abbr fm nnn
+    command -q nnn; and abbr fm "nnn -P p"
     command -q kitty; and abbr kt "kitten themes"
     if test $TERM = "xterm-kitty"
         alias ssh "kitten ssh"
