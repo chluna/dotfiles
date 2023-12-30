@@ -27,11 +27,6 @@ super + Return
 super + space
     rofi -show combi
 
-# commonly used applications
-super + a ; {f,g}
-    { kitty nnn -P p, \
-      thunar }
-
 # screenshot of a selected region
 Print ; @Print
     xfce4-screenshooter -r -c -s desktop
