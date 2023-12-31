@@ -13,11 +13,11 @@ configuration {
     scroll-method: 1;
     window-format: "{w}  {c}  {n}";
     max-history-size: 20;
-    display-window: "window";
-    display-run: "exec  ";
+    display-window: "win";
+    display-run: "cli  ";
     display-ssh: "ssh   ";
-    display-drun: "apps  ";
-    display-combi: "start ";
+    display-drun: "gui  ";
+    display-combi: "app ";
     timeout {
         action: "kb-cancel";
         delay:  0;
