@@ -6,18 +6,7 @@ set -g _git ~/git
 set -g _sync ~/sync
 
 # environment variables
-set -gx PATH $PATH $HOME/.local/bin $HOME/.cargo/bin
-set -gx XDG_CONFIG_HOME $HOME/.config
-set -gx EDITOR helix
-set -gx VISUAL $EDITOR
-set -gx SXHKD_SHELL /bin/sh
-set -gx NNN_BMS "d:$_sync;e:/run/media/spike/ssd;f:$_git/ledger;h:~/"
-set -gx NNN_COLORS 3421
-set -gx NNN_FCOLORS 'e4e48d5400007500cbe4d48d'
-set -gx NNN_OPTS adeEHiouU
-set -gx NNN_PLUG 'p:preview-tui;s:suedit'
-set -gx NNN_TRASH 2
-set -gx DIFFPROG "delta --color-only"
+fenv "source ~/.profile"
 
 if status is-interactive
 
