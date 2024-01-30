@@ -10,34 +10,13 @@ fenv "source ~/.profile"
 
 if status is-interactive
 
-    # set tty theme to dracula
-    if test $TERM = linux
-        printf %b '\e[40m' '\e[8]' # set default background to color 0 'dracula-bg'
-        printf %b '\e[37m' '\e[8]' # set default foreground to color 7 'dracula-fg'
-        printf %b '\e]P0282a36'    # redefine 'black'          as 'dracula-bg'
-        printf %b '\e]P86272a4'    # redefine 'bright-black'   as 'dracula-comment'
-        printf %b '\e]P1ff5555'    # redefine 'red'            as 'dracula-red'
-        printf %b '\e]P9ff7777'    # redefine 'bright-red'     as '#ff7777'
-        printf %b '\e]P250fa7b'    # redefine 'green'          as 'dracula-green'
-        printf %b '\e]PA70fa9b'    # redefine 'bright-green'   as '#70fa9b'
-        printf %b '\e]P3f1fa8c'    # redefine 'brown'          as 'dracula-yellow'
-        printf %b '\e]PBffb86c'    # redefine 'bright-brown'   as 'dracula-orange'
-        printf %b '\e]P4bd93f9'    # redefine 'blue'           as 'dracula-purple'
-        printf %b '\e]PCcfa9ff'    # redefine 'bright-blue'    as '#cfa9ff'
-        printf %b '\e]P5ff79c6'    # redefine 'magenta'        as 'dracula-pink'
-        printf %b '\e]PDff88e8'    # redefine 'bright-magenta' as '#ff88e8'
-        printf %b '\e]P68be9fd'    # redefine 'cyan'           as 'dracula-cyan'
-        printf %b '\e]PE97e2ff'    # redefine 'bright-cyan'    as '#97e2ff'
-        printf %b '\e]P7f8f8f2'    # redefine 'white'          as 'dracula-fg'
-        printf %b '\e]PFffffff'    # redefine 'bright-white'   as '#ffffff'
-    end
-
     # kitty completions
     type -q kitty; and kitty + complete setup fish | source
 
-    # skim (fzf) key bindings
+    # skim (fzf)
     if command -q sk
         skim_key_bindings
+        set -gx SKIM_DEFAULT_OPTIONS "--color=fg:#cdd6f4,bg:#1e1e2e,matched:#313244,matched_bg:#f2cdcd,current:#cdd6f4,current_bg:#45475a,current_match:#1e1e2e,current_match_bg:#f5e0dc,spinner:#a6e3a1,info:#cba6f7,prompt:#89b4fa,cursor:#f38ba8,selected:#eba0ac,header:#94e2d5,border:#6c7086"
     end
 
     # aliases

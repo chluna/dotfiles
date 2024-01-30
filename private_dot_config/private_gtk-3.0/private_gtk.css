@@ -1,0 +1,7 @@
+/* Catppuccin Mocha: disable rounded corners in these elements */
+menu,
+.csd .menu,
+.csd .dropdown,
+.csd .context-menu {
+  border-radius: 0px;
+}

@@ -5,19 +5,21 @@ configuration {
     ssh-command: "{terminal} fish -ic '{ssh-client} {host} [-p {port}]'";
     run-shell-command: "{terminal} fish -ic '{cmd}'";
     icon-theme: "Tela blue dark";
+    show-icons: true;
     sort: true;
     sorting-method: "fzf";
     cycle: true;
     combi-modi: "window,drun,ssh";
+    combi-display-format: " {mode} {text}";
     matching: "fuzzy";
     scroll-method: 1;
-    window-format: "{w}  {c}  {n}";
-    max-history-size: 20;
-    display-window: "win";
-    display-run: "cli  ";
-    display-ssh: "ssh   ";
-    display-drun: "gui  ";
-    display-combi: "app ";
+    window-format: "({w}) {c} {n}";
+    max-history-size: 10;
+    display-window: "";
+    display-run: "";
+    display-ssh: "󰒄";
+    display-drun: "";
+    display-combi: "launch";
     timeout {
         action: "kb-cancel";
         delay:  0;
@@ -27,4 +29,4 @@ configuration {
         sorting-method:    "name";
     }
 }
-@theme "dracula"
+@theme "catppuccin-mocha"
