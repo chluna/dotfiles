@@ -89,7 +89,7 @@ set txt $txt"<span foreground='$color'>$icon</span> $bat_pct%"
 set txt $txt"</txt>"
 
 set tool "<tool>"
-set tool $tool"internal:\t$bat0_pct% ($bat0_energy_now mWh/$bat0_energy_full mWh)\nexternal:\t$bat1_pct% ($bat1_energy_now mWh/$bat1_energy_full mWh)"
+set tool $tool"internal:\t\t$bat0_pct% ($bat0_energy_now mWh/$bat0_energy_full mWh)\nexternal:\t$bat1_pct% ($bat1_energy_now mWh/$bat1_energy_full mWh)"
 set tool $tool"</tool>"
 
 set txtclick "<txtclick>"
