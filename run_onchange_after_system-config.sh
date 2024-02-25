@@ -40,11 +40,14 @@ sudo cp "$root"/etc/tlp.conf /etc/
 # Enable and start systemd services
 sudo systemctl enable greetd.service
 sudo systemctl enable sxlock.service
-sudo systemctl enable --now battery-charge-start-threshold@75
-sudo systemctl enable --now battery-charge-stop-threshold@80
+sudo systemctl enable --now throttled.service
+sudo systemctl enable --now tlp.service
 
 # Enable and start systemd timers
 sudo systemctl enable --now archlinux-keyring-wkd-sync.timer
+sudo systemctl enable --now btrbk.timer
+sudo systemctl enable --now fwupd-refresh.timer
+sudo systemctl enable --now reflector.timer
 
 # Configure NetworkManager-dispatcher genmon script
 sudo chown root:root /etc/NetworkManager/dispatcher.d/99-update-genmon-network.sh
