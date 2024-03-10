@@ -10,5 +10,6 @@
     "workbench.iconTheme": "catppuccin-mocha",
     "terminal.explorerKind": "external",
     "terminal.external.linuxExec": "kitty",
-    "diffEditor.hideUnchangedRegions.enabled": true
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "git.confirmSync": false
 }
