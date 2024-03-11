@@ -1,3 +1,4 @@
+auto-cpufreq
 catppuccin-cursors-mocha
 catppuccin-gtk-theme-mocha
 colorpicker-ym1234-git
