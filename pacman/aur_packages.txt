@@ -2,6 +2,7 @@ auto-cpufreq
 catppuccin-cursors-mocha
 catppuccin-gtk-theme-mocha
 colorpicker-ym1234-git
+floorp-bin
 hledger-bin
 hledger-web-bin
 ncurses5-compat-libs
@@ -11,6 +12,5 @@ paru-bin
 sxlock-git
 tela-icon-theme
 ttf-apple-emoji
-ungoogled-chromium-bin
 vial-appimage
 vscodium-bin

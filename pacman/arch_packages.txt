@@ -17,7 +17,6 @@ fastfetch
 fd
 feh
 fio
-firefox
 fish
 fisher
 fwupd
