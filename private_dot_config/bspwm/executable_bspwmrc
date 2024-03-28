@@ -6,7 +6,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 # config
 bspc wm -O eDP-1 DP-2-2
 bspc monitor eDP-1 -d 1 2 3 4 5
-bspc monitor DP-2-2 -d 6 7 8 9 0
+bspc monitor DP-2-1 -d 6 7 8 9 0
 
 bspc config border_width           2
 bspc config normal_border_color    "#89b4fa"
