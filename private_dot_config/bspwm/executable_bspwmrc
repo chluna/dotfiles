@@ -4,9 +4,30 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 # config
-bspc wm -O eDP-1 DP-2-2
-bspc monitor eDP-1 -d 1 2 3 4 5
-bspc monitor DP-2-1 -d 6 7 8 9 0
+monitors=$(bspc query -M --names)
+num_monitors=$(echo $monitors | wc -w)
+case $num_monitors in
+  1)
+    bspc wm -O $monitors
+    bspc monitor $monitors -d 1 2 3 4 5 
+    ;;
+  2)
+    first=$(echo $monitors | cut -d " " -f 1)
+    second=$(echo $monitors | cut -d " " -f 2)
+    bspc wm -O $first $second
+    bspc monitor $first -d 1 2 3 4 5
+    bspc monitor $second -d 6 7 8 9 0
+    ;;
+  3)
+    first=$(echo $monitors | cut -d " " -f 1)
+    second=$(echo $monitors | cut -d " " -f 2)
+    third=$(echo $monitors | cut -d " " -f 3)
+    bspc wm -O $first $second $third
+    bspc monitor $first -d 1 2 3
+    bspc monitor $second -d 4 5 6
+    bspc monitor $third -d 7 8 9
+    ;;
+esac
 
 bspc config border_width           2
 bspc config normal_border_color    "#89b4fa"
