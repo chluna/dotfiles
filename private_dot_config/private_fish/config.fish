@@ -31,7 +31,6 @@ if status is-interactive
     abbr c "clear"
     abbr jc "journalctl -rb"
     command -q bat; and alias cat bat
-    command -q nnn; and abbr fm "nnn -P p"
     command -q kitty; and abbr kt "kitten themes"
     if test $TERM = "xterm-kitty"
         alias ssh "kitten ssh"
