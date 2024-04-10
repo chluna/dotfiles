@@ -1,4 +1,19 @@
+# never placed in target directory
 blinksh/
 pacman/
 root/
 README.md
+
+# nvim
+.config/nvim/
+
+# zsh
+.config/zsh/
+
+# bspwm
+.config/bspwm/
+.config/picom/
+.config/sxhkd/
+.config/gtk-3.0/gtk.css
+.config/autostart/bspwm.desktop
+.config/autostart/picom.desktop
