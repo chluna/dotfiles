@@ -5,7 +5,6 @@ blueman
 bluez
 bluez-utils
 booster
-bspwm
 btop
 btrbk
 btrfs-progs
@@ -54,7 +53,6 @@ obsidian
 p7zip
 pacman-contrib
 pavucontrol
-picom
 pipewire
 pipewire-pulse
 powertop
@@ -69,7 +67,6 @@ rustup
 s-tui
 skim
 smartmontools
-sxhkd
 tealdeer
 throttled
 thunar
@@ -92,5 +89,4 @@ xfce4-settings
 xfconf
 xfdesktop
 xorg-server
-xorg-xsetroot
 zip

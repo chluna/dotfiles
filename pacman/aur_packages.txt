@@ -2,6 +2,7 @@ auto-cpufreq
 catppuccin-cursors-mocha
 catppuccin-gtk-theme-mocha
 colorpicker-ym1234-git
+downgrade
 floorp-bin
 hledger-bin
 hledger-web-bin
@@ -14,3 +15,4 @@ tela-icon-theme
 ttf-apple-emoji
 vial-appimage
 vscodium-bin
+xfwm4-gaps
