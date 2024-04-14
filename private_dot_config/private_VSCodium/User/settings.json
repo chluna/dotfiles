@@ -1,6 +1,6 @@
 {
     "workbench.colorTheme": "Catppuccin Mocha",
-    "editor.fontFamily": "FiraCode Nerd Font Ret, monospace",
+    "editor.fontFamily": "FiraCode Nerd Font, monospace",
     "editor.renderWhitespace": "all",
     "editor.fontWeight": "500",
     "editor.cursorBlinking": "smooth",

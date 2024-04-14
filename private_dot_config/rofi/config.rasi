@@ -1,6 +1,6 @@
 configuration {
     modi: "combi";
-    font: "FiraCode Nerd Font Ret 12";
+    font: "FiraCode Nerd Font 12";
     terminal: "kitty";
     ssh-command: "{terminal} fish -ic '{ssh-client} {host} [-p {port}]'";
     run-shell-command: "{terminal} fish -ic '{cmd}'";
