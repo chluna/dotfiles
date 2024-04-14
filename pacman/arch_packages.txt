@@ -72,6 +72,7 @@ throttled
 thunar
 thunar-media-tags-plugin
 thunar-volman
+ttf-dejavu
 ttf-firacode-nerd
 tumbler
 unzip
