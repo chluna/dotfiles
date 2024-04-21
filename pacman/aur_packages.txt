@@ -11,7 +11,7 @@ nnn-nerd
 onedrive-abraunegg
 paru-bin
 sxlock-git
-tela-icon-theme
+tela-icon-theme-bin
 ttf-apple-emoji
 vial-appimage
 vscodium-bin
