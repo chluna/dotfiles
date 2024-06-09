@@ -39,7 +39,7 @@ sudo cp "$root"/etc/throttled.conf /etc/
 
 # Enable and start systemd services
 sudo systemctl enable greetd.service
-sudo systemctl enable sxlock.service
+sudo systemctl enable betterlockscreen@$USER.service
 sudo systemctl enable --now auto-cpufreq.service
 sudo systemctl enable --now throttled.service
 
