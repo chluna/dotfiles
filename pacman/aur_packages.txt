@@ -8,7 +8,6 @@ floorp-bin
 hledger-bin
 hledger-web-bin
 ncurses5-compat-libs
-nnn-nerd
 onedrive-abraunegg
 paru-bin
 tela-icon-theme-bin

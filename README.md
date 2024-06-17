@@ -19,7 +19,6 @@ My personal dotfiles repository.
 - [helix](https://helix-editor.com/) - a post-modern text editor
 - [kitty](https://sw.kovidgoyal.net/kitty/) - GPU-based terminal emulator
 - [neovim](https://neovim.io/) - hyperextensible Vim-based text editor
-- [nnn](https://github.com/jarun/nnn) - terminal file manager
 - [onedrive](https://abraunegg.github.io/) - a free Microsoft OneDrive client for Linux
 - [paru](https://github.com/Morganamilo/paru) - AUR helper
 - [picom](https://github.com/yshui/picom) - a lightweight compositor for X11
@@ -29,6 +28,7 @@ My personal dotfiles repository.
 - [tuigreet](https://github.com/apognu/tuigreet) - graphical console greeter for greetd
 - [VSCodium](https://vscodium.com/) - FOSS binaries of Visual Studio Code
 - [Xfce](https://xfce.org/) including scripts for [xfce4-genmon-plugin](https://docs.xfce.org/panel-plugins/xfce4-genmon-plugin)
+- [yazi](https://yazi-rs.github.io/) - blazing fast terminal file manager written in Rust, based on async I/O
 - [zsh](https://www.zsh.org/) with [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)
 
 ---
