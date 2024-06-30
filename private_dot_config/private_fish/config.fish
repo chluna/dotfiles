@@ -132,7 +132,7 @@ if status is-interactive
         end
     end
     
-    function f --d "edit config.fish"
+    function fsh --d "edit config.fish"
         argparse "e/edit" "r/reload" -- $argv
         or return
         if set -q _flag_e
