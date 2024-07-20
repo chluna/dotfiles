@@ -7,11 +7,13 @@ downgrade
 floorp-bin
 hledger-bin
 hledger-web-bin
+localsend-bin
 ncurses5-compat-libs
 onedrive-abraunegg
 paru-bin
 tela-icon-theme-bin
 ttf-apple-emoji
+ungoogled-chromium-bin
 vial-appimage
 vscodium-bin
 xfwm4-gaps
