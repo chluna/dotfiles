@@ -47,6 +47,8 @@ mpv
 ncspot
 network-manager-applet
 networkmanager
+nodejs
+npm
 nvme-cli
 nvtop
 obsidian

@@ -16,4 +16,5 @@ ttf-apple-emoji
 ungoogled-chromium-bin
 vial-appimage
 vscodium-bin
+webtorrent-cli
 xfwm4-gaps
