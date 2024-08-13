@@ -1,10 +1,11 @@
 auto-cpufreq
 betterlockscreen
+catppuccin-cursors-latte
 catppuccin-cursors-mocha
+catppuccin-gtk-theme-latte
 catppuccin-gtk-theme-mocha
 colorpicker-ym1234-git
 downgrade
-floorp-bin
 hledger-bin
 hledger-web-bin
 localsend-bin
@@ -18,3 +19,4 @@ vial-appimage
 vscodium-bin
 webtorrent-cli
 xfwm4-gaps
+zen-browser-bin
