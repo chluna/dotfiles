@@ -11,5 +11,8 @@
     "terminal.explorerKind": "external",
     "terminal.external.linuxExec": "kitty",
     "diffEditor.hideUnchangedRegions.enabled": true,
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "window.autoDetectColorScheme": true,
+    "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
+    "workbench.preferredLightColorTheme": "Catppuccin Latte"
 }

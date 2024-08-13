@@ -8,10 +8,12 @@
 [interactive]
     diffFilter = delta --color-only
 
+[include]
+    path = ~/.config/delta/themes/catppuccin.gitconfig
+
 [delta]
-    features = line-numbers
+    features = line-numbers catppuccin-mocha
     whitespace-error-style = 22 reverse
-    syntax-theme = Dracula
 
 [merge]
     conflictstyle = diff3
