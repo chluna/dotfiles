@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Toggle night mode
+Comment=Toggle xfce4 global color scheme between day and night modes
+Exec=/home/spike/.config/xfce4/genmon/xfce4-night-mode.sh toggle
+Icon=/usr/share/icons/Tela/scalable/apps/xfce-theme-manager.svg
+Terminal=false
+Categories=System;
+OnlyShowIn=XFCE;
