@@ -6,7 +6,7 @@ Host github
     HostName github.com
     IdentityFile ~/.ssh/github
 
-Host lemonwoodpi
+Host lunapi
     User dietpi 
     HostName 192.168.7.201
 
