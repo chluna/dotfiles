@@ -10,6 +10,7 @@ btrbk
 btrfs-progs
 chezmoi
 clang
+dotnet-sdk
 exo
 eza
 fastfetch

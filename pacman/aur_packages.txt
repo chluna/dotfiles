@@ -12,6 +12,7 @@ localsend-bin
 ncurses5-compat-libs
 onedrive-abraunegg
 paru-bin
+rider
 tela-icon-theme-bin
 ttf-apple-emoji
 ungoogled-chromium-bin
