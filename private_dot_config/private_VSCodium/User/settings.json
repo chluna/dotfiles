@@ -10,9 +10,10 @@
     "workbench.iconTheme": "catppuccin-mocha",
     "terminal.explorerKind": "external",
     "terminal.external.linuxExec": "kitty",
-    "diffEditor.hideUnchangedRegions.enabled": true,
     "git.confirmSync": false,
     "window.autoDetectColorScheme": true,
     "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
-    "workbench.preferredLightColorTheme": "Catppuccin Latte"
+    "workbench.preferredLightColorTheme": "Catppuccin Latte",
+    "diffEditor.ignoreTrimWhitespace": true,
+    "diffEditor.hideUnchangedRegions.enabled": true
 }
