@@ -17,3 +17,6 @@ README.md
 .config/gtk-3.0/gtk.css
 .config/autostart/bspwm.desktop
 .config/autostart/picom.desktop
+
+# kitty
+.config/kitty/

@@ -37,7 +37,6 @@ intel-ucode
 inter-font
 jq
 keepassxc
-kitty
 linux
 linux-firmware
 linux-lts
@@ -82,6 +81,7 @@ ttf-firacode-nerd
 tumbler
 unarchiver
 unzip
+wezterm
 wireplumber
 xarchiver
 xclip

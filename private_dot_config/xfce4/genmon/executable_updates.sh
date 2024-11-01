@@ -12,7 +12,7 @@ if test $updates != ""
     
     set txt $txt"  update"
     set tool $tool$updates
-    set txtclick $txtclick"kitty fish -i -c 'pm -U'"
+    set txtclick $txtclick"wezterm start -- fish -i -c 'pm -U'"
     
     set txt $txt"</txt>"
     set tool $tool"</tool>"

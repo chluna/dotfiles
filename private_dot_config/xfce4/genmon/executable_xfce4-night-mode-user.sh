@@ -12,6 +12,7 @@ if [ "$XFCE_NIGHT_MODE" = "night" ]; then
   sed -i 's/catppuccin_latte/catppuccin_mocha/' $conf/helix/config.toml
   sed -i 's/catppuccin-latte/catppuccin-mocha/' $conf/rofi/config.rasi
   sed -i 's/catppuccin-latte/catppuccin-mocha/' $conf/yazi/theme.toml
+  sed -i 's/Catppuccin Latte/Catppuccin Mocha/' $conf/wezterm/wezterm.lua
 elif [ "$XFCE_NIGHT_MODE" = "day" ]; then
   xfconf-query --channel xfce4-panel --property /panels/dark-mode --type bool --set false
   kitten @ --to unix:$socket kitten themes --reload-in=all Catppuccin-Latte
@@ -21,4 +22,5 @@ elif [ "$XFCE_NIGHT_MODE" = "day" ]; then
   sed -i 's/catppuccin_mocha/catppuccin_latte/' $conf/helix/config.toml
   sed -i 's/catppuccin-mocha/catppuccin-latte/' $conf/rofi/config.rasi
   sed -i 's/catppuccin-mocha/catppuccin-latte/' $conf/yazi/theme.toml
+  sed -i 's/Catppuccin Mocha/Catppuccin Latte/' $conf/wezterm/wezterm.lua
 fi
