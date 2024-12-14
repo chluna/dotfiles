@@ -36,9 +36,13 @@ if status is-interactive
     abbr c clear
     abbr jc "journalctl -rb"
     command -q bat; and alias cat bat
-    command -q kitty; and abbr kt "kitten themes"
-    if test $TERM = xterm-kitty
-        alias ssh "kitten ssh"
+    if command -q wezterm
+        alias ssh "wezterm ssh"
+    else if command -q kitty
+        abbr kt "kitten themes"
+        if test $TERM = xterm-kitty
+            alias ssh "kitten ssh"
+        end
     end
     command -q btop; and abbr t btop
     command -q nvtop; and abbr gt nvtop

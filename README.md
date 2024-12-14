@@ -27,6 +27,7 @@ My personal dotfiles repository.
 - [sxhkd](https://github.com/baskerville/sxhkd) - Simple X hotkey daemon
 - [tuigreet](https://github.com/apognu/tuigreet) - graphical console greeter for greetd
 - [VSCodium](https://vscodium.com/) - FOSS binaries of Visual Studio Code
+- [WezTerm](https://wezfurlong.org/wezterm/) - a GPU-accelerated cross-platform terminal emulator and multiplexer
 - [Xfce](https://xfce.org/) including scripts for [xfce4-genmon-plugin](https://docs.xfce.org/panel-plugins/xfce4-genmon-plugin)
 - [yazi](https://yazi-rs.github.io/) - blazing fast terminal file manager written in Rust, based on async I/O
 - [zsh](https://www.zsh.org/) with [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)
