@@ -1,3 +1,4 @@
+7zip
 base
 base-devel
 bat
@@ -37,6 +38,7 @@ intel-ucode
 inter-font
 jq
 keepassxc
+libretro-core-info
 linux
 linux-firmware
 linux-lts
@@ -52,7 +54,6 @@ npm
 nvme-cli
 nvtop
 obsidian
-p7zip
 pacman-contrib
 pavucontrol
 pipewire
@@ -65,6 +66,7 @@ qmk
 rbutil
 redshift
 reflector
+retroarch-assets-ozone
 ripgrep
 rofi
 rustup
