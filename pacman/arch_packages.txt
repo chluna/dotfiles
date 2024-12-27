@@ -11,6 +11,7 @@ btrbk
 btrfs-progs
 chezmoi
 clang
+dnsmasq
 dotnet-sdk
 exo
 eza
@@ -62,6 +63,7 @@ poppler
 powertop
 profile-sync-daemon
 qalculate-gtk
+qemu-desktop
 qmk
 rbutil
 redshift
@@ -83,6 +85,7 @@ ttf-firacode-nerd
 tumbler
 unarchiver
 unzip
+virt-manager
 wezterm
 wireplumber
 xarchiver

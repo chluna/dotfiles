@@ -42,6 +42,8 @@ sudo systemctl enable greetd.service
 sudo systemctl enable betterlockscreen@$USER.service
 sudo systemctl enable --now auto-cpufreq.service
 sudo systemctl enable --now throttled.service
+sudo systemctl enable --now libvirtd.socket
+sudo systemctl enable --now virtlogd.socket
 
 # Enable and start systemd timers
 sudo systemctl enable --now archlinux-keyring-wkd-sync.timer
