@@ -13,8 +13,8 @@ wallpaper_cmd="feh --bg-fill"
 quiet=false
 
 # default theme
-loginbox=1e1e2e66
-loginshadow=1e1e2e44
+loginbox=00000000
+loginshadow=00000000
 locktext="Enter password to unlock"
 font="sans-serif"
 ringcolor=ffffffff
