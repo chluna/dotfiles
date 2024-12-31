@@ -1,5 +1,6 @@
 auto-cpufreq
 betterlockscreen
+btdu-bin
 catppuccin-cursors-latte
 catppuccin-cursors-mocha
 catppuccin-gtk-theme-latte
