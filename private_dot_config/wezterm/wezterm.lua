@@ -24,6 +24,12 @@ config.disable_default_key_bindings = true
 local term_mod = 'SHIFT|CTRL'
 local term_mod_alt = 'SHIFT|CTRL|ALT'
 config.keys = {
+    { key = 'p', mods = term_mod, action = act.ActivateCommandPalette },
+    { key = 'l', mods = term_mod, action = act.ShowDebugOverlay },
+    { key = 'r', mods = term_mod, action = act.ReloadConfiguration },
+    { key = 'f', mods = term_mod, action = act.Search { CaseSensitiveString = "" } },
+    { key = 'k', mods = term_mod, action = act.ClearScrollback 'ScrollbackOnly' },
+    { key = 'x', mods = term_mod, action = act.ActivateCopyMode },
     { key = 'c', mods = term_mod, action = act.CopyTo 'Clipboard' },
     { key = 'v', mods = term_mod, action = act.PasteFrom 'Clipboard' },
     { key = 'F11', mods = term_mod, action = act.ToggleFullScreen },
