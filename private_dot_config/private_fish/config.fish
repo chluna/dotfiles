@@ -36,9 +36,7 @@ if status is-interactive
     abbr c clear
     abbr jc "journalctl -rb"
     command -q bat; and alias cat bat
-    if command -q wezterm
-        alias ssh "wezterm ssh"
-    else if command -q kitty
+    if command -q kitty
         abbr kt "kitten themes"
         if test $TERM = xterm-kitty
             alias ssh "kitten ssh"
@@ -165,10 +163,12 @@ if status is-interactive
     end
 
     function fin --d "finance wrapper for hledger"
-        argparse -i "j/journal=" m/main g/gui c/check -- $argv
+        argparse -i "j/journal=" e/edit m/main g/gui c/check -- $argv
         or return
         if set -q _flag_j
             $_e $_git/ledger/$_flag_j.journal
+        else if set -q _flag_e
+            $_e $_git/ledger
         else if set -q _flag_m
             $_e $_git/ledger/main.journal
         else if set -q _flag_g
