@@ -19,6 +19,10 @@ config.window_padding = {
     top = 10,
     bottom = 10
 }
+config.inactive_pane_hsb = {
+    saturation = 0.75,
+    brightness = 0.5
+}
 
 config.disable_default_key_bindings = true
 local term_mod = 'SHIFT|CTRL'
