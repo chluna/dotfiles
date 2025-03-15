@@ -13,6 +13,7 @@ chezmoi
 clang
 dnsmasq
 dotnet-sdk
+dotnet-sdk-8.0
 exo
 eza
 fastfetch
@@ -27,6 +28,9 @@ garcon
 git
 git-delta
 glow
+go
+go-tools
+gopls
 greetd-tuigreet
 gvfs
 gvfs-afc
@@ -39,6 +43,7 @@ intel-ucode
 inter-font
 jq
 keepassxc
+kitty
 libretro-core-info
 linux
 linux-firmware
@@ -83,10 +88,10 @@ thunar-volman
 ttf-dejavu
 ttf-firacode-nerd
 tumbler
+typst
 unarchiver
 unzip
 virt-manager
-wezterm
 wireplumber
 xarchiver
 xclip
