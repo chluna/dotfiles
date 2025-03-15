@@ -18,5 +18,5 @@ README.md
 .config/autostart/bspwm.desktop
 .config/autostart/picom.desktop
 
-# kitty
-.config/kitty/
+# wezterm
+.config/wezterm/
