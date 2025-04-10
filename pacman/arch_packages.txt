@@ -37,6 +37,7 @@ gvfs-afc
 gvfs-gphoto2
 gvfs-smb
 helix
+ifuse
 imagemagick
 intel-media-driver
 intel-ucode
@@ -56,6 +57,7 @@ ncspot
 network-manager-applet
 networkmanager
 nodejs
+noto-fonts-cjk
 npm
 nvme-cli
 nvtop
