@@ -11,6 +11,7 @@ btrbk
 btrfs-progs
 chezmoi
 clang
+delve
 dnsmasq
 dotnet-sdk
 dotnet-sdk-8.0
