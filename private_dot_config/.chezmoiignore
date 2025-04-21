@@ -1,0 +1,16 @@
+# bspwm
+bspwm/
+gtk-3.0/
+picom/
+sxhkd/
+autostart/bspwm.desktop
+autostart/picom.desktop
+
+# nvim
+nvim/
+
+# wezterm
+wezterm/
+
+# zsh
+zsh/
