@@ -4,9 +4,12 @@ txt="<txt>"
 tool="<tool>"
 txtclick="<txtclick>"
 
-wlan="$(nmcli -p device show wlp3s0 | grep IP4.ADDRESS | tr -s ' ' | cut -d ' ' -f 2 | cut -d '/' -f 1)"
-ssid="$(nmcli -p device show wlp3s0 | grep GENERAL.CONNECTION | tr -s ' ' | cut -d ' ' -f 2)"
-eth="$(nmcli -p device show enp0s31f6 | grep IP4.ADDRESS | tr -s ' ' | cut -d ' ' -f 2 | cut -d '/' -f 1)"
+wlan_dev="wlan0"
+eth_dev="enp0s31f6"
+
+wlan="$(nmcli -p device show $wlan_dev | grep IP4.ADDRESS | tr -s ' ' | cut -d ' ' -f 2 | cut -d '/' -f 1)"
+ssid="$(nmcli -p device show $wlan_dev | grep GENERAL.CONNECTION | tr -s ' ' | cut -d ' ' -f 2)"
+eth="$(nmcli -p device show $eth_dev | grep IP4.ADDRESS | tr -s ' ' | cut -d ' ' -f 2 | cut -d '/' -f 1)"
 
 if [[ ! -z "$wlan" && ! -z "$eth" ]]; then
     txt+="\UF05A9  $ssid  \UF0200  eth"

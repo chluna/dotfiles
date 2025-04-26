@@ -1,30 +1,32 @@
-#!/usr/bin/env fish
+#!/bin/bash
 
-set updates "$(checkupdates | cut -d ' ' -f 1)"
+updates=$(checkupdates | cut -d ' ' -f 1)
 
-set txt "<txt>"
+txt="<txt>"
+txt+="\UF487"
 
-set txt $txt"$(echo \UF487)"
+tool="<tool>"
 
-if test $updates != ""
-    set tool "<tool>"
-    set txtclick "<txtclick>"
+if [[ $updates != "" ]]; then
+    txtclick="<txtclick>"
     
-    set txt $txt"  update"
-    set tool $tool$updates
-    set txtclick $txtclick"kitty fish -i -c 'pm -U'"
+    txt+="  update"
+    tool+=$updates
+    txtclick+="kitty fish -i -c 'pm -U'"
     
-    set txt $txt"</txt>"
-    set tool $tool"</tool>"
-    set txtclick $txtclick"</txtclick>"
+    txt+="</txt>"
+    tool+="</tool>"
+    txtclick+="</txtclick>"
 
     echo -e "$txt"
     echo -e "$tool"
     echo -e "$txtclick"
 else
-    set txt $txt"  none"
-
-    set txt $txt"</txt>"
+    txt+="  none"
+    txt+="</txt>"
+    
+    tool+="</tool>"
 
     echo -e "$txt"
-end
+    echo -e "$tool"
+fi

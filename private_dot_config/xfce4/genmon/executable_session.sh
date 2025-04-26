@@ -1,22 +1,23 @@
-#!/usr/bin/env fish
+#!/bin/bash
 
-set user (whoami)
-set kernel (uname -r)
-set uptime (uptime -p | cut -d ' ' -f 2-)
+user=$(whoami)
+hostname=$(uname -n)
+kernel=$(uname -r)
+uptime=$(uptime -p | cut -d ' ' -f 2-)
 
-set txt "<txt>"
-set txt $txt"$(echo \UF303) "
-set txt $txt"</txt>"
+txt="<txt>"
+txt+="\UF303 "
+txt+="</txt>"
 
-set tool "<tool>"
-set tool $tool"<span weight='Bold'>$user@$hostname\n"
-set tool $tool"kernel: $kernel</span>\n"
-set tool $tool"uptime: $uptime"
-set tool $tool"</tool>"
+tool="<tool>"
+tool+="<span weight='Bold'>$user@$hostname\n"
+tool+="kernel: $kernel</span>\n"
+tool+="uptime: $uptime"
+tool+="</tool>"
 
-set txtclick "<txtclick>"
-set txtclick $txtclick"xfce4-session-logout"
-set txtclick $txtclick"</txtclick>"
+txtclick="<txtclick>"
+txtclick+="xfce4-session-logout"
+txtclick+="</txtclick>"
 
 echo -e "$txt"
 echo -e "$tool"
