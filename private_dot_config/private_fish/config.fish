@@ -16,7 +16,10 @@ if status is-interactive
     # skim (fzf)
     if command -q sk
         skim_key_bindings
-        set -l night_mode (xfconf-query -c night-mode -p /active)
+        set -l night_mode night
+        if not fish_is_root_user
+            set night_mode (xfconf-query -c night-mode -p /active)
+        end
         if test $night_mode = day
             set -gx SKIM_DEFAULT_OPTIONS "--color=fg:#4c4f69,bg:#eff1f5,matched:#ccd0da,matched_bg:#dd7878,current:#4c4f69,current_bg:#bcc0cc,current_match:#eff1f5,current_match_bg:#dc8a78,spinner:#40a02b,info:#8839ef,prompt:#1e66f5,cursor:#d20f39,selected:#e64553,header:#179299,border:#9ca0b0"
         else
@@ -100,7 +103,7 @@ if status is-interactive
             set -f orphans ($pkg -Qtdq)
             and string join \n $orphans | $supkg -Rsn -
         else if set -q _flag_m
-            sudo systemctl start reflector
+            sudo reflector --save /etc/pacman.d/mirrorlist --sort rate --latest 10 --score 10 --protocol http --protocol https --ipv4 --verbose
         else if set -q _flag_e
             set -f exp (chezmoi source-path)/pacman
             if not test -d $exp
@@ -123,7 +126,7 @@ if status is-interactive
             end
             rm $log
             pm --purge
-            xfce4-panel --plugin-event=genmon-7:refresh:bool:true
+            xfce4-panel --plugin-event=genmon-1:refresh:bool:true
         else
             echo "Usage: pm <operation>"
             echo "Operation: -i, --install    install packages using skim"
@@ -163,10 +166,12 @@ if status is-interactive
     end
 
     function fin --d "finance wrapper for hledger"
-        argparse -i "j/journal=" e/edit m/main g/gui c/check -- $argv
+        argparse -i "j/journal=" l/latest e/edit m/main g/gui c/check -- $argv
         or return
         if set -q _flag_j
             $_e $_git/ledger/$_flag_j.journal
+        else if set -q _flag_l
+            $_e (command ls $_git/ledger/ | rg -e '\d{4}.journal' | tail -n 1)
         else if set -q _flag_e
             $_e $_git/ledger
         else if set -q _flag_m
@@ -257,7 +262,13 @@ if status is-interactive
         end
     end
 
-    # run on start of interactive shell
-    $_s
+end
 
+# function overrides
+function fish_greeting
+    if set -q _s
+        $_s
+    else
+        echo
+    end
 end
