@@ -1,25 +1,15 @@
 #!/bin/bash
 
-bat_energy_full_at_threshold="true"
-
 bat0_energy_now_raw=$(cat /sys/class/power_supply/BAT0/energy_now)
 bat0_energy_full_raw=$(cat /sys/class/power_supply/BAT0/energy_full)
 bat0_energy_now=$(echo "$bat0_energy_now_raw/1000" | qalc -t -f -)
 bat0_energy_full=$(echo "$bat0_energy_full_raw/1000" | qalc -t -f -)
-if [ $bat_energy_full_at_threshold = "true" ]; then
-    bat0_threshold=$(cat /sys/class/power_supply/BAT0/charge_stop_threshold)
-    bat0_energy_full=$(echo "$bat0_threshold/100*$bat0_energy_full" | qalc -t -f -)
-fi
 bat0_pct=$(echo "100*$bat0_energy_now/$bat0_energy_full" | qalc -t -f - | awk '{printf("%.0f"), $1}')
 
 bat1_energy_now_raw=$(cat /sys/class/power_supply/BAT1/energy_now)
 bat1_energy_full_raw=$(cat /sys/class/power_supply/BAT1/energy_full)
 bat1_energy_now=$(echo "$bat1_energy_now_raw/1000" | qalc -t -f -)
 bat1_energy_full=$(echo "$bat1_energy_full_raw/1000" | qalc -t -f -)
-if [[ $bat_energy_full_at_threshold == "true" ]]; then
-    bat1_threshold=$(cat /sys/class/power_supply/BAT1/charge_stop_threshold)
-    bat1_energy_full=$(echo "$bat1_threshold/100*$bat1_energy_full" | qalc -t -f -)
-fi
 bat1_pct=$(echo "100*$bat1_energy_now/$bat1_energy_full" | qalc -t -f - | awk '{printf("%.0f"), $1}')
 
 bat_pct=$(echo "100*($bat0_energy_now + $bat1_energy_now)/($bat0_energy_full + $bat1_energy_full)" | qalc -t -f - | awk '{printf("%.0f"), $1}')
