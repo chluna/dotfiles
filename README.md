@@ -1,11 +1,15 @@
 # dotfiles
 
-My personal dotfiles repository.
+My personal `dotfiles` repository.
 
-## Specs
-- *OS*: [Arch Linux](https://archlinux.org/)
-- *Machine*: [Lenovo ThinkPad T480](https://www.thinkwiki.org/wiki/Category:T480)
-- *Theme*: [Catppuccin Mocha](https://github.com/catppuccin)
+## Specifications
+| Specification | Value |
+| --- | --- |
+| Machine | [Lenovo ThinkPad T480](https://www.thinkwiki.org/wiki/Category:T480) |
+| Operating system | [Arch Linux](https://archlinux.org/) |
+| Desktop environment | [Xfce](https://xfce.org/) |
+| Shell | [fish](https://fishshell.com/) using the [tide theme](https://github.com/IlanCosman/tide) |
+| Theme | [Catppuccin](https://github.com/catppuccin) using for **Mocha** for dark mode and **Latte** for light mode |
 
 ## Apps
 - [bat](https://github.com/sharkdp/bat) - a cat(1) clone with wings
@@ -14,7 +18,6 @@ My personal dotfiles repository.
 - [btrbk](https://digint.ch/btrbk/) - backup tool for btrfs subvolumes
 - [fastfetch](https://github.com/LinusDierheimer/fastfetch) - like neofetch, but much faster
 - [feh](https://feh.finalrewind.org/) - a fast and light image viewer
-- [fish](https://fishshell.com/) with [tide theme](https://github.com/IlanCosman/tide)
 - [git](https://git-scm.com/) - distributed version control system
 - [helix](https://helix-editor.com/) - a post-modern text editor
 - [kitty](https://sw.kovidgoyal.net/kitty/) - GPU-based terminal emulator
@@ -23,14 +26,14 @@ My personal dotfiles repository.
 - [paru](https://github.com/Morganamilo/paru) - AUR helper
 - [picom](https://github.com/yshui/picom) - a lightweight compositor for X11
 - [redshift](http://jonls.dk/redshift) - color temperature adjuster for screens at night
+- [restic](http://restic.net) - a modern backup program
 - [rofi](https://github.com/davatorium/rofi) - window switcher, application launcher and dmenu replacement
 - [sxhkd](https://github.com/baskerville/sxhkd) - Simple X hotkey daemon
 - [tuigreet](https://github.com/apognu/tuigreet) - graphical console greeter for greetd
 - [VSCodium](https://vscodium.com/) - FOSS binaries of Visual Studio Code
 - [WezTerm](https://wezfurlong.org/wezterm/) - a GPU-accelerated cross-platform terminal emulator and multiplexer
-- [Xfce](https://xfce.org/) including scripts for [xfce4-genmon-plugin](https://docs.xfce.org/panel-plugins/xfce4-genmon-plugin)
 - [yazi](https://yazi-rs.github.io/) - blazing fast terminal file manager written in Rust, based on async I/O
-- [zsh](https://www.zsh.org/) with [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)
+- [zsh](https://www.zsh.org/) using the [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)
 
 ---
 
