@@ -10,11 +10,8 @@ exec fish
 # Reload font cache
 fc-cache -f -v
 
-# Disable CapsLock globally using localectl
-localectl set-x11-keymap "" "" "" caps:none
-
 # Symlink .profile to .xprofile
-ln -s /home/spike/.profile /home/spike/.xprofile
+ln -sf /home/spike/.profile /home/spike/.xprofile
 
 # ----------
 #    ROOT
@@ -24,12 +21,14 @@ ln -s /home/spike/.profile /home/spike/.xprofile
 root="$(chezmoi source-path)/root"
 
 # Symlink user configurations to root
+sudo ln -sf /home/spike/.env /root/
+sudo ln -sf /home/spike/.profile /root/
+sudo ln -sf /home/spike/.config/fastfetch/ /root/.config/
 sudo ln -sf /home/spike/.config/fish /root/.config/
 sudo ln -sf /home/spike/.config/helix/ /root/.config/
-sudo ln -sf /home/spike/.config/fastfetch/ /root/.config/
+sudo ln -sf /home/spike/.config/yazi /root/.config/
 
 # Copy configuration files to corresponding directories in /etc
-sudo cp "$root"/etc/btrbk/btrbk.conf /etc/btrbk/
 sudo cp "$root"/etc/greetd/config.toml /etc/greetd/
 sudo cp "$root"/etc/NetworkManager/dispatcher.d/99-update-genmon-network.sh /etc/NetworkManager/dispatcher.d/
 sudo cp "$root"/etc/systemd/system/* /etc/systemd/system/
@@ -38,11 +37,12 @@ sudo cp "$root"/etc/pacman.conf /etc/
 sudo cp "$root"/etc/throttled.conf /etc/
 
 # Enable and start systemd services
+systemctl --user enable --now onedrive.service
+systemctl --user enable --now psd.service
+systemctl --user enable --now redshift-gtk.service
 sudo systemctl enable greetd.service
-sudo systemctl enable betterlockscreen@$USER.service
 sudo systemctl enable --now auto-cpufreq.service
 sudo systemctl enable --now bluetooth.service
-sudo systemctl enable --now greetd.service
 sudo systemctl enable --now NetworkManager.service
 sudo systemctl enable --now throttled.service
 sudo systemctl enable --now libvirtd.socket
