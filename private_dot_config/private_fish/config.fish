@@ -105,7 +105,7 @@ if status is-interactive
         else if set -q _flag_m
             sudo reflector --save /etc/pacman.d/mirrorlist --sort rate --latest 10 --score 10 --protocol http --protocol https --ipv4 --verbose
         else if set -q _flag_e
-            set -f exp (chezmoi source-path)/pacman
+            set -f exp ~/.config/pacman
             if not test -d $exp
                 mkdir -p $exp
             end
