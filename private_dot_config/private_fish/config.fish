@@ -13,17 +13,17 @@ if status is-interactive
     # kitty completions
     type -q kitty; and kitty + complete setup fish | source
 
-    # skim (fzf)
-    if command -q sk
-        skim_key_bindings
+    # fzf
+    if command -q fzf
+        fzf --fish | source
         set -l night_mode night
         if not fish_is_root_user
             set night_mode (xfconf-query -c night-mode -p /active)
         end
         if test $night_mode = day
-            set -gx SKIM_DEFAULT_OPTIONS "--color=fg:#4c4f69,bg:#eff1f5,matched:#ccd0da,matched_bg:#dd7878,current:#4c4f69,current_bg:#bcc0cc,current_match:#eff1f5,current_match_bg:#dc8a78,spinner:#40a02b,info:#8839ef,prompt:#1e66f5,cursor:#d20f39,selected:#e64553,header:#179299,border:#9ca0b0"
+            set -gx FZF_DEFAULT_OPTS "--color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 --color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78 --color=marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39 --color=selected-bg:#BCC0CC --color=border:#9CA0B0,label:#4C4F69"
         else
-            set -gx SKIM_DEFAULT_OPTIONS "--color=fg:#cdd6f4,bg:#1e1e2e,matched:#313244,matched_bg:#f2cdcd,current:#cdd6f4,current_bg:#45475a,current_match:#1e1e2e,current_match_bg:#f5e0dc,spinner:#a6e3a1,info:#cba6f7,prompt:#89b4fa,cursor:#f38ba8,selected:#eba0ac,header:#94e2d5,border:#6c7086"
+            set -gx FZF_DEFAULT_OPTS "--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 --color=selected-bg:#45475A --color=border:#6C7086,label:#CDD6F4"
         end
     end
 
@@ -94,11 +94,11 @@ if status is-interactive
             set -f supkg "sudo pacman"
         end
         if set -q _flag_i
-            $pkg -Slq | sk --multi --preview "$pkg -Si {}" | xargs -ro $supkg -S
+            $pkg -Slq | fzf --multi --preview "$pkg -Si {}" | xargs -ro $supkg -S
         else if set -q _flag_r
-            $pkg -Qq | sk --multi --preview "$pkg -Qi {}" | xargs -ro $supkg -Rsn
+            $pkg -Qq | fzf --multi --preview "$pkg -Qi {}" | xargs -ro $supkg -Rsn
         else if set -q _flag_q
-            $pkg -Slq | sk --preview "$pkg -Si {}"
+            $pkg -Slq | fzf --preview "$pkg -Si {}"
         else if set -q _flag_p
             set -f orphans ($pkg -Qtdq)
             and string join \n $orphans | $supkg -Rsn -
@@ -129,9 +129,9 @@ if status is-interactive
             xfce4-panel --plugin-event=genmon-1:refresh:bool:true
         else
             echo "Usage: pm <operation>"
-            echo "Operation: -i, --install    install packages using skim"
-            echo "           -r, --remove     remove packages using skim"
-            echo "           -q, --query      query local package using skim"
+            echo "Operation: -i, --install    install packages using fzf"
+            echo "           -r, --remove     remove packages using fzf"
+            echo "           -q, --query      query local package using fzf"
             echo "           -p, --purge      remove orphaned packages"
             echo "           -m, --mirror     update mirrorlist"
             echo "           -e, --export     export local and AUR package lists"
