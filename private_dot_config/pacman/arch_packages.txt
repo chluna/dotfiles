@@ -51,6 +51,7 @@ linux-firmware
 linux-lts
 man-db
 man-pages
+mirro-rs
 mousepad
 mpv
 network-manager-applet
@@ -67,7 +68,6 @@ profile-sync-daemon
 qalculate-gtk
 qmk
 redshift
-reflector
 restic
 ripgrep
 rofi
