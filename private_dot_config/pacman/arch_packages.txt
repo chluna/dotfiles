@@ -24,6 +24,7 @@ feh
 fish
 fisher
 fwupd
+fzf
 garcon
 git
 git-delta
@@ -72,7 +73,6 @@ ripgrep
 rofi
 rustup
 s-tui
-skim
 tealdeer
 throttled
 thunar
@@ -82,6 +82,7 @@ ttf-firacode-nerd
 tumbler
 typst
 unzip
+uv
 xarchiver
 xclip
 xfce4-genmon-plugin
