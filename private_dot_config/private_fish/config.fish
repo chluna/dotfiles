@@ -103,7 +103,7 @@ if status is-interactive
             set -f orphans ($pkg -Qtdq)
             and string join \n $orphans | $supkg -Rsn -
         else if set -q _flag_m
-            sudo reflector --save /etc/pacman.d/mirrorlist --sort rate --latest 10 --score 10 --protocol http --protocol https --ipv4 --verbose
+            mirro-rs --ipv4 --ipv6 --sort score --rate -c Australia -c "Hong Kong" -c Indonesia -c Japan -c "New Zealand" -c Singapore -c Korea -c Taiwan -o /etc/pacman.d/mirrorlist --direct
         else if set -q _flag_e
             set -f exp ~/.config/pacman
             if not test -d $exp

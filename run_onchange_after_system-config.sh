@@ -52,7 +52,6 @@ sudo systemctl enable --now virtlogd.socket
 sudo systemctl enable --now archlinux-keyring-wkd-sync.timer
 sudo systemctl enable --now btrbk.timer
 sudo systemctl enable --now fwupd-refresh.timer
-sudo systemctl enable --now reflector.timer
 
 # Configure NetworkManager-dispatcher genmon script
 sudo chown root:root /etc/NetworkManager/dispatcher.d/99-update-genmon-network.sh
