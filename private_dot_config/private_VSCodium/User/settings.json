@@ -21,8 +21,10 @@
     "[typst-code]": {
         "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
     },
-    "diffEditor.hideUnchangedRegions.enabled": true,
     "gopls": {
         "ui.semanticTokens": true
-    }
+    },
+    "ruff.nativeServer": "off",
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "diffEditor.renderSideBySide": false
 }
