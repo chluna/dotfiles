@@ -73,11 +73,13 @@ ripgrep
 rofi
 rustup
 s-tui
+syncthing
 tealdeer
 throttled
 thunar
 thunar-media-tags-plugin
 thunar-volman
+thunderbird
 ttf-firacode-nerd
 tumbler
 typst
