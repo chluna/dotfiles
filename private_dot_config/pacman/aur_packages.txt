@@ -6,6 +6,7 @@ catppuccin-gtk-theme-latte
 catppuccin-gtk-theme-mocha
 downgrade
 hledger-bin
+llama.cpp
 localsend-bin
 onedrive-abraunegg
 paru-bin
