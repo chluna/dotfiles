@@ -44,6 +44,7 @@ sudo systemctl enable greetd.service
 sudo systemctl enable --now auto-cpufreq.service
 sudo systemctl enable --now bluetooth.service
 sudo systemctl enable --now NetworkManager.service
+sudo systemctl enable --now ntpdate.service
 sudo systemctl enable --now throttled.service
 sudo systemctl enable --now libvirtd.socket
 sudo systemctl enable --now virtlogd.socket
