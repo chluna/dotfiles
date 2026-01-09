@@ -12,6 +12,7 @@ btrbk
 btrfs-progs
 chezmoi
 clang
+cups
 delve
 dotnet-sdk
 dotnet-sdk-8.0
@@ -26,6 +27,7 @@ fisher
 fwupd
 fzf
 garcon
+ghostscript
 git
 git-delta
 glow
@@ -57,6 +59,7 @@ mpv
 network-manager-applet
 networkmanager
 noto-fonts-cjk
+ntp
 nvtop
 obsidian
 pacman-contrib

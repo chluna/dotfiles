@@ -1,4 +1,5 @@
 auto-cpufreq
+brother-dcp-l2550dw
 btdu-bin
 catppuccin-cursors-latte
 catppuccin-cursors-mocha
@@ -9,7 +10,7 @@ hledger-bin
 llama.cpp
 localsend-bin
 onedrive-abraunegg
-paru-bin
+paru
 tela-icon-theme
 ttf-apple-emoji
 ungoogled-chromium-bin
