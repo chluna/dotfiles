@@ -1,8 +1,0 @@
-edit:
-    apply: true
-    watch: true
-
-diff:
-    command: "delta"
-    args: ["--color-only", "{{ .Destination }}", "{{ .Target }}"]
-    exclude: ["scripts"]

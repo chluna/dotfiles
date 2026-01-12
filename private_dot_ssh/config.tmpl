@@ -1,19 +1,18 @@
-Host *
-    IdentityFile ~/.ssh/{{ .chezmoi.hostname }}
 
 Host github
     User git
     HostName github.com
-    IdentityFile ~/.ssh/{{ .chezmoi.hostname }}-github
 
 Host homepi
-    User {{ .chezmoi.username }}
     HostName 192.168.7.201
 
 Host linode-sg-arch
-    User {{ .chezmoi.username }}
     HostName linode-sg-arch.luna.cool
 
 Host wrt
     User root
     HostName 10.42.69.1
+
+Host *
+    User {{ .chezmoi.username }}
+    IdentityFile ~/.ssh/{{ .chezmoi.hostname }}

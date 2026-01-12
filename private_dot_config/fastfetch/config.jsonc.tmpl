@@ -1,14 +1,22 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
+{{- if eq .osName "macOS" }}
+    "source": "macos2_small",
+{{- else if eq .osName "Arch Linux" }}
     "type": "kitty-direct",
     "source": "~/.config/fastfetch/archlinux.png",
     "width": 14,
     "height": 6,
+{{- end }}
     "padding": {
       "top": 1,
       "left": 2,
+{{- if eq .osName "macOS" }}
+      "right": 3
+{{- else if eq .osName "Arch Linux" }}
       "right": 2
+{{- end }}
     }
   },
   "display": {
@@ -21,7 +29,9 @@
     {
       "type": "host",
       "key": "",
+{{- if eq .osName "Arch Linux" }}
       "format": "{3}",
+{{- end }}
       "keyWidth": 4
     },
     {
@@ -37,7 +47,9 @@
     {
       "type": "packages",
       "key": "",
+{{- if eq .osName "Arch Linux" }}
       "format": "{2}",
+{{- end }}
       "keyWidth": 4
     },
     {

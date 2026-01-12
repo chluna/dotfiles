@@ -1,0 +1,26 @@
+{{- $osName := .chezmoi.os -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $osName = "macOS" -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   if hasKey .chezmoi.osRelease "name" -}}
+{{-     $osName = .chezmoi.osRelease.name -}}
+{{-   else -}}
+{{-     $osName = "Linux" -}}
+{{-   end -}}
+{{- end -}}
+
+{{- $editor := "hx" -}}
+{{- if eq $osName "Arch Linux" -}}
+{{-   $editor = "helix" -}}
+{{- end -}}
+
+[data]
+    osName = {{ $osName | quote }}
+    editor = {{ $editor | quote }}
+
+[edit]
+    apply = true
+    watch = true
+
+[diff]
+    pager = "delta"

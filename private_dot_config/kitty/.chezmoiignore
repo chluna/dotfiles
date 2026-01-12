@@ -1,0 +1,7 @@
+{{- if ne .chezmoi.os "darwin" }}
+dark-theme.auto.conf
+light-theme.auto.conf
+no-preference-theme.auto.conf
+{{- else if ne .chezmoi.os "linux" }}
+current-theme.conf
+{{- end }}

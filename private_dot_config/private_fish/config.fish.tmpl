@@ -2,16 +2,33 @@
 # ~/.config/fish/config.fish by chluna
 #
 
-set -g _git ~/git
-set -g _sync ~/sync
-
-# environment variables
-fenv "source ~/.profile"
-
 if status is-interactive
 
-    # kitty completions
-    type -q kitty; and kitty + complete setup fish | source
+    # global variables
+    set -g _git ~/git
+    set -g _sync ~/sync
+
+    # environment variables
+    fenv "source ~/.env"
+    {{- if eq .chezmoi.os "darwin" }}
+    if command -q brew
+        eval $(brew shellenv)
+        if command -q qmk
+            fish_add_path --append $HOMEBREW_PREFIX/opt/arm-none-eabi-binutils/bin
+            fish_add_path --append $HOMEBREW_PREFIX/opt/arm-none-eabi-gcc@8/bin
+            fish_add_path --append $HOMEBREW_PREFIX/opt/avr-gcc@8/bin
+        end
+        if command -q rustup
+            fish_add_path --append $HOMEBREW_PREFIX/opt/rustup/bin
+        end
+    end
+    {{- end }}
+
+    # completions
+    command -q kitty; and kitty + complete setup fish | source
+    {{- if eq .chezmoi.os "darwin" }}
+    command -q fzf; and fzf --fish | source
+    {{- else if eq .chezmoi.os "linux" }}
 
     # fzf
     if command -q fzf
@@ -26,49 +43,45 @@ if status is-interactive
             set -gx FZF_DEFAULT_OPTS "--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 --color=selected-bg:#45475A --color=border:#6C7086,label:#CDD6F4"
         end
     end
+    {{- end }}
 
     # aliases
-    if not fish_is_root_user
-        abbr se sudoedit
-        alias sudo "sudo "
-    end
-
-    alias free "free -m" # show sizes in MB
-    alias cp "cp -i --reflink=always" # confirm before overwriting something
-    alias df "df -h" # human-readable sizes
-    abbr c clear
-    abbr jc "journalctl -rb"
     command -q bat; and alias cat bat
+    command -q btop; and abbr t btop
+    if command -q chezmoi
+        abbr cz chezmoi
+        abbr dot "chezmoi cd"
+    end
+    abbr c clear
+    alias df "df -h" # human-readable sizes
+    if command -q eza
+        alias ls "eza -a --color=always --icons=always --group-directories-first"
+        alias ll "eza -albg --color=always --icons=always --group-directories-first --time-style long-iso"
+    end
+    if command -q fastfetch
+        set -g _s fastfetch
+        abbr s fastfetch
+    end
+    command -q fd; and abbr find fd
+    command -q hledger; and alias run "hledger -f $_sync/health/running/running.journal"
     if command -q kitty
         abbr kt "kitten themes"
         if test $TERM = xterm-kitty
             alias ssh "kitten ssh"
         end
     end
-    command -q btop; and abbr t btop
-    command -q nvtop; and abbr gt nvtop
-    command -q powertop; and abbr pt "sudo powertop"
-    command -q codium; and abbr code codium
-    command -q fd; and abbr find fd
-    command -q hledger; and alias run "hledger -f $_sync/health/running/running.journal"
-    if command -q fastfetch
-        set -g _s fastfetch
-        abbr s fastfetch
-    end
-    if command -q nvim
+
+    if command -q {{ .editor }}
+        set -g _e {{ .editor }}
+    else if command -q nvim
         set -g _e nvim
         abbr vi nvim
         abbr vim nvim
         abbr vimdiff "nvim -d"
         abbr xxd "nvim -b"
-    else if command -q helix
-        set -g _e helix
     end
     abbr e $_e
-    if command -q eza
-        alias ls "eza -a --color=always --icons=always --group-directories-first"
-        alias ll "eza -albg --color=always --icons=always --group-directories-first --time-style long-iso"
-    end
+
     if command -q rg
         set -g _grep rg
         abbr grep $_grep
@@ -76,14 +89,98 @@ if status is-interactive
         set -g _grep "grep --color=auto"
         alias grep $_grep
     end
-    if command -q chezmoi
-        abbr cz chezmoi
-        abbr dot "chezmoi cd"
+    {{ if eq .chezmoi.os "linux" }}
+    # linux aliases
+    alias free "free -m" # show sizes in MB
+    alias cp "cp -i --reflink=always" # confirm before overwriting something
+    abbr jc "journalctl -rb"
+    command -q nvtop; and abbr gt nvtop
+    command -q powertop; and abbr pt "sudo powertop"
+    command -q codium; and abbr code codium
+
+    if not fish_is_root_user
+        abbr se sudoedit
+        alias sudo "sudo "
+    end
+    {{ end }}
+    # functions
+    function fsh --d "edit config.fish"
+        argparse e/edit r/reload -- $argv
+        or return
+        if set -q _flag_e
+            set -f conf ~/.config/fish/config.fish
+            set -f csum (mktemp)
+            sha1sum $conf >$csum
+            $_e $conf
+            sha1sum -c $csum --status
+            if test $status -ne 0
+                read -f -n 1 -P "Reload changes? [y/n]: " choice
+                if test (string lower $choice) = y
+                    exec fish
+                end
+            end
+            rm $csum
+            clear
+        else if set -q _flag_r
+            exec fish
+            clear
+        end
     end
 
-    # functions
+    function fin --d "finance wrapper for hledger"
+        argparse -i "j/journal=" l/latest e/edit m/main g/gui c/check -- $argv
+        or return
+        if set -q _flag_j
+            $_e $_git/ledger/$_flag_j.journal
+        else if set -q _flag_l
+            $_e (command ls $_git/ledger/ | rg -e '\d{4}.journal' | tail -n 1)
+        else if set -q _flag_e
+            $_e $_git/ledger
+        else if set -q _flag_m
+            $_e $_git/ledger/main.journal
+        else if set -q _flag_g
+            hledger-ui -w -f $_git/ledger/main.journal --theme=terminal --pretty=yes
+        else if set -q _flag_c
+            hledger -f $_git/ledger/main.journal check -s ordereddates
+        else
+            hledger -f $_git/ledger/main.journal $argv
+        end
+    end
+{{ if eq .chezmoi.os "darwin" }}
+    if command -q brew
+        function br -d "wrapper for homebrew"
+            argparse \
+                "a/add=" \
+                "r/remove=" \
+                "c/clean" \
+                "e/export" \
+                "u/update" \
+                "U/upgrade" \
+                -- $argv
+            or return
+            if set -q _flag_a
+                set pkgs $_flag_a $argv
+                brew install $pkgs
+            else if set -q _flag_r
+                set pkgs $_flag_r $argv
+                brew uninstall $pkgs
+                brew autoremove
+            else if set -q _flag_c
+                brew autoremove
+                brew cleanup -s
+            else if set -q _flag_e
+                brew bundle dump -f --file ~/.config/homebrew/Brewfile
+            else if set -q _flag_u
+                brew update
+            else if set -q _flag_U
+                brew update
+                and brew upgrade
+            end
+        end
+    end
+{{ else if eq .chezmoi.os "linux" }}
     function pm -d "wrapper for paru/pacman"
-        argparse -i i/install r/remove q/query p/purge m/mirror \
+        argparse i/install r/remove q/query p/purge m/mirror \
             e/export c/clean d/diff u/update U/upgrade -- $argv
         or return
         if command -q paru
@@ -139,49 +236,6 @@ if status is-interactive
             echo "           -d, --diff       find and act on pac[diff|new|save] files"
             echo "           -u, --update     check for package updates"
             echo "           -U, --upgrade    update and upgrade packages"
-        end
-    end
-
-    function fsh --d "edit config.fish"
-        argparse e/edit r/reload -- $argv
-        or return
-        if set -q _flag_e
-            set -f conf $XDG_CONFIG_HOME/fish/config.fish
-            set -f csum (mktemp)
-            sha1sum $conf >$csum
-            $_e $conf
-            sha1sum -c $csum --status
-            if test $status -ne 0
-                read -f -n 1 -P "Reload changes? [y/n]: " choice
-                if test (string lower $choice) = y
-                    exec fish
-                end
-            end
-            rm $csum
-            clear
-        else if set -q _flag_r
-            exec fish
-            clear
-        end
-    end
-
-    function fin --d "finance wrapper for hledger"
-        argparse -i "j/journal=" l/latest e/edit m/main g/gui c/check -- $argv
-        or return
-        if set -q _flag_j
-            $_e $_git/ledger/$_flag_j.journal
-        else if set -q _flag_l
-            $_e (command ls $_git/ledger/ | rg -e '\d{4}.journal' | tail -n 1)
-        else if set -q _flag_e
-            $_e $_git/ledger
-        else if set -q _flag_m
-            $_e $_git/ledger/main.journal
-        else if set -q _flag_g
-            hledger-ui -w -f $_git/ledger/main.journal --theme=terminal --pretty=yes
-        else if set -q _flag_c
-            hledger -f $_git/ledger/main.journal check -s ordereddates
-        else
-            hledger -f $_git/ledger/main.journal $argv
         end
     end
 
@@ -261,14 +315,14 @@ if status is-interactive
             echo "           -r, --run          take a btrbk snapshot and backup"
         end
     end
-
-end
-
-# function overrides
-function fish_greeting
-    if set -q _s
-        $_s
-    else
-        echo
+{{ end }}
+    # function overrides
+    function fish_greeting
+        if set -q _s
+            $_s
+        else
+            echo
+        end
     end
+
 end

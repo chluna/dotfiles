@@ -2,9 +2,11 @@
 # ~/.env by chluna
 #
 
+export EDITOR={{ .editor }}
+export VISUAL=$EDITOR
+{{- if eq .chezmoi.os "linux" }}
 export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin
 export XDG_CONFIG_HOME=$HOME/.config
-export EDITOR=helix
-export VISUAL=$EDITOR
 # export SXHKD_SHELL=/bin/sh
 export DIFFPROG='delta --color-only'
+{{- end }}

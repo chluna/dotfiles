@@ -1,14 +1,25 @@
+{{- $fontFamily := "" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $fontFamily = "FiraCodeNFM" -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   $fontFamily = "FiraCodeNF" -}}
+{{- end -}}
+
 # kitty.conf
 
 ## Fonts
+{{- if eq .chezmoi.os "darwin" }}
+font_size 12.0
+{{- else if eq .chezmoi.os "linux" }}
+font_size 10.0
 font_family         FiraCode Nerd Font Reg
 bold_font           FiraCode Nerd Font Bold
 italic_font         auto
 bold_italic_font    auto
-font_size 10.0
+{{- end}}
 disable_ligatures never
-font_features FiraCodeNF-Reg +ss06 +ss07
-font_features FiraCodeNF-Bold +ss06 +ss07
+font_features {{ $fontFamily }}-Reg +ss06 +ss07
+font_features {{ $fontFamily }}-Bold +ss06 +ss07
 
 ## Cursor
 cursor_shape beam
@@ -35,7 +46,11 @@ background_opacity 1.0
 update_check_interval 0
 term xterm-kitty
 allow_remote_control socket-only
+{{- if eq .chezmoi.os "darwin" }}
+listen_on unix:/tmp/kittysock
+{{- else if eq .chezmoi.os "linux" }}
 listen_on unix:@kittysock
+{{- end }}
 
 ## Keyboard shortcuts
 kitty_mod ctrl+shift
@@ -58,8 +73,16 @@ map ctrl+alt+left neighboring_window left
 map ctrl+alt+right neighboring_window right
 map ctrl+alt+up neighboring_window up
 map ctrl+alt+down neighboring_window down
-
+{{ if eq .chezmoi.os "darwin" }}
+# BEGIN_KITTY_FONTS
+font_family      family="FiraCode Nerd Font Mono"
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS
+{{- else if eq .chezmoi.os "linux" }}
 # BEGIN_KITTY_THEME
 # Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME
+{{- end }}

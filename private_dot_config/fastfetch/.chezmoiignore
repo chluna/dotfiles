@@ -1,0 +1,3 @@
+{{- if ne .osName "Arch Linux" }}
+archlinux.png
+{{- end }}

@@ -14,3 +14,22 @@ wezterm/
 
 # zsh
 zsh/
+{{ if ne .chezmoi.os "darwin" }}
+# macOS
+homebrew/
+{{ else if ne .chezmoi.os "linux" }}
+# linux
+autostart/
+btrbk/
+feh/
+fontconfig/
+pacman/
+paru/
+onedrive/
+redshift/
+restic/
+rofi/
+VSCodium/
+xfce4/
+user-dirs.dirs
+{{- end }}
