@@ -13,6 +13,7 @@ if status is-interactive
     {{- if eq .chezmoi.os "darwin" }}
     if command -q brew
         eval $(brew shellenv)
+        set -gx HOMEBREW_NO_UPDATE_REPORT_NEW 1
         if command -q qmk
             fish_add_path --append $HOMEBREW_PREFIX/opt/arm-none-eabi-binutils/bin
             fish_add_path --append $HOMEBREW_PREFIX/opt/arm-none-eabi-gcc@8/bin
@@ -105,7 +106,7 @@ if status is-interactive
     {{ end }}
     # functions
     function fsh --d "edit config.fish"
-        argparse e/edit r/reload -- $argv
+        argparse "e/edit" "r/reload" -- $argv
         or return
         if set -q _flag_e
             set -f conf ~/.config/fish/config.fish
@@ -128,7 +129,14 @@ if status is-interactive
     end
 
     function fin --d "finance wrapper for hledger"
-        argparse -i "j/journal=" l/latest e/edit m/main g/gui c/check -- $argv
+        argparse -i \
+            "j/journal=" \
+            "l/latest" \
+            "e/edit" \
+            "m/main" \
+            "g/gui" \
+            "c/check" \
+            -- $argv
         or return
         if set -q _flag_j
             $_e $_git/ledger/$_flag_j.journal
@@ -152,6 +160,8 @@ if status is-interactive
             argparse \
                 "a/add=" \
                 "r/remove=" \
+                "i/info=" \
+                "s/search=" \
                 "c/clean" \
                 "e/export" \
                 "u/update" \
@@ -165,6 +175,10 @@ if status is-interactive
                 set pkgs $_flag_r $argv
                 brew uninstall $pkgs
                 brew autoremove
+            else if set -q _flag_i
+                brew info $_flag_i
+            else if set -q _flag_s
+                brew search $_flag_s
             else if set -q _flag_c
                 brew autoremove
                 brew cleanup -s
@@ -174,14 +188,24 @@ if status is-interactive
                 brew update
             else if set -q _flag_U
                 brew update
-                and brew upgrade
+                and brew upgrade --greedy
             end
         end
     end
 {{ else if eq .chezmoi.os "linux" }}
     function pm -d "wrapper for paru/pacman"
-        argparse i/install r/remove q/query p/purge m/mirror \
-            e/export c/clean d/diff u/update U/upgrade -- $argv
+        argparse
+            "i/install" \
+            "r/remove" \
+            "q/query" \
+            "p/purge" \
+            "m/mirror" \
+            "e/export" \
+            "c/clean" \
+            "d/diff" \
+            "u/update" \
+            "U/upgrade" \
+            -- $argv
         or return
         if command -q paru
             set -f pkg paru
@@ -240,7 +264,13 @@ if status is-interactive
     end
 
     function sc --d "simple systemctl wrapper"
-        argparse -i u/user "s/status=" "r/restart=" "j/journal=" "e/edit=" -- $argv
+        argparse -i
+            "u/user" \
+            "s/status=" \
+            "r/restart=" \
+            "j/journal=" \
+            "e/edit=" \
+            -- $argv
         or return
         if set -q _flag_j
             if set -q _flag_u
@@ -272,8 +302,18 @@ if status is-interactive
     end
 
     function btr --d "btrfs and btrbk wrapper"
-        argparse u/usage b/balance s/scrub "t/target=" "du=" "mu=" \
-            n/dryrun l/list p/snapshot r/run -- $argv
+        argparse \
+            "u/usage" \
+            "b/balance" \
+            "s/scrub" \
+            "t/target"= \
+            "du=" \
+            "mu=" \
+            "n/dryrun" \
+            "l/list" \
+            "p/snapshot" \
+            "r/run" \
+            -- $argv
         or return
         set -f conf "/etc/btrbk/btrbk-backup.conf"
         if test "$_flag_t" = loc
