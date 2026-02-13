@@ -4,6 +4,5 @@ system-config-linux.sh
 {{- if ne .chezmoi.os "darwin" }}
 .hushlogin
 {{- else if ne .chezmoi.os "linux" }}
-.local/
 .profile
 {{- end }}
