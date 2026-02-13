@@ -1,0 +1,13 @@
+{{- if ne .chezmoi.os "darwin" }}
+bin/switch_appearance.sh
+{{- else if ne .chezmoi.os "linux" }}
+bin/24-bit-color.sh
+bin/backup.sh
+bin/fma_download.sh
+bin/run_script.sh
+bin/rofi-keepassxc-cli
+bin/rofi-power-menu
+bin/sxhkd-help.sh
+bin/xfce4-minimal-theme-gen.py
+share/
+{{- end }}

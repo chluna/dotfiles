@@ -1,9 +1,9 @@
-README.md
 root/
+README.md
 system-config-linux.sh
 {{- if ne .chezmoi.os "darwin" }}
+Library/
 .hushlogin
 {{- else if ne .chezmoi.os "linux" }}
-.local/
 .profile
 {{- end }}

@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+mode=$1
+config_home="/Users/{{ .chezmoi.username }}/.config"
+
+config="$config_home/bat/config"
+if [ -f "$config" ]; then
+    [ "$mode" = "dark" ] && sed -i '' 's/Catppuccin Latte/Catppuccin Mocha/' "$config"
+    [ "$mode" = "light" ] && sed -i '' 's/Catppuccin Mocha/Catppuccin Latte/' "$config"
+fi
+config="$config_home/btop/btop.conf"
+if [ -f "$config" ]; then
+    [ "$mode" = "dark" ] && sed -i '' 's/catppuccin_latte/catppuccin_mocha/' "$config"
+    [ "$mode" = "light" ] && sed -i '' 's/catppuccin_mocha/catppuccin_latte/' "$config"
+fi
+config="$config_home/git/config"
+if [ -f "$config" ]; then
+    [ "$mode" = "dark" ] && sed -i '' 's/catppuccin-latte/catppuccin-mocha/' "$config"
+    [ "$mode" = "light" ] && sed -i '' 's/catppuccin-mocha/catppuccin-latte/' "$config"
+fi
+config="$config_home/helix/config.toml"
+if [ -f "$config" ]; then
+    [ "$mode" = "dark" ] && sed -i '' 's/catppuccin_latte/catppuccin_mocha/' "$config"
+    [ "$mode" = "light" ] && sed -i '' 's/catppuccin_mocha/catppuccin_latte/' "$config"
+    pkill -USR1 hx
+fi

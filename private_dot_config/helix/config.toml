@@ -1,8 +1,4 @@
-{{- if eq .chezmoi.os "darwin" -}}
-theme = "base16_default"
-{{- else if eq .chezmoi.os "linux" -}}
 theme = "catppuccin_mocha"
-{{- end }}
 
 [editor]
 line-number = "relative"
