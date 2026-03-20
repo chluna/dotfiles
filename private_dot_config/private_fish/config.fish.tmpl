@@ -28,6 +28,7 @@ if status is-interactive
     # completions
     command -q kitty; and kitty + complete setup fish | source
     {{- if eq .chezmoi.os "darwin" }}
+    command -q mo; and set -l output (mole completion fish 2>/dev/null); and echo "$output" | source
     command -q fzf; and fzf --fish | source
     {{- else if eq .chezmoi.os "linux" }}
 
