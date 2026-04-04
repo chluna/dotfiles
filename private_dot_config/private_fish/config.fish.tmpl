@@ -26,6 +26,7 @@ if status is-interactive
     {{- end }}
 
     # completions
+    command -q fnm; and fnm env --use-on-cd --shell fish | source
     command -q kitty; and kitty + complete setup fish | source
     {{- if eq .chezmoi.os "darwin" }}
     command -q mo; and set -l output (mole completion fish 2>/dev/null); and echo "$output" | source
@@ -106,30 +107,33 @@ if status is-interactive
     end
     {{ end }}
     # functions
-    function fsh --d "edit config.fish"
+    function fc --d "manage config.fish"
         argparse "e/edit" "r/reload" -- $argv
         or return
-        if set -q _flag_e
-            set -f conf ~/.config/fish/config.fish
+        if set -q _flag_edit
+            set -f cfg_tmpl (chezmoi source-path)/private_dot_config/private_fish/config.fish.tmpl
+            set -f cfg ~/.config/fish/config.fish
             set -f csum (mktemp)
-            sha1sum $conf >$csum
-            $_e $conf
+            sha1sum $cfg_tmpl > $csum
+            $_e $cfg_tmpl
             sha1sum -c $csum --status
             if test $status -ne 0
-                read -f -n 1 -P "Reload changes? [y/n]: " choice
+                chezmoi apply -vn $cfg
+                read -f -n 1 -P "Apply changes? [y/n]: " choice
                 if test (string lower $choice) = y
+                    chezmoi apply $cfg
+                    clear
                     exec fish
                 end
             end
             rm $csum
+        else if set -q _flag_reload
             clear
-        else if set -q _flag_r
             exec fish
-            clear
         end
     end
 
-    function fin --d "finance wrapper for hledger"
+    function fin --d "hledger wrapper"
         argparse -i \
             "j/journal=" \
             "l/latest" \
@@ -157,44 +161,17 @@ if status is-interactive
     end
 {{ if eq .chezmoi.os "darwin" }}
     if command -q brew
-        function br -d "wrapper for homebrew"
-            argparse \
-                "a/add=" \
-                "r/remove=" \
-                "i/info=" \
-                "s/search=" \
-                "c/clean" \
-                "e/export" \
-                "u/update" \
-                "U/upgrade" \
-                -- $argv
-            or return
-            if set -q _flag_a
-                set pkgs $_flag_a $argv
-                brew install $pkgs
-            else if set -q _flag_r
-                set pkgs $_flag_r $argv
-                brew uninstall $pkgs
-                brew autoremove
-            else if set -q _flag_i
-                brew info $_flag_i
-            else if set -q _flag_s
-                brew search $_flag_s
-            else if set -q _flag_c
-                brew autoremove
-                brew cleanup -s
-            else if set -q _flag_e
-                brew bundle dump -f --file ~/.config/homebrew/Brewfile
-            else if set -q _flag_u
-                brew update
-            else if set -q _flag_U
-                brew update
-                and brew upgrade
-            end
-        end
+        abbr --command brew i install
+        abbr --command brew u uninstall
+        abbr --command brew l list
+        abbr --command brew s search
+        abbr --command brew c "autoremove; brew cleanup -s"
+        abbr --command brew e "bundle dump -f --file ~/.config/homebrew/Brewfile"
+        abbr --command brew up update
+        abbr --command brew ug "update; and brew upgrade --greedy"
     end
 {{ else if eq .chezmoi.os "linux" }}
-    function pm -d "wrapper for paru/pacman"
+    function pm -d "paru/pacman wrapper"
         argparse
             "i/install" \
             "r/remove" \
