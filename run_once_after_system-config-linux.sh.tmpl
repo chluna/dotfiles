@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "linux" }}
 #!/bin/sh
 
 # ----------
@@ -58,3 +59,4 @@ sudo systemctl enable --now fwupd-refresh.timer
 sudo chown root:root /etc/NetworkManager/dispatcher.d/99-update-genmon-network.sh
 sudo chmod 755 /etc/NetworkManager/dispatcher.d/99-update-genmon-network.sh
 sudo systemctl enable --now NetworkManager-dispatcher.service
+{{- end }}
