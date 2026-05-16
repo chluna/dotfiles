@@ -7,13 +7,14 @@ This features the [fish](https://fishshell.com/) as the interactive shell and us
 ## Specifications
 | Machine | Operating System | Desktop Environment |
 | --- | --- | --- |
-| [Apple MacBook Pro](https://www.apple.com/macbook-pro/) | [macOS Tahoe](https://www.apple.com/os/macos/) | --- |
+| [Apple MacBook Pro](https://www.apple.com/macbook-pro/) | [macOS Sequoia](https://www.apple.com/os/macos/) | --- |
 | [Lenovo ThinkPad T480](https://www.thinkwiki.org/wiki/Category:T480) | [Arch Linux](https://archlinux.org/) | [Xfce](https://xfce.org/) |
 
 ## Applications
 - [bat](https://github.com/sharkdp/bat) - a cat(1) clone with wings
 - [btop](https://github.com/aristocratos/btop) - resource monitor
 - [fastfetch](https://github.com/LinusDierheimer/fastfetch) - like neofetch, but much faster
+- [ghostty](https://ghostty.org/) - fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration
 - [git](https://git-scm.com/) - distributed version control system
 - [helix](https://helix-editor.com/) - a post-modern text editor
 - [kitty](https://sw.kovidgoyal.net/kitty/) - GPU-based terminal emulator
@@ -21,6 +22,7 @@ This features the [fish](https://fishshell.com/) as the interactive shell and us
 - [VSCodium](https://vscodium.com/) - FOSS binaries of Visual Studio Code
 - [WezTerm](https://wezfurlong.org/wezterm/) - a GPU-accelerated cross-platform terminal emulator and multiplexer
 - [yazi](https://yazi-rs.github.io/) - blazing fast terminal file manager written in Rust, based on async I/O
+- [zed](https://zed.dev/) - high-performance, multiplayer code editor from the creators of Atom and Tree-sitter
 - [zsh](https://www.zsh.org/) using the [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)
 
 ### Linux-specific
