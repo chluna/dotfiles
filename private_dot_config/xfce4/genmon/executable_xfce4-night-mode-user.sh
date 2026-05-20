@@ -12,7 +12,6 @@ if [[ "$XFCE_NIGHT_MODE" == "night" ]]; then
   [[ -f "$conf"/helix/config.toml ]] && sed -i 's/catppuccin_latte/catppuccin_mocha/' "$conf"/helix/config.toml
   [[ -f "$conf"/rofi/config.rasi ]] && sed -i 's/catppuccin-latte/catppuccin-mocha/' "$conf"/rofi/config.rasi
   [[ -f "$conf"/yazi/theme.toml ]] && sed -i 's/catppuccin-latte/catppuccin-mocha/' "$conf"/yazi/theme.toml
-  [[ -f "$conf"/wezterm/wezterm.lua ]] && sed -i 's/Catppuccin Latte/Catppuccin Mocha/' "$conf"/wezterm/wezterm.lua
   if [[ -f "$conf"/xfce4/genmon/battery.sh ]]; then
     sed -i 's/black/white/' "$conf"/xfce4/genmon/battery.sh
     xfce4-panel --plugin-event=genmon-3:refresh:bool:true
@@ -26,7 +25,6 @@ elif [[ "$XFCE_NIGHT_MODE" = "day" ]]; then
   [[ -f "$conf"/helix/config.toml ]] && sed -i 's/catppuccin_mocha/catppuccin_latte/' "$conf"/helix/config.toml
   [[ -f "$conf"/rofi/config.rasi ]] && sed -i 's/catppuccin-mocha/catppuccin-latte/' "$conf"/rofi/config.rasi
   [[ -f "$conf"/yazi/theme.toml ]] && sed -i 's/catppuccin-mocha/catppuccin-latte/' "$conf"/yazi/theme.toml
-  [[ -f "$conf"/wezterm/wezterm.lua ]] && sed -i 's/Catppuccin Mocha/Catppuccin Latte/' "$conf"/wezterm/wezterm.lua
   if [[ -f "$conf"/xfce4/genmon/battery.sh ]]; then
     sed -i 's/white/black/' "$conf"/xfce4/genmon/battery.sh
     xfce4-panel --plugin-event=genmon-3:refresh:bool:true
