@@ -102,7 +102,6 @@ command -v btop &> /dev/null && alias t='btop'
 command -v nvtop &> /dev/null && alias gt='nvtop'
 command -v powertop &> /dev/null && alias pt='sudo powertop'
 command -v chezmoi &> /dev/null && alias cz='chezmoi'
-command -v codium &> /dev/null && alias c='codium'
 if command -v nvim &> /dev/null; then
     alias e='nvim'
     alias vi='nvim'

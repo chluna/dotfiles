@@ -14,7 +14,6 @@ paru
 tela-icon-theme
 ttf-apple-emoji
 ungoogled-chromium-bin
-vscodium-bin
 webtorrent-cli
 xfwm4-gaps
 zen-browser-bin

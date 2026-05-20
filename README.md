@@ -19,7 +19,6 @@ This features the [fish](https://fishshell.com/) as the interactive shell and us
 - [helix](https://helix-editor.com/) - a post-modern text editor
 - [kitty](https://sw.kovidgoyal.net/kitty/) - GPU-based terminal emulator
 - [neovim](https://neovim.io/) - hyperextensible Vim-based text editor
-- [VSCodium](https://vscodium.com/) - FOSS binaries of Visual Studio Code
 - [yazi](https://yazi-rs.github.io/) - blazing fast terminal file manager written in Rust, based on async I/O
 - [zed](https://zed.dev/) - high-performance, multiplayer code editor from the creators of Atom and Tree-sitter
 - [zsh](https://www.zsh.org/) using the [Powerlevel10k theme](https://github.com/romkatv/powerlevel10k)

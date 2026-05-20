@@ -29,7 +29,6 @@ onedrive/
 redshift/
 restic/
 rofi/
-VSCodium/
 xfce4/
 user-dirs.dirs
 {{- end }}
