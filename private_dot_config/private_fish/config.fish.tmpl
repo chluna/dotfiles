@@ -176,7 +176,7 @@ if status is-interactive
     end
 {{ else if eq .chezmoi.os "linux" }}
     function pm -d "paru/pacman wrapper"
-        argparse
+        argparse -i \
             "i/install" \
             "r/remove" \
             "q/query" \
