@@ -2,14 +2,15 @@
 {{- $fontStyle := "Medium" -}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $fontSize = "12.0" -}}
-{{-   $fontStyle = "Light" -}}
+{{-   $fontStyle = "Retina" -}}
 {{- end -}}
 
 theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 font-size = {{ $fontSize }}
-font-family = JetBrains Mono
+font-family = Fira Code
 font-style = {{ $fontStyle }}
 font-style-bold = Bold
+adjust-cell-height = 10%
 adjust-cursor-thickness = 2
 window-padding-x = 5
 window-padding-y = 5
