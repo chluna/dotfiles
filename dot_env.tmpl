@@ -2,12 +2,12 @@
 # ~/.env by chluna
 #
 
+export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR={{ .editor }}
 export VISUAL=$EDITOR
 export GOENV={{ .chezmoi.homeDir }}/.config/go/env
 {{- if eq .chezmoi.os "linux" }}
 export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin
-export XDG_CONFIG_HOME=$HOME/.config
 # export SXHKD_SHELL=/bin/sh
 export DIFFPROG='delta --color-only'
 {{- end }}
